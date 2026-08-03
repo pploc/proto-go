@@ -31,15 +31,18 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
+var (
+	filter_TrainerService_SearchTrainers_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_TrainerService_SearchTrainers_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq SearchTrainersRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TrainerService_SearchTrainers_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -52,11 +55,10 @@ func local_request_TrainerService_SearchTrainers_0(ctx context.Context, marshale
 	var protoReq SearchTrainersRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TrainerService_SearchTrainers_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -69,12 +71,21 @@ func request_TrainerService_GetTrainerProfile_0(ctx context.Context, marshaler r
 	var protoReq GetTrainerProfileRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+
+	protoReq.Id, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
 	msg, err := client.GetTrainerProfile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -86,12 +97,21 @@ func local_request_TrainerService_GetTrainerProfile_0(ctx context.Context, marsh
 	var protoReq GetTrainerProfileRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+
+	protoReq.Id, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
 	msg, err := server.GetTrainerProfile(ctx, &protoReq)
@@ -99,15 +119,18 @@ func local_request_TrainerService_GetTrainerProfile_0(ctx context.Context, marsh
 
 }
 
+var (
+	filter_TrainerService_GetAvailableSlots_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_TrainerService_GetAvailableSlots_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetSlotsRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TrainerService_GetAvailableSlots_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -120,11 +143,10 @@ func local_request_TrainerService_GetAvailableSlots_0(ctx context.Context, marsh
 	var protoReq GetSlotsRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TrainerService_GetAvailableSlots_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -201,15 +223,18 @@ func local_request_TrainerService_CancelBooking_0(ctx context.Context, marshaler
 
 }
 
+var (
+	filter_TrainerService_GetMyBookings_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_TrainerService_GetMyBookings_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetMyBookingsRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TrainerService_GetMyBookings_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -222,11 +247,10 @@ func local_request_TrainerService_GetMyBookings_0(ctx context.Context, marshaler
 	var protoReq GetMyBookingsRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TrainerService_GetMyBookings_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -405,15 +429,18 @@ func local_request_TrainerService_CompleteBooking_0(ctx context.Context, marshal
 
 }
 
+var (
+	filter_TrainerService_GetCoachingHistory_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_TrainerService_GetCoachingHistory_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetCoachingHistoryRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TrainerService_GetCoachingHistory_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -426,117 +453,14 @@ func local_request_TrainerService_GetCoachingHistory_0(ctx context.Context, mars
 	var protoReq GetCoachingHistoryRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TrainerService_GetCoachingHistory_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.GetCoachingHistory(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-func request_TrainerService_CreateTrainer_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateTrainerRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.CreateTrainer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_TrainerService_CreateTrainer_0(ctx context.Context, marshaler runtime.Marshaler, server TrainerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateTrainerRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.CreateTrainer(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-func request_TrainerService_SuspendTrainer_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SuspendTrainerRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.SuspendTrainer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_TrainerService_SuspendTrainer_0(ctx context.Context, marshaler runtime.Marshaler, server TrainerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SuspendTrainerRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.SuspendTrainer(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-func request_TrainerService_ListTrainers_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListTrainersRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.ListTrainers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_TrainerService_ListTrainers_0(ctx context.Context, marshaler runtime.Marshaler, server TrainerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListTrainersRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.ListTrainers(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -547,7 +471,7 @@ func local_request_TrainerService_ListTrainers_0(ctx context.Context, marshaler 
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTrainerServiceHandlerFromEndpoint instead.
 func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server TrainerServiceServer) error {
 
-	mux.Handle("POST", pattern_TrainerService_SearchTrainers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_SearchTrainers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -555,7 +479,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/SearchTrainers", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/SearchTrainers"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/SearchTrainers", runtime.WithHTTPPathPattern("/api/v1/trainers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -572,7 +496,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_GetTrainerProfile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_GetTrainerProfile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -580,7 +504,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/GetTrainerProfile", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/GetTrainerProfile"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/GetTrainerProfile", runtime.WithHTTPPathPattern("/api/v1/trainers/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -597,7 +521,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_GetAvailableSlots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_GetAvailableSlots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -605,7 +529,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/GetAvailableSlots", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/GetAvailableSlots"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/GetAvailableSlots", runtime.WithHTTPPathPattern("/api/v1/trainers/slots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -630,7 +554,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/CreateBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/CreateBooking"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/CreateBooking", runtime.WithHTTPPathPattern("/api/v1/bookings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -655,7 +579,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/CancelBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/CancelBooking"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/CancelBooking", runtime.WithHTTPPathPattern("/api/v1/bookings/cancel"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -672,7 +596,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_GetMyBookings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_GetMyBookings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -680,7 +604,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/GetMyBookings", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/GetMyBookings"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/GetMyBookings", runtime.WithHTTPPathPattern("/api/v1/bookings/my"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -697,7 +621,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_UpdateMyProfile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_TrainerService_UpdateMyProfile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -705,7 +629,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/UpdateMyProfile", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/UpdateMyProfile"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/UpdateMyProfile", runtime.WithHTTPPathPattern("/api/v1/trainers/profile"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -730,7 +654,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/SetAvailability", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/SetAvailability"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/SetAvailability", runtime.WithHTTPPathPattern("/api/v1/trainers/availability"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -755,7 +679,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/AcceptBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/AcceptBooking"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/AcceptBooking", runtime.WithHTTPPathPattern("/api/v1/bookings/accept"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -780,7 +704,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/RejectBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/RejectBooking"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/RejectBooking", runtime.WithHTTPPathPattern("/api/v1/bookings/reject"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -805,7 +729,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/CompleteBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/CompleteBooking"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/CompleteBooking", runtime.WithHTTPPathPattern("/api/v1/bookings/complete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -822,7 +746,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_GetCoachingHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_GetCoachingHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -830,7 +754,7 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/GetCoachingHistory", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/GetCoachingHistory"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/GetCoachingHistory", runtime.WithHTTPPathPattern("/api/v1/trainers/coaching/history"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -844,81 +768,6 @@ func RegisterTrainerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		}
 
 		forward_TrainerService_GetCoachingHistory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_TrainerService_CreateTrainer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/CreateTrainer", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/CreateTrainer"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_TrainerService_CreateTrainer_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TrainerService_CreateTrainer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_TrainerService_SuspendTrainer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/SuspendTrainer", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/SuspendTrainer"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_TrainerService_SuspendTrainer_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TrainerService_SuspendTrainer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_TrainerService_ListTrainers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/trainer.v1.TrainerService/ListTrainers", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/ListTrainers"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_TrainerService_ListTrainers_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TrainerService_ListTrainers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -963,13 +812,13 @@ func RegisterTrainerServiceHandler(ctx context.Context, mux *runtime.ServeMux, c
 // "TrainerServiceClient" to call the correct interceptors.
 func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client TrainerServiceClient) error {
 
-	mux.Handle("POST", pattern_TrainerService_SearchTrainers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_SearchTrainers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/SearchTrainers", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/SearchTrainers"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/SearchTrainers", runtime.WithHTTPPathPattern("/api/v1/trainers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -985,13 +834,13 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_GetTrainerProfile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_GetTrainerProfile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/GetTrainerProfile", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/GetTrainerProfile"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/GetTrainerProfile", runtime.WithHTTPPathPattern("/api/v1/trainers/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1007,13 +856,13 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_GetAvailableSlots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_GetAvailableSlots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/GetAvailableSlots", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/GetAvailableSlots"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/GetAvailableSlots", runtime.WithHTTPPathPattern("/api/v1/trainers/slots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1035,7 +884,7 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/CreateBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/CreateBooking"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/CreateBooking", runtime.WithHTTPPathPattern("/api/v1/bookings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1057,7 +906,7 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/CancelBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/CancelBooking"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/CancelBooking", runtime.WithHTTPPathPattern("/api/v1/bookings/cancel"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1073,13 +922,13 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_GetMyBookings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_GetMyBookings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/GetMyBookings", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/GetMyBookings"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/GetMyBookings", runtime.WithHTTPPathPattern("/api/v1/bookings/my"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1095,13 +944,13 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_UpdateMyProfile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_TrainerService_UpdateMyProfile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/UpdateMyProfile", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/UpdateMyProfile"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/UpdateMyProfile", runtime.WithHTTPPathPattern("/api/v1/trainers/profile"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1123,7 +972,7 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/SetAvailability", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/SetAvailability"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/SetAvailability", runtime.WithHTTPPathPattern("/api/v1/trainers/availability"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1145,7 +994,7 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/AcceptBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/AcceptBooking"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/AcceptBooking", runtime.WithHTTPPathPattern("/api/v1/bookings/accept"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1167,7 +1016,7 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/RejectBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/RejectBooking"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/RejectBooking", runtime.WithHTTPPathPattern("/api/v1/bookings/reject"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1189,7 +1038,7 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/CompleteBooking", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/CompleteBooking"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/CompleteBooking", runtime.WithHTTPPathPattern("/api/v1/bookings/complete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1205,13 +1054,13 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_GetCoachingHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TrainerService_GetCoachingHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/GetCoachingHistory", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/GetCoachingHistory"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/GetCoachingHistory", runtime.WithHTTPPathPattern("/api/v1/trainers/coaching/history"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1227,105 +1076,33 @@ func RegisterTrainerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_TrainerService_CreateTrainer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/CreateTrainer", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/CreateTrainer"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_TrainerService_CreateTrainer_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TrainerService_CreateTrainer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_TrainerService_SuspendTrainer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/SuspendTrainer", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/SuspendTrainer"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_TrainerService_SuspendTrainer_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TrainerService_SuspendTrainer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_TrainerService_ListTrainers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/trainer.v1.TrainerService/ListTrainers", runtime.WithHTTPPathPattern("/trainer.v1.TrainerService/ListTrainers"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_TrainerService_ListTrainers_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TrainerService_ListTrainers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	return nil
 }
 
 var (
-	pattern_TrainerService_SearchTrainers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "SearchTrainers"}, ""))
+	pattern_TrainerService_SearchTrainers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "trainers"}, ""))
 
-	pattern_TrainerService_GetTrainerProfile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "GetTrainerProfile"}, ""))
+	pattern_TrainerService_GetTrainerProfile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "trainers", "id"}, ""))
 
-	pattern_TrainerService_GetAvailableSlots_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "GetAvailableSlots"}, ""))
+	pattern_TrainerService_GetAvailableSlots_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "trainers", "slots"}, ""))
 
-	pattern_TrainerService_CreateBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "CreateBooking"}, ""))
+	pattern_TrainerService_CreateBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "bookings"}, ""))
 
-	pattern_TrainerService_CancelBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "CancelBooking"}, ""))
+	pattern_TrainerService_CancelBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "bookings", "cancel"}, ""))
 
-	pattern_TrainerService_GetMyBookings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "GetMyBookings"}, ""))
+	pattern_TrainerService_GetMyBookings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "bookings", "my"}, ""))
 
-	pattern_TrainerService_UpdateMyProfile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "UpdateMyProfile"}, ""))
+	pattern_TrainerService_UpdateMyProfile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "trainers", "profile"}, ""))
 
-	pattern_TrainerService_SetAvailability_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "SetAvailability"}, ""))
+	pattern_TrainerService_SetAvailability_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "trainers", "availability"}, ""))
 
-	pattern_TrainerService_AcceptBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "AcceptBooking"}, ""))
+	pattern_TrainerService_AcceptBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "bookings", "accept"}, ""))
 
-	pattern_TrainerService_RejectBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "RejectBooking"}, ""))
+	pattern_TrainerService_RejectBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "bookings", "reject"}, ""))
 
-	pattern_TrainerService_CompleteBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "CompleteBooking"}, ""))
+	pattern_TrainerService_CompleteBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "bookings", "complete"}, ""))
 
-	pattern_TrainerService_GetCoachingHistory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "GetCoachingHistory"}, ""))
-
-	pattern_TrainerService_CreateTrainer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "CreateTrainer"}, ""))
-
-	pattern_TrainerService_SuspendTrainer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "SuspendTrainer"}, ""))
-
-	pattern_TrainerService_ListTrainers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"trainer.v1.TrainerService", "ListTrainers"}, ""))
+	pattern_TrainerService_GetCoachingHistory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "trainers", "coaching", "history"}, ""))
 )
 
 var (
@@ -1352,10 +1129,4 @@ var (
 	forward_TrainerService_CompleteBooking_0 = runtime.ForwardResponseMessage
 
 	forward_TrainerService_GetCoachingHistory_0 = runtime.ForwardResponseMessage
-
-	forward_TrainerService_CreateTrainer_0 = runtime.ForwardResponseMessage
-
-	forward_TrainerService_SuspendTrainer_0 = runtime.ForwardResponseMessage
-
-	forward_TrainerService_ListTrainers_0 = runtime.ForwardResponseMessage
 )

@@ -19,21 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MemberService_GetMember_FullMethodName           = "/member.v1.MemberService/GetMember"
-	MemberService_UpdateProfile_FullMethodName       = "/member.v1.MemberService/UpdateProfile"
-	MemberService_ListMembers_FullMethodName         = "/member.v1.MemberService/ListMembers"
-	MemberService_GetPlans_FullMethodName            = "/member.v1.MemberService/GetPlans"
-	MemberService_PurchaseMembership_FullMethodName  = "/member.v1.MemberService/PurchaseMembership"
-	MemberService_PauseMembership_FullMethodName     = "/member.v1.MemberService/PauseMembership"
-	MemberService_ResumeMembership_FullMethodName    = "/member.v1.MemberService/ResumeMembership"
-	MemberService_GetMembershipStatus_FullMethodName = "/member.v1.MemberService/GetMembershipStatus"
-	MemberService_CreateGymLocation_FullMethodName   = "/member.v1.MemberService/CreateGymLocation"
-	MemberService_UpdateGymLocation_FullMethodName   = "/member.v1.MemberService/UpdateGymLocation"
-	MemberService_ListGymLocations_FullMethodName    = "/member.v1.MemberService/ListGymLocations"
-	MemberService_GetGymLocation_FullMethodName      = "/member.v1.MemberService/GetGymLocation"
-	MemberService_ValidateMembership_FullMethodName  = "/member.v1.MemberService/ValidateMembership"
-	MemberService_GetGymDailySecret_FullMethodName   = "/member.v1.MemberService/GetGymDailySecret"
-	MemberService_ListMembersByStatus_FullMethodName = "/member.v1.MemberService/ListMembersByStatus"
+	MemberService_GetMember_FullMethodName                   = "/member.v1.MemberService/GetMember"
+	MemberService_UpdateProfile_FullMethodName               = "/member.v1.MemberService/UpdateProfile"
+	MemberService_ListMembers_FullMethodName                 = "/member.v1.MemberService/ListMembers"
+	MemberService_GetPlans_FullMethodName                    = "/member.v1.MemberService/GetPlans"
+	MemberService_PurchaseMembership_FullMethodName          = "/member.v1.MemberService/PurchaseMembership"
+	MemberService_PauseMembership_FullMethodName             = "/member.v1.MemberService/PauseMembership"
+	MemberService_ResumeMembership_FullMethodName            = "/member.v1.MemberService/ResumeMembership"
+	MemberService_GetMembershipStatus_FullMethodName         = "/member.v1.MemberService/GetMembershipStatus"
+	MemberService_GetMembershipStatusByUserId_FullMethodName = "/member.v1.MemberService/GetMembershipStatusByUserId"
+	MemberService_CreateGymLocation_FullMethodName           = "/member.v1.MemberService/CreateGymLocation"
+	MemberService_UpdateGymLocation_FullMethodName           = "/member.v1.MemberService/UpdateGymLocation"
+	MemberService_ListGymLocations_FullMethodName            = "/member.v1.MemberService/ListGymLocations"
+	MemberService_GetGymLocation_FullMethodName              = "/member.v1.MemberService/GetGymLocation"
+	MemberService_ValidateMembership_FullMethodName          = "/member.v1.MemberService/ValidateMembership"
+	MemberService_ListMembersByStatus_FullMethodName         = "/member.v1.MemberService/ListMembersByStatus"
 )
 
 // MemberServiceClient is the client API for MemberService service.
@@ -48,12 +48,14 @@ type MemberServiceClient interface {
 	PauseMembership(ctx context.Context, in *PauseMembershipRequest, opts ...grpc.CallOption) (*MembershipResponse, error)
 	ResumeMembership(ctx context.Context, in *ResumeMembershipRequest, opts ...grpc.CallOption) (*MembershipResponse, error)
 	GetMembershipStatus(ctx context.Context, in *GetMembershipStatusRequest, opts ...grpc.CallOption) (*MembershipResponse, error)
+	// Internal only. Requires the verified ms-gym-identifier workload identity.
+	// This RPC is intentionally absent from the external HTTP configuration.
+	GetMembershipStatusByUserId(ctx context.Context, in *GetMembershipStatusByUserIdRequest, opts ...grpc.CallOption) (*MembershipResponse, error)
 	CreateGymLocation(ctx context.Context, in *CreateGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error)
 	UpdateGymLocation(ctx context.Context, in *UpdateGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error)
 	ListGymLocations(ctx context.Context, in *ListGymLocationsRequest, opts ...grpc.CallOption) (*GymLocationsResponse, error)
 	GetGymLocation(ctx context.Context, in *GetGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error)
 	ValidateMembership(ctx context.Context, in *ValidateMembershipRequest, opts ...grpc.CallOption) (*ValidateMembershipResponse, error)
-	GetGymDailySecret(ctx context.Context, in *GetGymDailySecretRequest, opts ...grpc.CallOption) (*GymDailySecretResponse, error)
 	ListMembersByStatus(ctx context.Context, in *ListMembersByStatusRequest, opts ...grpc.CallOption) (*ListMembersByStatusResponse, error)
 }
 
@@ -137,6 +139,15 @@ func (c *memberServiceClient) GetMembershipStatus(ctx context.Context, in *GetMe
 	return out, nil
 }
 
+func (c *memberServiceClient) GetMembershipStatusByUserId(ctx context.Context, in *GetMembershipStatusByUserIdRequest, opts ...grpc.CallOption) (*MembershipResponse, error) {
+	out := new(MembershipResponse)
+	err := c.cc.Invoke(ctx, MemberService_GetMembershipStatusByUserId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *memberServiceClient) CreateGymLocation(ctx context.Context, in *CreateGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error) {
 	out := new(GymLocationResponse)
 	err := c.cc.Invoke(ctx, MemberService_CreateGymLocation_FullMethodName, in, out, opts...)
@@ -182,15 +193,6 @@ func (c *memberServiceClient) ValidateMembership(ctx context.Context, in *Valida
 	return out, nil
 }
 
-func (c *memberServiceClient) GetGymDailySecret(ctx context.Context, in *GetGymDailySecretRequest, opts ...grpc.CallOption) (*GymDailySecretResponse, error) {
-	out := new(GymDailySecretResponse)
-	err := c.cc.Invoke(ctx, MemberService_GetGymDailySecret_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *memberServiceClient) ListMembersByStatus(ctx context.Context, in *ListMembersByStatusRequest, opts ...grpc.CallOption) (*ListMembersByStatusResponse, error) {
 	out := new(ListMembersByStatusResponse)
 	err := c.cc.Invoke(ctx, MemberService_ListMembersByStatus_FullMethodName, in, out, opts...)
@@ -212,12 +214,14 @@ type MemberServiceServer interface {
 	PauseMembership(context.Context, *PauseMembershipRequest) (*MembershipResponse, error)
 	ResumeMembership(context.Context, *ResumeMembershipRequest) (*MembershipResponse, error)
 	GetMembershipStatus(context.Context, *GetMembershipStatusRequest) (*MembershipResponse, error)
+	// Internal only. Requires the verified ms-gym-identifier workload identity.
+	// This RPC is intentionally absent from the external HTTP configuration.
+	GetMembershipStatusByUserId(context.Context, *GetMembershipStatusByUserIdRequest) (*MembershipResponse, error)
 	CreateGymLocation(context.Context, *CreateGymLocationRequest) (*GymLocationResponse, error)
 	UpdateGymLocation(context.Context, *UpdateGymLocationRequest) (*GymLocationResponse, error)
 	ListGymLocations(context.Context, *ListGymLocationsRequest) (*GymLocationsResponse, error)
 	GetGymLocation(context.Context, *GetGymLocationRequest) (*GymLocationResponse, error)
 	ValidateMembership(context.Context, *ValidateMembershipRequest) (*ValidateMembershipResponse, error)
-	GetGymDailySecret(context.Context, *GetGymDailySecretRequest) (*GymDailySecretResponse, error)
 	ListMembersByStatus(context.Context, *ListMembersByStatusRequest) (*ListMembersByStatusResponse, error)
 	mustEmbedUnimplementedMemberServiceServer()
 }
@@ -250,6 +254,9 @@ func (UnimplementedMemberServiceServer) ResumeMembership(context.Context, *Resum
 func (UnimplementedMemberServiceServer) GetMembershipStatus(context.Context, *GetMembershipStatusRequest) (*MembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMembershipStatus not implemented")
 }
+func (UnimplementedMemberServiceServer) GetMembershipStatusByUserId(context.Context, *GetMembershipStatusByUserIdRequest) (*MembershipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMembershipStatusByUserId not implemented")
+}
 func (UnimplementedMemberServiceServer) CreateGymLocation(context.Context, *CreateGymLocationRequest) (*GymLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGymLocation not implemented")
 }
@@ -264,9 +271,6 @@ func (UnimplementedMemberServiceServer) GetGymLocation(context.Context, *GetGymL
 }
 func (UnimplementedMemberServiceServer) ValidateMembership(context.Context, *ValidateMembershipRequest) (*ValidateMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateMembership not implemented")
-}
-func (UnimplementedMemberServiceServer) GetGymDailySecret(context.Context, *GetGymDailySecretRequest) (*GymDailySecretResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGymDailySecret not implemented")
 }
 func (UnimplementedMemberServiceServer) ListMembersByStatus(context.Context, *ListMembersByStatusRequest) (*ListMembersByStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMembersByStatus not implemented")
@@ -428,6 +432,24 @@ func _MemberService_GetMembershipStatus_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MemberService_GetMembershipStatusByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMembershipStatusByUserIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemberServiceServer).GetMembershipStatusByUserId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MemberService_GetMembershipStatusByUserId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemberServiceServer).GetMembershipStatusByUserId(ctx, req.(*GetMembershipStatusByUserIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MemberService_CreateGymLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateGymLocationRequest)
 	if err := dec(in); err != nil {
@@ -518,24 +540,6 @@ func _MemberService_ValidateMembership_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MemberService_GetGymDailySecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGymDailySecretRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MemberServiceServer).GetGymDailySecret(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MemberService_GetGymDailySecret_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServiceServer).GetGymDailySecret(ctx, req.(*GetGymDailySecretRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MemberService_ListMembersByStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListMembersByStatusRequest)
 	if err := dec(in); err != nil {
@@ -594,6 +598,10 @@ var MemberService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MemberService_GetMembershipStatus_Handler,
 		},
 		{
+			MethodName: "GetMembershipStatusByUserId",
+			Handler:    _MemberService_GetMembershipStatusByUserId_Handler,
+		},
+		{
 			MethodName: "CreateGymLocation",
 			Handler:    _MemberService_CreateGymLocation_Handler,
 		},
@@ -612,10 +620,6 @@ var MemberService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ValidateMembership",
 			Handler:    _MemberService_ValidateMembership_Handler,
-		},
-		{
-			MethodName: "GetGymDailySecret",
-			Handler:    _MemberService_GetGymDailySecret_Handler,
 		},
 		{
 			MethodName: "ListMembersByStatus",

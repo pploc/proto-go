@@ -19,10 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CheckInService_ProcessScan_FullMethodName       = "/checkin.v1.CheckInService/ProcessScan"
-	CheckInService_GetCheckInHistory_FullMethodName = "/checkin.v1.CheckInService/GetCheckInHistory"
-	CheckInService_GetDailyCount_FullMethodName     = "/checkin.v1.CheckInService/GetDailyCount"
-	CheckInService_RegisterDevice_FullMethodName    = "/checkin.v1.CheckInService/RegisterDevice"
+	CheckInService_ProcessScan_FullMethodName         = "/checkin.v1.CheckInService/ProcessScan"
+	CheckInService_GetCheckInHistory_FullMethodName   = "/checkin.v1.CheckInService/GetCheckInHistory"
+	CheckInService_GetDailyCount_FullMethodName       = "/checkin.v1.CheckInService/GetDailyCount"
+	CheckInService_RegisterDevice_FullMethodName      = "/checkin.v1.CheckInService/RegisterDevice"
+	CheckInService_GetDisplayQrPayload_FullMethodName = "/checkin.v1.CheckInService/GetDisplayQrPayload"
+	CheckInService_RevokeDevice_FullMethodName        = "/checkin.v1.CheckInService/RevokeDevice"
+	CheckInService_RotateGymQrRootKey_FullMethodName  = "/checkin.v1.CheckInService/RotateGymQrRootKey"
 )
 
 // CheckInServiceClient is the client API for CheckInService service.
@@ -33,6 +36,9 @@ type CheckInServiceClient interface {
 	GetCheckInHistory(ctx context.Context, in *GetCheckInHistoryRequest, opts ...grpc.CallOption) (*CheckInHistoryResponse, error)
 	GetDailyCount(ctx context.Context, in *GetDailyCountRequest, opts ...grpc.CallOption) (*DailyCountResponse, error)
 	RegisterDevice(ctx context.Context, in *RegisterDeviceRequest, opts ...grpc.CallOption) (*RegisterDeviceResponse, error)
+	GetDisplayQrPayload(ctx context.Context, in *GetDisplayQrPayloadRequest, opts ...grpc.CallOption) (*GetDisplayQrPayloadResponse, error)
+	RevokeDevice(ctx context.Context, in *RevokeDeviceRequest, opts ...grpc.CallOption) (*RevokeDeviceResponse, error)
+	RotateGymQrRootKey(ctx context.Context, in *RotateGymQrRootKeyRequest, opts ...grpc.CallOption) (*RotateGymQrRootKeyResponse, error)
 }
 
 type checkInServiceClient struct {
@@ -79,6 +85,33 @@ func (c *checkInServiceClient) RegisterDevice(ctx context.Context, in *RegisterD
 	return out, nil
 }
 
+func (c *checkInServiceClient) GetDisplayQrPayload(ctx context.Context, in *GetDisplayQrPayloadRequest, opts ...grpc.CallOption) (*GetDisplayQrPayloadResponse, error) {
+	out := new(GetDisplayQrPayloadResponse)
+	err := c.cc.Invoke(ctx, CheckInService_GetDisplayQrPayload_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *checkInServiceClient) RevokeDevice(ctx context.Context, in *RevokeDeviceRequest, opts ...grpc.CallOption) (*RevokeDeviceResponse, error) {
+	out := new(RevokeDeviceResponse)
+	err := c.cc.Invoke(ctx, CheckInService_RevokeDevice_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *checkInServiceClient) RotateGymQrRootKey(ctx context.Context, in *RotateGymQrRootKeyRequest, opts ...grpc.CallOption) (*RotateGymQrRootKeyResponse, error) {
+	out := new(RotateGymQrRootKeyResponse)
+	err := c.cc.Invoke(ctx, CheckInService_RotateGymQrRootKey_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CheckInServiceServer is the server API for CheckInService service.
 // All implementations must embed UnimplementedCheckInServiceServer
 // for forward compatibility
@@ -87,6 +120,9 @@ type CheckInServiceServer interface {
 	GetCheckInHistory(context.Context, *GetCheckInHistoryRequest) (*CheckInHistoryResponse, error)
 	GetDailyCount(context.Context, *GetDailyCountRequest) (*DailyCountResponse, error)
 	RegisterDevice(context.Context, *RegisterDeviceRequest) (*RegisterDeviceResponse, error)
+	GetDisplayQrPayload(context.Context, *GetDisplayQrPayloadRequest) (*GetDisplayQrPayloadResponse, error)
+	RevokeDevice(context.Context, *RevokeDeviceRequest) (*RevokeDeviceResponse, error)
+	RotateGymQrRootKey(context.Context, *RotateGymQrRootKeyRequest) (*RotateGymQrRootKeyResponse, error)
 	mustEmbedUnimplementedCheckInServiceServer()
 }
 
@@ -105,6 +141,15 @@ func (UnimplementedCheckInServiceServer) GetDailyCount(context.Context, *GetDail
 }
 func (UnimplementedCheckInServiceServer) RegisterDevice(context.Context, *RegisterDeviceRequest) (*RegisterDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterDevice not implemented")
+}
+func (UnimplementedCheckInServiceServer) GetDisplayQrPayload(context.Context, *GetDisplayQrPayloadRequest) (*GetDisplayQrPayloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDisplayQrPayload not implemented")
+}
+func (UnimplementedCheckInServiceServer) RevokeDevice(context.Context, *RevokeDeviceRequest) (*RevokeDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RevokeDevice not implemented")
+}
+func (UnimplementedCheckInServiceServer) RotateGymQrRootKey(context.Context, *RotateGymQrRootKeyRequest) (*RotateGymQrRootKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RotateGymQrRootKey not implemented")
 }
 func (UnimplementedCheckInServiceServer) mustEmbedUnimplementedCheckInServiceServer() {}
 
@@ -191,6 +236,60 @@ func _CheckInService_RegisterDevice_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CheckInService_GetDisplayQrPayload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDisplayQrPayloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CheckInServiceServer).GetDisplayQrPayload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CheckInService_GetDisplayQrPayload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CheckInServiceServer).GetDisplayQrPayload(ctx, req.(*GetDisplayQrPayloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CheckInService_RevokeDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RevokeDeviceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CheckInServiceServer).RevokeDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CheckInService_RevokeDevice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CheckInServiceServer).RevokeDevice(ctx, req.(*RevokeDeviceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CheckInService_RotateGymQrRootKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RotateGymQrRootKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CheckInServiceServer).RotateGymQrRootKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CheckInService_RotateGymQrRootKey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CheckInServiceServer).RotateGymQrRootKey(ctx, req.(*RotateGymQrRootKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CheckInService_ServiceDesc is the grpc.ServiceDesc for CheckInService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -213,6 +312,18 @@ var CheckInService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegisterDevice",
 			Handler:    _CheckInService_RegisterDevice_Handler,
+		},
+		{
+			MethodName: "GetDisplayQrPayload",
+			Handler:    _CheckInService_GetDisplayQrPayload_Handler,
+		},
+		{
+			MethodName: "RevokeDevice",
+			Handler:    _CheckInService_RevokeDevice_Handler,
+		},
+		{
+			MethodName: "RotateGymQrRootKey",
+			Handler:    _CheckInService_RotateGymQrRootKey_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
