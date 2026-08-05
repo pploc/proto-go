@@ -20,16 +20,19 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	IdentityService_Register_FullMethodName             = "/identity.v1.IdentityService/Register"
-	IdentityService_Login_FullMethodName                = "/identity.v1.IdentityService/Login"
-	IdentityService_LoginWithGoogle_FullMethodName      = "/identity.v1.IdentityService/LoginWithGoogle"
-	IdentityService_RefreshToken_FullMethodName         = "/identity.v1.IdentityService/RefreshToken"
-	IdentityService_Logout_FullMethodName               = "/identity.v1.IdentityService/Logout"
-	IdentityService_GetCurrentUser_FullMethodName       = "/identity.v1.IdentityService/GetCurrentUser"
-	IdentityService_ChangePassword_FullMethodName       = "/identity.v1.IdentityService/ChangePassword"
-	IdentityService_CreateTrainerAccount_FullMethodName = "/identity.v1.IdentityService/CreateTrainerAccount"
-	IdentityService_SuspendUser_FullMethodName          = "/identity.v1.IdentityService/SuspendUser"
-	IdentityService_ListUsers_FullMethodName            = "/identity.v1.IdentityService/ListUsers"
+	IdentityService_Register_FullMethodName                = "/identity.v1.IdentityService/Register"
+	IdentityService_Login_FullMethodName                   = "/identity.v1.IdentityService/Login"
+	IdentityService_LoginWithGoogle_FullMethodName         = "/identity.v1.IdentityService/LoginWithGoogle"
+	IdentityService_RefreshToken_FullMethodName            = "/identity.v1.IdentityService/RefreshToken"
+	IdentityService_VerifyEmail_FullMethodName             = "/identity.v1.IdentityService/VerifyEmail"
+	IdentityService_ResendEmailVerification_FullMethodName = "/identity.v1.IdentityService/ResendEmailVerification"
+	IdentityService_Logout_FullMethodName                  = "/identity.v1.IdentityService/Logout"
+	IdentityService_GetCurrentUser_FullMethodName          = "/identity.v1.IdentityService/GetCurrentUser"
+	IdentityService_ChangePassword_FullMethodName          = "/identity.v1.IdentityService/ChangePassword"
+	IdentityService_SelectGym_FullMethodName               = "/identity.v1.IdentityService/SelectGym"
+	IdentityService_CreateTrainerAccount_FullMethodName    = "/identity.v1.IdentityService/CreateTrainerAccount"
+	IdentityService_SuspendUser_FullMethodName             = "/identity.v1.IdentityService/SuspendUser"
+	IdentityService_ListUsers_FullMethodName               = "/identity.v1.IdentityService/ListUsers"
 )
 
 // IdentityServiceClient is the client API for IdentityService service.
@@ -40,9 +43,12 @@ type IdentityServiceClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*AuthResponse, error)
 	LoginWithGoogle(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*AuthResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*AuthResponse, error)
+	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*AuthResponse, error)
+	ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetCurrentUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UserResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SelectGym(ctx context.Context, in *SelectGymRequest, opts ...grpc.CallOption) (*SelectGymResponse, error)
 	CreateTrainerAccount(ctx context.Context, in *CreateTrainerRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	SuspendUser(ctx context.Context, in *SuspendUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListUsers(ctx context.Context, in *ListUsersRequest, opts ...grpc.CallOption) (*ListUsersResponse, error)
@@ -92,6 +98,24 @@ func (c *identityServiceClient) RefreshToken(ctx context.Context, in *RefreshTok
 	return out, nil
 }
 
+func (c *identityServiceClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
+	out := new(AuthResponse)
+	err := c.cc.Invoke(ctx, IdentityService_VerifyEmail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *identityServiceClient) ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, IdentityService_ResendEmailVerification_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *identityServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, IdentityService_Logout_FullMethodName, in, out, opts...)
@@ -113,6 +137,15 @@ func (c *identityServiceClient) GetCurrentUser(ctx context.Context, in *emptypb.
 func (c *identityServiceClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, IdentityService_ChangePassword_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *identityServiceClient) SelectGym(ctx context.Context, in *SelectGymRequest, opts ...grpc.CallOption) (*SelectGymResponse, error) {
+	out := new(SelectGymResponse)
+	err := c.cc.Invoke(ctx, IdentityService_SelectGym_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -154,9 +187,12 @@ type IdentityServiceServer interface {
 	Login(context.Context, *LoginRequest) (*AuthResponse, error)
 	LoginWithGoogle(context.Context, *GoogleLoginRequest) (*AuthResponse, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*AuthResponse, error)
+	VerifyEmail(context.Context, *VerifyEmailRequest) (*AuthResponse, error)
+	ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*emptypb.Empty, error)
 	Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error)
 	GetCurrentUser(context.Context, *emptypb.Empty) (*UserResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*emptypb.Empty, error)
+	SelectGym(context.Context, *SelectGymRequest) (*SelectGymResponse, error)
 	CreateTrainerAccount(context.Context, *CreateTrainerRequest) (*UserResponse, error)
 	SuspendUser(context.Context, *SuspendUserRequest) (*emptypb.Empty, error)
 	ListUsers(context.Context, *ListUsersRequest) (*ListUsersResponse, error)
@@ -179,6 +215,12 @@ func (UnimplementedIdentityServiceServer) LoginWithGoogle(context.Context, *Goog
 func (UnimplementedIdentityServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*AuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
+func (UnimplementedIdentityServiceServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*AuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
+}
+func (UnimplementedIdentityServiceServer) ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResendEmailVerification not implemented")
+}
 func (UnimplementedIdentityServiceServer) Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
@@ -187,6 +229,9 @@ func (UnimplementedIdentityServiceServer) GetCurrentUser(context.Context, *empty
 }
 func (UnimplementedIdentityServiceServer) ChangePassword(context.Context, *ChangePasswordRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
+}
+func (UnimplementedIdentityServiceServer) SelectGym(context.Context, *SelectGymRequest) (*SelectGymResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SelectGym not implemented")
 }
 func (UnimplementedIdentityServiceServer) CreateTrainerAccount(context.Context, *CreateTrainerRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTrainerAccount not implemented")
@@ -282,6 +327,42 @@ func _IdentityService_RefreshToken_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IdentityService_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdentityServiceServer).VerifyEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IdentityService_VerifyEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdentityServiceServer).VerifyEmail(ctx, req.(*VerifyEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IdentityService_ResendEmailVerification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResendEmailVerificationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdentityServiceServer).ResendEmailVerification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IdentityService_ResendEmailVerification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdentityServiceServer).ResendEmailVerification(ctx, req.(*ResendEmailVerificationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _IdentityService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LogoutRequest)
 	if err := dec(in); err != nil {
@@ -332,6 +413,24 @@ func _IdentityService_ChangePassword_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(IdentityServiceServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IdentityService_SelectGym_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SelectGymRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdentityServiceServer).SelectGym(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IdentityService_SelectGym_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdentityServiceServer).SelectGym(ctx, req.(*SelectGymRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -414,6 +513,14 @@ var IdentityService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _IdentityService_RefreshToken_Handler,
 		},
 		{
+			MethodName: "VerifyEmail",
+			Handler:    _IdentityService_VerifyEmail_Handler,
+		},
+		{
+			MethodName: "ResendEmailVerification",
+			Handler:    _IdentityService_ResendEmailVerification_Handler,
+		},
+		{
 			MethodName: "Logout",
 			Handler:    _IdentityService_Logout_Handler,
 		},
@@ -424,6 +531,10 @@ var IdentityService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangePassword",
 			Handler:    _IdentityService_ChangePassword_Handler,
+		},
+		{
+			MethodName: "SelectGym",
+			Handler:    _IdentityService_SelectGym_Handler,
 		},
 		{
 			MethodName: "CreateTrainerAccount",
