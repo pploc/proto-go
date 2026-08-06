@@ -1,0 +1,41 @@
+{
+  "contractVersion": "v1",
+  "identityVocabulary": {
+    "roles": ["CUSTOMER", "TRAINER", "ADMIN", "SUPER_ADMIN"],
+    "membershipStatuses": ["NONE", "ACTIVE", "PAUSED", "EXPIRED"]
+  },
+  "go": "must-pass-auth-error-kafka-dlq-fixtures",
+  "java": "must-pass-auth-error-kafka-dlq-fixtures",
+  "protobuf": {
+    "generatedGoImports": "github.com/pploc/proto-go",
+    "additiveFieldOrRpc": "minor-release",
+    "fieldRemovalRenameNumberReuseOrIncompatibleType": "major-contract-change",
+    "currentReleaseClassification": "major-contract-change: remove single-gym identity/profile fields",
+    "semanticReviewRequired": true,
+    "semanticReviewChecklist": "semantic-compatibility.md",
+    "recordedIncident": "v1.0.1-emergency-contact-became-date-of-birth-at-the-same-field-number"
+  },
+  "schemaRegistry": {
+    "subjectNameStrategy": "TopicNameStrategy",
+    "compatibility": "BACKWARD",
+    "productionAutoRegisterSchemas": false
+  },
+  "kafka": {
+    "contractGeneration": "v1",
+    "value": "confluent-framed-concrete-protobuf",
+    "envelope": false,
+    "delivery": "at-least-once",
+    "initialMemberGroup": "ms-gym-member-v1",
+    "incompatibleTopicHeaderSubjectRetryOrDlqChange": "new-contract-generation-and-topics"
+  },
+  "gateway": {
+    "provesTrustedHeaderStrippingAndInjection": true,
+    "externalProtocol": "http-json-to-service-local-grpc-gateway-8080",
+    "nativeInternalGrpcPort": 50051
+  },
+  "jwt": {
+    "algorithm": "RS256",
+    "issuer": "gym-identifier",
+    "audience": "gym-api"
+  }
+}

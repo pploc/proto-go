@@ -1,0 +1,54 @@
+{
+  "contractVersion": "v2",
+  "status": "candidate",
+  "versions": {
+    "gymProto": {
+      "currentStable": "v1.1.0",
+      "releaseTarget": "v2.0.0",
+      "status": "candidate"
+    },
+    "protoGo": {
+      "currentStable": "v1.1.0",
+      "releaseTarget": "v2.0.0",
+      "status": "candidate"
+    },
+    "gymProtoJava": {
+      "coordinates": "com.gym.proto:gym-proto-java",
+      "releaseTarget": "2.0.0",
+      "status": "candidate"
+    },
+    "commonGo": "v0.3.0",
+    "commonJava": "2.0.0",
+    "schemaRegistry": "Confluent Schema Registry 7.7.1 / Protobuf / BACKWARD"
+  },
+  "owners": {
+    "go": "pending",
+    "java": "pending",
+    "protobuf": "pending",
+    "kafkaSchemaRegistry": "pending",
+    "gateway": "pending"
+  },
+  "contractArtifacts": [
+    "auth/trusted-headers.json",
+    "compatibility.json",
+    "jwt-profile.json",
+    "routes.json",
+    "semantic-compatibility.md",
+    "release-evidence.md",
+    "kafka/wire-format.json",
+    "dlq/retry-and-dlq.json"
+  ],
+  "technicalEvidence": {
+    "previousStableRelease": "https://github.com/pploc/gym-proto/releases/tag/v1.1.0",
+    "previousStableSourceSha": "740e476915117ab594a6e7ee3677e6a2c39c3c80",
+    "previousStableProtoGoSha": "6f070d25f8361e6550e0bd9a309a738d2a0dbd21",
+    "publication": "pending"
+  },
+  "requiredEvidence": [
+    "tagged proto-go external import without replace",
+    "Go fixture suite",
+    "Java fixture suite",
+    "Schema Registry BACKWARD compatibility check",
+    "Kong trusted-header stripping and injection test"
+  ]
+}
