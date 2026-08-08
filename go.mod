@@ -1,4 +1,4 @@
-module github.com/pploc/proto-go
+module github.com/pploc/proto-go/v3
 
 go 1.26
 
