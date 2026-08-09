@@ -40,21 +40,21 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TrainerServiceClient interface {
-	SearchTrainers(ctx context.Context, in *SearchTrainersRequest, opts ...grpc.CallOption) (*TrainersResponse, error)
-	GetTrainerProfile(ctx context.Context, in *GetTrainerProfileRequest, opts ...grpc.CallOption) (*TrainerResponse, error)
-	GetAvailableSlots(ctx context.Context, in *GetSlotsRequest, opts ...grpc.CallOption) (*SlotsResponse, error)
-	CreateBooking(ctx context.Context, in *CreateBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error)
-	CancelBooking(ctx context.Context, in *CancelBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error)
-	GetMyBookings(ctx context.Context, in *GetMyBookingsRequest, opts ...grpc.CallOption) (*BookingsResponse, error)
-	UpdateMyProfile(ctx context.Context, in *UpdateTrainerProfileRequest, opts ...grpc.CallOption) (*TrainerResponse, error)
-	SetAvailability(ctx context.Context, in *SetAvailabilityRequest, opts ...grpc.CallOption) (*AvailabilityResponse, error)
-	AcceptBooking(ctx context.Context, in *AcceptBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error)
-	RejectBooking(ctx context.Context, in *RejectBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error)
-	CompleteBooking(ctx context.Context, in *CompleteBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error)
-	GetCoachingHistory(ctx context.Context, in *GetCoachingHistoryRequest, opts ...grpc.CallOption) (*BookingsResponse, error)
-	CreateTrainer(ctx context.Context, in *CreateTrainerRequest, opts ...grpc.CallOption) (*TrainerResponse, error)
+	SearchTrainers(ctx context.Context, in *SearchTrainersRequest, opts ...grpc.CallOption) (*SearchTrainersResponse, error)
+	GetTrainerProfile(ctx context.Context, in *GetTrainerProfileRequest, opts ...grpc.CallOption) (*GetTrainerProfileResponse, error)
+	GetAvailableSlots(ctx context.Context, in *GetAvailableSlotsRequest, opts ...grpc.CallOption) (*GetAvailableSlotsResponse, error)
+	CreateBooking(ctx context.Context, in *CreateBookingRequest, opts ...grpc.CallOption) (*CreateBookingResponse, error)
+	CancelBooking(ctx context.Context, in *CancelBookingRequest, opts ...grpc.CallOption) (*CancelBookingResponse, error)
+	GetMyBookings(ctx context.Context, in *GetMyBookingsRequest, opts ...grpc.CallOption) (*GetMyBookingsResponse, error)
+	UpdateMyProfile(ctx context.Context, in *UpdateMyProfileRequest, opts ...grpc.CallOption) (*UpdateMyProfileResponse, error)
+	SetAvailability(ctx context.Context, in *SetAvailabilityRequest, opts ...grpc.CallOption) (*SetAvailabilityResponse, error)
+	AcceptBooking(ctx context.Context, in *AcceptBookingRequest, opts ...grpc.CallOption) (*AcceptBookingResponse, error)
+	RejectBooking(ctx context.Context, in *RejectBookingRequest, opts ...grpc.CallOption) (*RejectBookingResponse, error)
+	CompleteBooking(ctx context.Context, in *CompleteBookingRequest, opts ...grpc.CallOption) (*CompleteBookingResponse, error)
+	GetCoachingHistory(ctx context.Context, in *GetCoachingHistoryRequest, opts ...grpc.CallOption) (*GetCoachingHistoryResponse, error)
+	CreateTrainer(ctx context.Context, in *CreateTrainerRequest, opts ...grpc.CallOption) (*CreateTrainerResponse, error)
 	SuspendTrainer(ctx context.Context, in *SuspendTrainerRequest, opts ...grpc.CallOption) (*SuspendTrainerResponse, error)
-	ListTrainers(ctx context.Context, in *ListTrainersRequest, opts ...grpc.CallOption) (*TrainersResponse, error)
+	ListTrainers(ctx context.Context, in *ListTrainersRequest, opts ...grpc.CallOption) (*ListTrainersResponse, error)
 }
 
 type trainerServiceClient struct {
@@ -65,8 +65,8 @@ func NewTrainerServiceClient(cc grpc.ClientConnInterface) TrainerServiceClient {
 	return &trainerServiceClient{cc}
 }
 
-func (c *trainerServiceClient) SearchTrainers(ctx context.Context, in *SearchTrainersRequest, opts ...grpc.CallOption) (*TrainersResponse, error) {
-	out := new(TrainersResponse)
+func (c *trainerServiceClient) SearchTrainers(ctx context.Context, in *SearchTrainersRequest, opts ...grpc.CallOption) (*SearchTrainersResponse, error) {
+	out := new(SearchTrainersResponse)
 	err := c.cc.Invoke(ctx, TrainerService_SearchTrainers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,8 +74,8 @@ func (c *trainerServiceClient) SearchTrainers(ctx context.Context, in *SearchTra
 	return out, nil
 }
 
-func (c *trainerServiceClient) GetTrainerProfile(ctx context.Context, in *GetTrainerProfileRequest, opts ...grpc.CallOption) (*TrainerResponse, error) {
-	out := new(TrainerResponse)
+func (c *trainerServiceClient) GetTrainerProfile(ctx context.Context, in *GetTrainerProfileRequest, opts ...grpc.CallOption) (*GetTrainerProfileResponse, error) {
+	out := new(GetTrainerProfileResponse)
 	err := c.cc.Invoke(ctx, TrainerService_GetTrainerProfile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -83,8 +83,8 @@ func (c *trainerServiceClient) GetTrainerProfile(ctx context.Context, in *GetTra
 	return out, nil
 }
 
-func (c *trainerServiceClient) GetAvailableSlots(ctx context.Context, in *GetSlotsRequest, opts ...grpc.CallOption) (*SlotsResponse, error) {
-	out := new(SlotsResponse)
+func (c *trainerServiceClient) GetAvailableSlots(ctx context.Context, in *GetAvailableSlotsRequest, opts ...grpc.CallOption) (*GetAvailableSlotsResponse, error) {
+	out := new(GetAvailableSlotsResponse)
 	err := c.cc.Invoke(ctx, TrainerService_GetAvailableSlots_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,8 +92,8 @@ func (c *trainerServiceClient) GetAvailableSlots(ctx context.Context, in *GetSlo
 	return out, nil
 }
 
-func (c *trainerServiceClient) CreateBooking(ctx context.Context, in *CreateBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error) {
-	out := new(BookingResponse)
+func (c *trainerServiceClient) CreateBooking(ctx context.Context, in *CreateBookingRequest, opts ...grpc.CallOption) (*CreateBookingResponse, error) {
+	out := new(CreateBookingResponse)
 	err := c.cc.Invoke(ctx, TrainerService_CreateBooking_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,8 +101,8 @@ func (c *trainerServiceClient) CreateBooking(ctx context.Context, in *CreateBook
 	return out, nil
 }
 
-func (c *trainerServiceClient) CancelBooking(ctx context.Context, in *CancelBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error) {
-	out := new(BookingResponse)
+func (c *trainerServiceClient) CancelBooking(ctx context.Context, in *CancelBookingRequest, opts ...grpc.CallOption) (*CancelBookingResponse, error) {
+	out := new(CancelBookingResponse)
 	err := c.cc.Invoke(ctx, TrainerService_CancelBooking_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -110,8 +110,8 @@ func (c *trainerServiceClient) CancelBooking(ctx context.Context, in *CancelBook
 	return out, nil
 }
 
-func (c *trainerServiceClient) GetMyBookings(ctx context.Context, in *GetMyBookingsRequest, opts ...grpc.CallOption) (*BookingsResponse, error) {
-	out := new(BookingsResponse)
+func (c *trainerServiceClient) GetMyBookings(ctx context.Context, in *GetMyBookingsRequest, opts ...grpc.CallOption) (*GetMyBookingsResponse, error) {
+	out := new(GetMyBookingsResponse)
 	err := c.cc.Invoke(ctx, TrainerService_GetMyBookings_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -119,8 +119,8 @@ func (c *trainerServiceClient) GetMyBookings(ctx context.Context, in *GetMyBooki
 	return out, nil
 }
 
-func (c *trainerServiceClient) UpdateMyProfile(ctx context.Context, in *UpdateTrainerProfileRequest, opts ...grpc.CallOption) (*TrainerResponse, error) {
-	out := new(TrainerResponse)
+func (c *trainerServiceClient) UpdateMyProfile(ctx context.Context, in *UpdateMyProfileRequest, opts ...grpc.CallOption) (*UpdateMyProfileResponse, error) {
+	out := new(UpdateMyProfileResponse)
 	err := c.cc.Invoke(ctx, TrainerService_UpdateMyProfile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -128,8 +128,8 @@ func (c *trainerServiceClient) UpdateMyProfile(ctx context.Context, in *UpdateTr
 	return out, nil
 }
 
-func (c *trainerServiceClient) SetAvailability(ctx context.Context, in *SetAvailabilityRequest, opts ...grpc.CallOption) (*AvailabilityResponse, error) {
-	out := new(AvailabilityResponse)
+func (c *trainerServiceClient) SetAvailability(ctx context.Context, in *SetAvailabilityRequest, opts ...grpc.CallOption) (*SetAvailabilityResponse, error) {
+	out := new(SetAvailabilityResponse)
 	err := c.cc.Invoke(ctx, TrainerService_SetAvailability_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -137,8 +137,8 @@ func (c *trainerServiceClient) SetAvailability(ctx context.Context, in *SetAvail
 	return out, nil
 }
 
-func (c *trainerServiceClient) AcceptBooking(ctx context.Context, in *AcceptBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error) {
-	out := new(BookingResponse)
+func (c *trainerServiceClient) AcceptBooking(ctx context.Context, in *AcceptBookingRequest, opts ...grpc.CallOption) (*AcceptBookingResponse, error) {
+	out := new(AcceptBookingResponse)
 	err := c.cc.Invoke(ctx, TrainerService_AcceptBooking_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -146,8 +146,8 @@ func (c *trainerServiceClient) AcceptBooking(ctx context.Context, in *AcceptBook
 	return out, nil
 }
 
-func (c *trainerServiceClient) RejectBooking(ctx context.Context, in *RejectBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error) {
-	out := new(BookingResponse)
+func (c *trainerServiceClient) RejectBooking(ctx context.Context, in *RejectBookingRequest, opts ...grpc.CallOption) (*RejectBookingResponse, error) {
+	out := new(RejectBookingResponse)
 	err := c.cc.Invoke(ctx, TrainerService_RejectBooking_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -155,8 +155,8 @@ func (c *trainerServiceClient) RejectBooking(ctx context.Context, in *RejectBook
 	return out, nil
 }
 
-func (c *trainerServiceClient) CompleteBooking(ctx context.Context, in *CompleteBookingRequest, opts ...grpc.CallOption) (*BookingResponse, error) {
-	out := new(BookingResponse)
+func (c *trainerServiceClient) CompleteBooking(ctx context.Context, in *CompleteBookingRequest, opts ...grpc.CallOption) (*CompleteBookingResponse, error) {
+	out := new(CompleteBookingResponse)
 	err := c.cc.Invoke(ctx, TrainerService_CompleteBooking_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -164,8 +164,8 @@ func (c *trainerServiceClient) CompleteBooking(ctx context.Context, in *Complete
 	return out, nil
 }
 
-func (c *trainerServiceClient) GetCoachingHistory(ctx context.Context, in *GetCoachingHistoryRequest, opts ...grpc.CallOption) (*BookingsResponse, error) {
-	out := new(BookingsResponse)
+func (c *trainerServiceClient) GetCoachingHistory(ctx context.Context, in *GetCoachingHistoryRequest, opts ...grpc.CallOption) (*GetCoachingHistoryResponse, error) {
+	out := new(GetCoachingHistoryResponse)
 	err := c.cc.Invoke(ctx, TrainerService_GetCoachingHistory_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -173,8 +173,8 @@ func (c *trainerServiceClient) GetCoachingHistory(ctx context.Context, in *GetCo
 	return out, nil
 }
 
-func (c *trainerServiceClient) CreateTrainer(ctx context.Context, in *CreateTrainerRequest, opts ...grpc.CallOption) (*TrainerResponse, error) {
-	out := new(TrainerResponse)
+func (c *trainerServiceClient) CreateTrainer(ctx context.Context, in *CreateTrainerRequest, opts ...grpc.CallOption) (*CreateTrainerResponse, error) {
+	out := new(CreateTrainerResponse)
 	err := c.cc.Invoke(ctx, TrainerService_CreateTrainer_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -191,8 +191,8 @@ func (c *trainerServiceClient) SuspendTrainer(ctx context.Context, in *SuspendTr
 	return out, nil
 }
 
-func (c *trainerServiceClient) ListTrainers(ctx context.Context, in *ListTrainersRequest, opts ...grpc.CallOption) (*TrainersResponse, error) {
-	out := new(TrainersResponse)
+func (c *trainerServiceClient) ListTrainers(ctx context.Context, in *ListTrainersRequest, opts ...grpc.CallOption) (*ListTrainersResponse, error) {
+	out := new(ListTrainersResponse)
 	err := c.cc.Invoke(ctx, TrainerService_ListTrainers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -204,21 +204,21 @@ func (c *trainerServiceClient) ListTrainers(ctx context.Context, in *ListTrainer
 // All implementations must embed UnimplementedTrainerServiceServer
 // for forward compatibility
 type TrainerServiceServer interface {
-	SearchTrainers(context.Context, *SearchTrainersRequest) (*TrainersResponse, error)
-	GetTrainerProfile(context.Context, *GetTrainerProfileRequest) (*TrainerResponse, error)
-	GetAvailableSlots(context.Context, *GetSlotsRequest) (*SlotsResponse, error)
-	CreateBooking(context.Context, *CreateBookingRequest) (*BookingResponse, error)
-	CancelBooking(context.Context, *CancelBookingRequest) (*BookingResponse, error)
-	GetMyBookings(context.Context, *GetMyBookingsRequest) (*BookingsResponse, error)
-	UpdateMyProfile(context.Context, *UpdateTrainerProfileRequest) (*TrainerResponse, error)
-	SetAvailability(context.Context, *SetAvailabilityRequest) (*AvailabilityResponse, error)
-	AcceptBooking(context.Context, *AcceptBookingRequest) (*BookingResponse, error)
-	RejectBooking(context.Context, *RejectBookingRequest) (*BookingResponse, error)
-	CompleteBooking(context.Context, *CompleteBookingRequest) (*BookingResponse, error)
-	GetCoachingHistory(context.Context, *GetCoachingHistoryRequest) (*BookingsResponse, error)
-	CreateTrainer(context.Context, *CreateTrainerRequest) (*TrainerResponse, error)
+	SearchTrainers(context.Context, *SearchTrainersRequest) (*SearchTrainersResponse, error)
+	GetTrainerProfile(context.Context, *GetTrainerProfileRequest) (*GetTrainerProfileResponse, error)
+	GetAvailableSlots(context.Context, *GetAvailableSlotsRequest) (*GetAvailableSlotsResponse, error)
+	CreateBooking(context.Context, *CreateBookingRequest) (*CreateBookingResponse, error)
+	CancelBooking(context.Context, *CancelBookingRequest) (*CancelBookingResponse, error)
+	GetMyBookings(context.Context, *GetMyBookingsRequest) (*GetMyBookingsResponse, error)
+	UpdateMyProfile(context.Context, *UpdateMyProfileRequest) (*UpdateMyProfileResponse, error)
+	SetAvailability(context.Context, *SetAvailabilityRequest) (*SetAvailabilityResponse, error)
+	AcceptBooking(context.Context, *AcceptBookingRequest) (*AcceptBookingResponse, error)
+	RejectBooking(context.Context, *RejectBookingRequest) (*RejectBookingResponse, error)
+	CompleteBooking(context.Context, *CompleteBookingRequest) (*CompleteBookingResponse, error)
+	GetCoachingHistory(context.Context, *GetCoachingHistoryRequest) (*GetCoachingHistoryResponse, error)
+	CreateTrainer(context.Context, *CreateTrainerRequest) (*CreateTrainerResponse, error)
 	SuspendTrainer(context.Context, *SuspendTrainerRequest) (*SuspendTrainerResponse, error)
-	ListTrainers(context.Context, *ListTrainersRequest) (*TrainersResponse, error)
+	ListTrainers(context.Context, *ListTrainersRequest) (*ListTrainersResponse, error)
 	mustEmbedUnimplementedTrainerServiceServer()
 }
 
@@ -226,49 +226,49 @@ type TrainerServiceServer interface {
 type UnimplementedTrainerServiceServer struct {
 }
 
-func (UnimplementedTrainerServiceServer) SearchTrainers(context.Context, *SearchTrainersRequest) (*TrainersResponse, error) {
+func (UnimplementedTrainerServiceServer) SearchTrainers(context.Context, *SearchTrainersRequest) (*SearchTrainersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchTrainers not implemented")
 }
-func (UnimplementedTrainerServiceServer) GetTrainerProfile(context.Context, *GetTrainerProfileRequest) (*TrainerResponse, error) {
+func (UnimplementedTrainerServiceServer) GetTrainerProfile(context.Context, *GetTrainerProfileRequest) (*GetTrainerProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrainerProfile not implemented")
 }
-func (UnimplementedTrainerServiceServer) GetAvailableSlots(context.Context, *GetSlotsRequest) (*SlotsResponse, error) {
+func (UnimplementedTrainerServiceServer) GetAvailableSlots(context.Context, *GetAvailableSlotsRequest) (*GetAvailableSlotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAvailableSlots not implemented")
 }
-func (UnimplementedTrainerServiceServer) CreateBooking(context.Context, *CreateBookingRequest) (*BookingResponse, error) {
+func (UnimplementedTrainerServiceServer) CreateBooking(context.Context, *CreateBookingRequest) (*CreateBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBooking not implemented")
 }
-func (UnimplementedTrainerServiceServer) CancelBooking(context.Context, *CancelBookingRequest) (*BookingResponse, error) {
+func (UnimplementedTrainerServiceServer) CancelBooking(context.Context, *CancelBookingRequest) (*CancelBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelBooking not implemented")
 }
-func (UnimplementedTrainerServiceServer) GetMyBookings(context.Context, *GetMyBookingsRequest) (*BookingsResponse, error) {
+func (UnimplementedTrainerServiceServer) GetMyBookings(context.Context, *GetMyBookingsRequest) (*GetMyBookingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMyBookings not implemented")
 }
-func (UnimplementedTrainerServiceServer) UpdateMyProfile(context.Context, *UpdateTrainerProfileRequest) (*TrainerResponse, error) {
+func (UnimplementedTrainerServiceServer) UpdateMyProfile(context.Context, *UpdateMyProfileRequest) (*UpdateMyProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMyProfile not implemented")
 }
-func (UnimplementedTrainerServiceServer) SetAvailability(context.Context, *SetAvailabilityRequest) (*AvailabilityResponse, error) {
+func (UnimplementedTrainerServiceServer) SetAvailability(context.Context, *SetAvailabilityRequest) (*SetAvailabilityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetAvailability not implemented")
 }
-func (UnimplementedTrainerServiceServer) AcceptBooking(context.Context, *AcceptBookingRequest) (*BookingResponse, error) {
+func (UnimplementedTrainerServiceServer) AcceptBooking(context.Context, *AcceptBookingRequest) (*AcceptBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AcceptBooking not implemented")
 }
-func (UnimplementedTrainerServiceServer) RejectBooking(context.Context, *RejectBookingRequest) (*BookingResponse, error) {
+func (UnimplementedTrainerServiceServer) RejectBooking(context.Context, *RejectBookingRequest) (*RejectBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RejectBooking not implemented")
 }
-func (UnimplementedTrainerServiceServer) CompleteBooking(context.Context, *CompleteBookingRequest) (*BookingResponse, error) {
+func (UnimplementedTrainerServiceServer) CompleteBooking(context.Context, *CompleteBookingRequest) (*CompleteBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CompleteBooking not implemented")
 }
-func (UnimplementedTrainerServiceServer) GetCoachingHistory(context.Context, *GetCoachingHistoryRequest) (*BookingsResponse, error) {
+func (UnimplementedTrainerServiceServer) GetCoachingHistory(context.Context, *GetCoachingHistoryRequest) (*GetCoachingHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCoachingHistory not implemented")
 }
-func (UnimplementedTrainerServiceServer) CreateTrainer(context.Context, *CreateTrainerRequest) (*TrainerResponse, error) {
+func (UnimplementedTrainerServiceServer) CreateTrainer(context.Context, *CreateTrainerRequest) (*CreateTrainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTrainer not implemented")
 }
 func (UnimplementedTrainerServiceServer) SuspendTrainer(context.Context, *SuspendTrainerRequest) (*SuspendTrainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuspendTrainer not implemented")
 }
-func (UnimplementedTrainerServiceServer) ListTrainers(context.Context, *ListTrainersRequest) (*TrainersResponse, error) {
+func (UnimplementedTrainerServiceServer) ListTrainers(context.Context, *ListTrainersRequest) (*ListTrainersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTrainers not implemented")
 }
 func (UnimplementedTrainerServiceServer) mustEmbedUnimplementedTrainerServiceServer() {}
@@ -321,7 +321,7 @@ func _TrainerService_GetTrainerProfile_Handler(srv interface{}, ctx context.Cont
 }
 
 func _TrainerService_GetAvailableSlots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSlotsRequest)
+	in := new(GetAvailableSlotsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -333,7 +333,7 @@ func _TrainerService_GetAvailableSlots_Handler(srv interface{}, ctx context.Cont
 		FullMethod: TrainerService_GetAvailableSlots_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrainerServiceServer).GetAvailableSlots(ctx, req.(*GetSlotsRequest))
+		return srv.(TrainerServiceServer).GetAvailableSlots(ctx, req.(*GetAvailableSlotsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -393,7 +393,7 @@ func _TrainerService_GetMyBookings_Handler(srv interface{}, ctx context.Context,
 }
 
 func _TrainerService_UpdateMyProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateTrainerProfileRequest)
+	in := new(UpdateMyProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -405,7 +405,7 @@ func _TrainerService_UpdateMyProfile_Handler(srv interface{}, ctx context.Contex
 		FullMethod: TrainerService_UpdateMyProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrainerServiceServer).UpdateMyProfile(ctx, req.(*UpdateTrainerProfileRequest))
+		return srv.(TrainerServiceServer).UpdateMyProfile(ctx, req.(*UpdateMyProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

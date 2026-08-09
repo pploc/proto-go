@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -39,18 +38,18 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type IdentityServiceClient interface {
-	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*AuthResponse, error)
-	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*AuthResponse, error)
-	LoginWithGoogle(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*AuthResponse, error)
-	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*AuthResponse, error)
-	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*AuthResponse, error)
-	ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetCurrentUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UserResponse, error)
-	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
+	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	LoginWithGoogle(ctx context.Context, in *LoginWithGoogleRequest, opts ...grpc.CallOption) (*LoginWithGoogleResponse, error)
+	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
+	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
+	ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*ResendEmailVerificationResponse, error)
+	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
+	GetCurrentUser(ctx context.Context, in *GetCurrentUserRequest, opts ...grpc.CallOption) (*GetCurrentUserResponse, error)
+	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	SelectGym(ctx context.Context, in *SelectGymRequest, opts ...grpc.CallOption) (*SelectGymResponse, error)
-	CreateTrainerAccount(ctx context.Context, in *CreateTrainerRequest, opts ...grpc.CallOption) (*UserResponse, error)
-	SuspendUser(ctx context.Context, in *SuspendUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateTrainerAccount(ctx context.Context, in *CreateTrainerAccountRequest, opts ...grpc.CallOption) (*CreateTrainerAccountResponse, error)
+	SuspendUser(ctx context.Context, in *SuspendUserRequest, opts ...grpc.CallOption) (*SuspendUserResponse, error)
 	ListUsers(ctx context.Context, in *ListUsersRequest, opts ...grpc.CallOption) (*ListUsersResponse, error)
 }
 
@@ -62,8 +61,8 @@ func NewIdentityServiceClient(cc grpc.ClientConnInterface) IdentityServiceClient
 	return &identityServiceClient{cc}
 }
 
-func (c *identityServiceClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
-	out := new(AuthResponse)
+func (c *identityServiceClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
+	out := new(RegisterResponse)
 	err := c.cc.Invoke(ctx, IdentityService_Register_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -71,8 +70,8 @@ func (c *identityServiceClient) Register(ctx context.Context, in *RegisterReques
 	return out, nil
 }
 
-func (c *identityServiceClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
-	out := new(AuthResponse)
+func (c *identityServiceClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+	out := new(LoginResponse)
 	err := c.cc.Invoke(ctx, IdentityService_Login_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,8 +79,8 @@ func (c *identityServiceClient) Login(ctx context.Context, in *LoginRequest, opt
 	return out, nil
 }
 
-func (c *identityServiceClient) LoginWithGoogle(ctx context.Context, in *GoogleLoginRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
-	out := new(AuthResponse)
+func (c *identityServiceClient) LoginWithGoogle(ctx context.Context, in *LoginWithGoogleRequest, opts ...grpc.CallOption) (*LoginWithGoogleResponse, error) {
+	out := new(LoginWithGoogleResponse)
 	err := c.cc.Invoke(ctx, IdentityService_LoginWithGoogle_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -89,8 +88,8 @@ func (c *identityServiceClient) LoginWithGoogle(ctx context.Context, in *GoogleL
 	return out, nil
 }
 
-func (c *identityServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
-	out := new(AuthResponse)
+func (c *identityServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
+	out := new(RefreshTokenResponse)
 	err := c.cc.Invoke(ctx, IdentityService_RefreshToken_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -98,8 +97,8 @@ func (c *identityServiceClient) RefreshToken(ctx context.Context, in *RefreshTok
 	return out, nil
 }
 
-func (c *identityServiceClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
-	out := new(AuthResponse)
+func (c *identityServiceClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error) {
+	out := new(VerifyEmailResponse)
 	err := c.cc.Invoke(ctx, IdentityService_VerifyEmail_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -107,8 +106,8 @@ func (c *identityServiceClient) VerifyEmail(ctx context.Context, in *VerifyEmail
 	return out, nil
 }
 
-func (c *identityServiceClient) ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *identityServiceClient) ResendEmailVerification(ctx context.Context, in *ResendEmailVerificationRequest, opts ...grpc.CallOption) (*ResendEmailVerificationResponse, error) {
+	out := new(ResendEmailVerificationResponse)
 	err := c.cc.Invoke(ctx, IdentityService_ResendEmailVerification_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -116,8 +115,8 @@ func (c *identityServiceClient) ResendEmailVerification(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *identityServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *identityServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error) {
+	out := new(LogoutResponse)
 	err := c.cc.Invoke(ctx, IdentityService_Logout_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -125,8 +124,8 @@ func (c *identityServiceClient) Logout(ctx context.Context, in *LogoutRequest, o
 	return out, nil
 }
 
-func (c *identityServiceClient) GetCurrentUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UserResponse, error) {
-	out := new(UserResponse)
+func (c *identityServiceClient) GetCurrentUser(ctx context.Context, in *GetCurrentUserRequest, opts ...grpc.CallOption) (*GetCurrentUserResponse, error) {
+	out := new(GetCurrentUserResponse)
 	err := c.cc.Invoke(ctx, IdentityService_GetCurrentUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -134,8 +133,8 @@ func (c *identityServiceClient) GetCurrentUser(ctx context.Context, in *emptypb.
 	return out, nil
 }
 
-func (c *identityServiceClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *identityServiceClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
+	out := new(ChangePasswordResponse)
 	err := c.cc.Invoke(ctx, IdentityService_ChangePassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -152,8 +151,8 @@ func (c *identityServiceClient) SelectGym(ctx context.Context, in *SelectGymRequ
 	return out, nil
 }
 
-func (c *identityServiceClient) CreateTrainerAccount(ctx context.Context, in *CreateTrainerRequest, opts ...grpc.CallOption) (*UserResponse, error) {
-	out := new(UserResponse)
+func (c *identityServiceClient) CreateTrainerAccount(ctx context.Context, in *CreateTrainerAccountRequest, opts ...grpc.CallOption) (*CreateTrainerAccountResponse, error) {
+	out := new(CreateTrainerAccountResponse)
 	err := c.cc.Invoke(ctx, IdentityService_CreateTrainerAccount_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -161,8 +160,8 @@ func (c *identityServiceClient) CreateTrainerAccount(ctx context.Context, in *Cr
 	return out, nil
 }
 
-func (c *identityServiceClient) SuspendUser(ctx context.Context, in *SuspendUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *identityServiceClient) SuspendUser(ctx context.Context, in *SuspendUserRequest, opts ...grpc.CallOption) (*SuspendUserResponse, error) {
+	out := new(SuspendUserResponse)
 	err := c.cc.Invoke(ctx, IdentityService_SuspendUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -183,18 +182,18 @@ func (c *identityServiceClient) ListUsers(ctx context.Context, in *ListUsersRequ
 // All implementations must embed UnimplementedIdentityServiceServer
 // for forward compatibility
 type IdentityServiceServer interface {
-	Register(context.Context, *RegisterRequest) (*AuthResponse, error)
-	Login(context.Context, *LoginRequest) (*AuthResponse, error)
-	LoginWithGoogle(context.Context, *GoogleLoginRequest) (*AuthResponse, error)
-	RefreshToken(context.Context, *RefreshTokenRequest) (*AuthResponse, error)
-	VerifyEmail(context.Context, *VerifyEmailRequest) (*AuthResponse, error)
-	ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*emptypb.Empty, error)
-	Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error)
-	GetCurrentUser(context.Context, *emptypb.Empty) (*UserResponse, error)
-	ChangePassword(context.Context, *ChangePasswordRequest) (*emptypb.Empty, error)
+	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
+	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	LoginWithGoogle(context.Context, *LoginWithGoogleRequest) (*LoginWithGoogleResponse, error)
+	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
+	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
+	ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*ResendEmailVerificationResponse, error)
+	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
+	GetCurrentUser(context.Context, *GetCurrentUserRequest) (*GetCurrentUserResponse, error)
+	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	SelectGym(context.Context, *SelectGymRequest) (*SelectGymResponse, error)
-	CreateTrainerAccount(context.Context, *CreateTrainerRequest) (*UserResponse, error)
-	SuspendUser(context.Context, *SuspendUserRequest) (*emptypb.Empty, error)
+	CreateTrainerAccount(context.Context, *CreateTrainerAccountRequest) (*CreateTrainerAccountResponse, error)
+	SuspendUser(context.Context, *SuspendUserRequest) (*SuspendUserResponse, error)
 	ListUsers(context.Context, *ListUsersRequest) (*ListUsersResponse, error)
 	mustEmbedUnimplementedIdentityServiceServer()
 }
@@ -203,40 +202,40 @@ type IdentityServiceServer interface {
 type UnimplementedIdentityServiceServer struct {
 }
 
-func (UnimplementedIdentityServiceServer) Register(context.Context, *RegisterRequest) (*AuthResponse, error) {
+func (UnimplementedIdentityServiceServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
 }
-func (UnimplementedIdentityServiceServer) Login(context.Context, *LoginRequest) (*AuthResponse, error) {
+func (UnimplementedIdentityServiceServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedIdentityServiceServer) LoginWithGoogle(context.Context, *GoogleLoginRequest) (*AuthResponse, error) {
+func (UnimplementedIdentityServiceServer) LoginWithGoogle(context.Context, *LoginWithGoogleRequest) (*LoginWithGoogleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginWithGoogle not implemented")
 }
-func (UnimplementedIdentityServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*AuthResponse, error) {
+func (UnimplementedIdentityServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
-func (UnimplementedIdentityServiceServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*AuthResponse, error) {
+func (UnimplementedIdentityServiceServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
 }
-func (UnimplementedIdentityServiceServer) ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*emptypb.Empty, error) {
+func (UnimplementedIdentityServiceServer) ResendEmailVerification(context.Context, *ResendEmailVerificationRequest) (*ResendEmailVerificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResendEmailVerification not implemented")
 }
-func (UnimplementedIdentityServiceServer) Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error) {
+func (UnimplementedIdentityServiceServer) Logout(context.Context, *LogoutRequest) (*LogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
-func (UnimplementedIdentityServiceServer) GetCurrentUser(context.Context, *emptypb.Empty) (*UserResponse, error) {
+func (UnimplementedIdentityServiceServer) GetCurrentUser(context.Context, *GetCurrentUserRequest) (*GetCurrentUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentUser not implemented")
 }
-func (UnimplementedIdentityServiceServer) ChangePassword(context.Context, *ChangePasswordRequest) (*emptypb.Empty, error) {
+func (UnimplementedIdentityServiceServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
 }
 func (UnimplementedIdentityServiceServer) SelectGym(context.Context, *SelectGymRequest) (*SelectGymResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SelectGym not implemented")
 }
-func (UnimplementedIdentityServiceServer) CreateTrainerAccount(context.Context, *CreateTrainerRequest) (*UserResponse, error) {
+func (UnimplementedIdentityServiceServer) CreateTrainerAccount(context.Context, *CreateTrainerAccountRequest) (*CreateTrainerAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTrainerAccount not implemented")
 }
-func (UnimplementedIdentityServiceServer) SuspendUser(context.Context, *SuspendUserRequest) (*emptypb.Empty, error) {
+func (UnimplementedIdentityServiceServer) SuspendUser(context.Context, *SuspendUserRequest) (*SuspendUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuspendUser not implemented")
 }
 func (UnimplementedIdentityServiceServer) ListUsers(context.Context, *ListUsersRequest) (*ListUsersResponse, error) {
@@ -292,7 +291,7 @@ func _IdentityService_Login_Handler(srv interface{}, ctx context.Context, dec fu
 }
 
 func _IdentityService_LoginWithGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GoogleLoginRequest)
+	in := new(LoginWithGoogleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -304,7 +303,7 @@ func _IdentityService_LoginWithGoogle_Handler(srv interface{}, ctx context.Conte
 		FullMethod: IdentityService_LoginWithGoogle_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IdentityServiceServer).LoginWithGoogle(ctx, req.(*GoogleLoginRequest))
+		return srv.(IdentityServiceServer).LoginWithGoogle(ctx, req.(*LoginWithGoogleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -382,7 +381,7 @@ func _IdentityService_Logout_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _IdentityService_GetCurrentUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetCurrentUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -394,7 +393,7 @@ func _IdentityService_GetCurrentUser_Handler(srv interface{}, ctx context.Contex
 		FullMethod: IdentityService_GetCurrentUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IdentityServiceServer).GetCurrentUser(ctx, req.(*emptypb.Empty))
+		return srv.(IdentityServiceServer).GetCurrentUser(ctx, req.(*GetCurrentUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -436,7 +435,7 @@ func _IdentityService_SelectGym_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _IdentityService_CreateTrainerAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTrainerRequest)
+	in := new(CreateTrainerAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -448,7 +447,7 @@ func _IdentityService_CreateTrainerAccount_Handler(srv interface{}, ctx context.
 		FullMethod: IdentityService_CreateTrainerAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IdentityServiceServer).CreateTrainerAccount(ctx, req.(*CreateTrainerRequest))
+		return srv.(IdentityServiceServer).CreateTrainerAccount(ctx, req.(*CreateTrainerAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

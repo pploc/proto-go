@@ -35,16 +35,16 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MemberServiceClient interface {
-	GetMember(ctx context.Context, in *GetMemberRequest, opts ...grpc.CallOption) (*MemberResponse, error)
-	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*MemberResponse, error)
+	GetMember(ctx context.Context, in *GetMemberRequest, opts ...grpc.CallOption) (*GetMemberResponse, error)
+	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error)
 	ListMembers(ctx context.Context, in *ListMembersRequest, opts ...grpc.CallOption) (*ListMembersResponse, error)
-	PurchaseMembership(ctx context.Context, in *PurchaseMembershipRequest, opts ...grpc.CallOption) (*PurchaseResponse, error)
-	PauseMembership(ctx context.Context, in *PauseMembershipRequest, opts ...grpc.CallOption) (*MembershipResponse, error)
-	ResumeMembership(ctx context.Context, in *ResumeMembershipRequest, opts ...grpc.CallOption) (*MembershipResponse, error)
-	GetMembershipStatus(ctx context.Context, in *GetMembershipStatusRequest, opts ...grpc.CallOption) (*MembershipResponse, error)
+	PurchaseMembership(ctx context.Context, in *PurchaseMembershipRequest, opts ...grpc.CallOption) (*PurchaseMembershipResponse, error)
+	PauseMembership(ctx context.Context, in *PauseMembershipRequest, opts ...grpc.CallOption) (*PauseMembershipResponse, error)
+	ResumeMembership(ctx context.Context, in *ResumeMembershipRequest, opts ...grpc.CallOption) (*ResumeMembershipResponse, error)
+	GetMembershipStatus(ctx context.Context, in *GetMembershipStatusRequest, opts ...grpc.CallOption) (*GetMembershipStatusResponse, error)
 	// Internal only. Requires the verified ms-gym-identifier workload identity.
 	// This RPC is intentionally absent from the external HTTP configuration.
-	GetMembershipStatusByUserId(ctx context.Context, in *GetMembershipStatusByUserIdRequest, opts ...grpc.CallOption) (*MembershipResponse, error)
+	GetMembershipStatusByUserId(ctx context.Context, in *GetMembershipStatusByUserIdRequest, opts ...grpc.CallOption) (*GetMembershipStatusByUserIdResponse, error)
 	ValidateMembership(ctx context.Context, in *ValidateMembershipRequest, opts ...grpc.CallOption) (*ValidateMembershipResponse, error)
 	ListMembersByStatus(ctx context.Context, in *ListMembersByStatusRequest, opts ...grpc.CallOption) (*ListMembersByStatusResponse, error)
 }
@@ -57,8 +57,8 @@ func NewMemberServiceClient(cc grpc.ClientConnInterface) MemberServiceClient {
 	return &memberServiceClient{cc}
 }
 
-func (c *memberServiceClient) GetMember(ctx context.Context, in *GetMemberRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
-	out := new(MemberResponse)
+func (c *memberServiceClient) GetMember(ctx context.Context, in *GetMemberRequest, opts ...grpc.CallOption) (*GetMemberResponse, error) {
+	out := new(GetMemberResponse)
 	err := c.cc.Invoke(ctx, MemberService_GetMember_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -66,8 +66,8 @@ func (c *memberServiceClient) GetMember(ctx context.Context, in *GetMemberReques
 	return out, nil
 }
 
-func (c *memberServiceClient) UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
-	out := new(MemberResponse)
+func (c *memberServiceClient) UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*UpdateProfileResponse, error) {
+	out := new(UpdateProfileResponse)
 	err := c.cc.Invoke(ctx, MemberService_UpdateProfile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -84,8 +84,8 @@ func (c *memberServiceClient) ListMembers(ctx context.Context, in *ListMembersRe
 	return out, nil
 }
 
-func (c *memberServiceClient) PurchaseMembership(ctx context.Context, in *PurchaseMembershipRequest, opts ...grpc.CallOption) (*PurchaseResponse, error) {
-	out := new(PurchaseResponse)
+func (c *memberServiceClient) PurchaseMembership(ctx context.Context, in *PurchaseMembershipRequest, opts ...grpc.CallOption) (*PurchaseMembershipResponse, error) {
+	out := new(PurchaseMembershipResponse)
 	err := c.cc.Invoke(ctx, MemberService_PurchaseMembership_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (c *memberServiceClient) PurchaseMembership(ctx context.Context, in *Purcha
 	return out, nil
 }
 
-func (c *memberServiceClient) PauseMembership(ctx context.Context, in *PauseMembershipRequest, opts ...grpc.CallOption) (*MembershipResponse, error) {
-	out := new(MembershipResponse)
+func (c *memberServiceClient) PauseMembership(ctx context.Context, in *PauseMembershipRequest, opts ...grpc.CallOption) (*PauseMembershipResponse, error) {
+	out := new(PauseMembershipResponse)
 	err := c.cc.Invoke(ctx, MemberService_PauseMembership_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,8 +102,8 @@ func (c *memberServiceClient) PauseMembership(ctx context.Context, in *PauseMemb
 	return out, nil
 }
 
-func (c *memberServiceClient) ResumeMembership(ctx context.Context, in *ResumeMembershipRequest, opts ...grpc.CallOption) (*MembershipResponse, error) {
-	out := new(MembershipResponse)
+func (c *memberServiceClient) ResumeMembership(ctx context.Context, in *ResumeMembershipRequest, opts ...grpc.CallOption) (*ResumeMembershipResponse, error) {
+	out := new(ResumeMembershipResponse)
 	err := c.cc.Invoke(ctx, MemberService_ResumeMembership_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -111,8 +111,8 @@ func (c *memberServiceClient) ResumeMembership(ctx context.Context, in *ResumeMe
 	return out, nil
 }
 
-func (c *memberServiceClient) GetMembershipStatus(ctx context.Context, in *GetMembershipStatusRequest, opts ...grpc.CallOption) (*MembershipResponse, error) {
-	out := new(MembershipResponse)
+func (c *memberServiceClient) GetMembershipStatus(ctx context.Context, in *GetMembershipStatusRequest, opts ...grpc.CallOption) (*GetMembershipStatusResponse, error) {
+	out := new(GetMembershipStatusResponse)
 	err := c.cc.Invoke(ctx, MemberService_GetMembershipStatus_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -120,8 +120,8 @@ func (c *memberServiceClient) GetMembershipStatus(ctx context.Context, in *GetMe
 	return out, nil
 }
 
-func (c *memberServiceClient) GetMembershipStatusByUserId(ctx context.Context, in *GetMembershipStatusByUserIdRequest, opts ...grpc.CallOption) (*MembershipResponse, error) {
-	out := new(MembershipResponse)
+func (c *memberServiceClient) GetMembershipStatusByUserId(ctx context.Context, in *GetMembershipStatusByUserIdRequest, opts ...grpc.CallOption) (*GetMembershipStatusByUserIdResponse, error) {
+	out := new(GetMembershipStatusByUserIdResponse)
 	err := c.cc.Invoke(ctx, MemberService_GetMembershipStatusByUserId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -151,16 +151,16 @@ func (c *memberServiceClient) ListMembersByStatus(ctx context.Context, in *ListM
 // All implementations must embed UnimplementedMemberServiceServer
 // for forward compatibility
 type MemberServiceServer interface {
-	GetMember(context.Context, *GetMemberRequest) (*MemberResponse, error)
-	UpdateProfile(context.Context, *UpdateProfileRequest) (*MemberResponse, error)
+	GetMember(context.Context, *GetMemberRequest) (*GetMemberResponse, error)
+	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
 	ListMembers(context.Context, *ListMembersRequest) (*ListMembersResponse, error)
-	PurchaseMembership(context.Context, *PurchaseMembershipRequest) (*PurchaseResponse, error)
-	PauseMembership(context.Context, *PauseMembershipRequest) (*MembershipResponse, error)
-	ResumeMembership(context.Context, *ResumeMembershipRequest) (*MembershipResponse, error)
-	GetMembershipStatus(context.Context, *GetMembershipStatusRequest) (*MembershipResponse, error)
+	PurchaseMembership(context.Context, *PurchaseMembershipRequest) (*PurchaseMembershipResponse, error)
+	PauseMembership(context.Context, *PauseMembershipRequest) (*PauseMembershipResponse, error)
+	ResumeMembership(context.Context, *ResumeMembershipRequest) (*ResumeMembershipResponse, error)
+	GetMembershipStatus(context.Context, *GetMembershipStatusRequest) (*GetMembershipStatusResponse, error)
 	// Internal only. Requires the verified ms-gym-identifier workload identity.
 	// This RPC is intentionally absent from the external HTTP configuration.
-	GetMembershipStatusByUserId(context.Context, *GetMembershipStatusByUserIdRequest) (*MembershipResponse, error)
+	GetMembershipStatusByUserId(context.Context, *GetMembershipStatusByUserIdRequest) (*GetMembershipStatusByUserIdResponse, error)
 	ValidateMembership(context.Context, *ValidateMembershipRequest) (*ValidateMembershipResponse, error)
 	ListMembersByStatus(context.Context, *ListMembersByStatusRequest) (*ListMembersByStatusResponse, error)
 	mustEmbedUnimplementedMemberServiceServer()
@@ -170,28 +170,28 @@ type MemberServiceServer interface {
 type UnimplementedMemberServiceServer struct {
 }
 
-func (UnimplementedMemberServiceServer) GetMember(context.Context, *GetMemberRequest) (*MemberResponse, error) {
+func (UnimplementedMemberServiceServer) GetMember(context.Context, *GetMemberRequest) (*GetMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMember not implemented")
 }
-func (UnimplementedMemberServiceServer) UpdateProfile(context.Context, *UpdateProfileRequest) (*MemberResponse, error) {
+func (UnimplementedMemberServiceServer) UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProfile not implemented")
 }
 func (UnimplementedMemberServiceServer) ListMembers(context.Context, *ListMembersRequest) (*ListMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMembers not implemented")
 }
-func (UnimplementedMemberServiceServer) PurchaseMembership(context.Context, *PurchaseMembershipRequest) (*PurchaseResponse, error) {
+func (UnimplementedMemberServiceServer) PurchaseMembership(context.Context, *PurchaseMembershipRequest) (*PurchaseMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PurchaseMembership not implemented")
 }
-func (UnimplementedMemberServiceServer) PauseMembership(context.Context, *PauseMembershipRequest) (*MembershipResponse, error) {
+func (UnimplementedMemberServiceServer) PauseMembership(context.Context, *PauseMembershipRequest) (*PauseMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PauseMembership not implemented")
 }
-func (UnimplementedMemberServiceServer) ResumeMembership(context.Context, *ResumeMembershipRequest) (*MembershipResponse, error) {
+func (UnimplementedMemberServiceServer) ResumeMembership(context.Context, *ResumeMembershipRequest) (*ResumeMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResumeMembership not implemented")
 }
-func (UnimplementedMemberServiceServer) GetMembershipStatus(context.Context, *GetMembershipStatusRequest) (*MembershipResponse, error) {
+func (UnimplementedMemberServiceServer) GetMembershipStatus(context.Context, *GetMembershipStatusRequest) (*GetMembershipStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMembershipStatus not implemented")
 }
-func (UnimplementedMemberServiceServer) GetMembershipStatusByUserId(context.Context, *GetMembershipStatusByUserIdRequest) (*MembershipResponse, error) {
+func (UnimplementedMemberServiceServer) GetMembershipStatusByUserId(context.Context, *GetMembershipStatusByUserIdRequest) (*GetMembershipStatusByUserIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMembershipStatusByUserId not implemented")
 }
 func (UnimplementedMemberServiceServer) ValidateMembership(context.Context, *ValidateMembershipRequest) (*ValidateMembershipResponse, error) {

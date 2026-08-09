@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -36,16 +35,16 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PromotionServiceClient interface {
-	CreatePromotion(ctx context.Context, in *CreatePromotionRequest, opts ...grpc.CallOption) (*PromotionResponse, error)
-	UpdatePromotion(ctx context.Context, in *UpdatePromotionRequest, opts ...grpc.CallOption) (*PromotionResponse, error)
-	DisablePromotion(ctx context.Context, in *DisablePromotionRequest, opts ...grpc.CallOption) (*PromotionResponse, error)
-	PublishPromotion(ctx context.Context, in *PublishPromotionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ListPromotions(ctx context.Context, in *ListPromotionsRequest, opts ...grpc.CallOption) (*PromotionsResponse, error)
-	GetPromotionStats(ctx context.Context, in *GetPromotionStatsRequest, opts ...grpc.CallOption) (*PromotionStatsResponse, error)
+	CreatePromotion(ctx context.Context, in *CreatePromotionRequest, opts ...grpc.CallOption) (*CreatePromotionResponse, error)
+	UpdatePromotion(ctx context.Context, in *UpdatePromotionRequest, opts ...grpc.CallOption) (*UpdatePromotionResponse, error)
+	DisablePromotion(ctx context.Context, in *DisablePromotionRequest, opts ...grpc.CallOption) (*DisablePromotionResponse, error)
+	PublishPromotion(ctx context.Context, in *PublishPromotionRequest, opts ...grpc.CallOption) (*PublishPromotionResponse, error)
+	ListPromotions(ctx context.Context, in *ListPromotionsRequest, opts ...grpc.CallOption) (*ListPromotionsResponse, error)
+	GetPromotionStats(ctx context.Context, in *GetPromotionStatsRequest, opts ...grpc.CallOption) (*GetPromotionStatsResponse, error)
 	ValidateAndReserve(ctx context.Context, in *ValidateAndReserveRequest, opts ...grpc.CallOption) (*ValidateAndReserveResponse, error)
-	ConfirmReservation(ctx context.Context, in *ConfirmReservationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ReleaseReservation(ctx context.Context, in *ReleaseReservationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	CheckDiscountCode(ctx context.Context, in *CheckDiscountCodeRequest, opts ...grpc.CallOption) (*DiscountInfoResponse, error)
+	ConfirmReservation(ctx context.Context, in *ConfirmReservationRequest, opts ...grpc.CallOption) (*ConfirmReservationResponse, error)
+	ReleaseReservation(ctx context.Context, in *ReleaseReservationRequest, opts ...grpc.CallOption) (*ReleaseReservationResponse, error)
+	CheckDiscountCode(ctx context.Context, in *CheckDiscountCodeRequest, opts ...grpc.CallOption) (*CheckDiscountCodeResponse, error)
 }
 
 type promotionServiceClient struct {
@@ -56,8 +55,8 @@ func NewPromotionServiceClient(cc grpc.ClientConnInterface) PromotionServiceClie
 	return &promotionServiceClient{cc}
 }
 
-func (c *promotionServiceClient) CreatePromotion(ctx context.Context, in *CreatePromotionRequest, opts ...grpc.CallOption) (*PromotionResponse, error) {
-	out := new(PromotionResponse)
+func (c *promotionServiceClient) CreatePromotion(ctx context.Context, in *CreatePromotionRequest, opts ...grpc.CallOption) (*CreatePromotionResponse, error) {
+	out := new(CreatePromotionResponse)
 	err := c.cc.Invoke(ctx, PromotionService_CreatePromotion_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -65,8 +64,8 @@ func (c *promotionServiceClient) CreatePromotion(ctx context.Context, in *Create
 	return out, nil
 }
 
-func (c *promotionServiceClient) UpdatePromotion(ctx context.Context, in *UpdatePromotionRequest, opts ...grpc.CallOption) (*PromotionResponse, error) {
-	out := new(PromotionResponse)
+func (c *promotionServiceClient) UpdatePromotion(ctx context.Context, in *UpdatePromotionRequest, opts ...grpc.CallOption) (*UpdatePromotionResponse, error) {
+	out := new(UpdatePromotionResponse)
 	err := c.cc.Invoke(ctx, PromotionService_UpdatePromotion_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,8 +73,8 @@ func (c *promotionServiceClient) UpdatePromotion(ctx context.Context, in *Update
 	return out, nil
 }
 
-func (c *promotionServiceClient) DisablePromotion(ctx context.Context, in *DisablePromotionRequest, opts ...grpc.CallOption) (*PromotionResponse, error) {
-	out := new(PromotionResponse)
+func (c *promotionServiceClient) DisablePromotion(ctx context.Context, in *DisablePromotionRequest, opts ...grpc.CallOption) (*DisablePromotionResponse, error) {
+	out := new(DisablePromotionResponse)
 	err := c.cc.Invoke(ctx, PromotionService_DisablePromotion_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -83,8 +82,8 @@ func (c *promotionServiceClient) DisablePromotion(ctx context.Context, in *Disab
 	return out, nil
 }
 
-func (c *promotionServiceClient) PublishPromotion(ctx context.Context, in *PublishPromotionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *promotionServiceClient) PublishPromotion(ctx context.Context, in *PublishPromotionRequest, opts ...grpc.CallOption) (*PublishPromotionResponse, error) {
+	out := new(PublishPromotionResponse)
 	err := c.cc.Invoke(ctx, PromotionService_PublishPromotion_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,8 +91,8 @@ func (c *promotionServiceClient) PublishPromotion(ctx context.Context, in *Publi
 	return out, nil
 }
 
-func (c *promotionServiceClient) ListPromotions(ctx context.Context, in *ListPromotionsRequest, opts ...grpc.CallOption) (*PromotionsResponse, error) {
-	out := new(PromotionsResponse)
+func (c *promotionServiceClient) ListPromotions(ctx context.Context, in *ListPromotionsRequest, opts ...grpc.CallOption) (*ListPromotionsResponse, error) {
+	out := new(ListPromotionsResponse)
 	err := c.cc.Invoke(ctx, PromotionService_ListPromotions_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,8 +100,8 @@ func (c *promotionServiceClient) ListPromotions(ctx context.Context, in *ListPro
 	return out, nil
 }
 
-func (c *promotionServiceClient) GetPromotionStats(ctx context.Context, in *GetPromotionStatsRequest, opts ...grpc.CallOption) (*PromotionStatsResponse, error) {
-	out := new(PromotionStatsResponse)
+func (c *promotionServiceClient) GetPromotionStats(ctx context.Context, in *GetPromotionStatsRequest, opts ...grpc.CallOption) (*GetPromotionStatsResponse, error) {
+	out := new(GetPromotionStatsResponse)
 	err := c.cc.Invoke(ctx, PromotionService_GetPromotionStats_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -119,8 +118,8 @@ func (c *promotionServiceClient) ValidateAndReserve(ctx context.Context, in *Val
 	return out, nil
 }
 
-func (c *promotionServiceClient) ConfirmReservation(ctx context.Context, in *ConfirmReservationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *promotionServiceClient) ConfirmReservation(ctx context.Context, in *ConfirmReservationRequest, opts ...grpc.CallOption) (*ConfirmReservationResponse, error) {
+	out := new(ConfirmReservationResponse)
 	err := c.cc.Invoke(ctx, PromotionService_ConfirmReservation_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -128,8 +127,8 @@ func (c *promotionServiceClient) ConfirmReservation(ctx context.Context, in *Con
 	return out, nil
 }
 
-func (c *promotionServiceClient) ReleaseReservation(ctx context.Context, in *ReleaseReservationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *promotionServiceClient) ReleaseReservation(ctx context.Context, in *ReleaseReservationRequest, opts ...grpc.CallOption) (*ReleaseReservationResponse, error) {
+	out := new(ReleaseReservationResponse)
 	err := c.cc.Invoke(ctx, PromotionService_ReleaseReservation_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -137,8 +136,8 @@ func (c *promotionServiceClient) ReleaseReservation(ctx context.Context, in *Rel
 	return out, nil
 }
 
-func (c *promotionServiceClient) CheckDiscountCode(ctx context.Context, in *CheckDiscountCodeRequest, opts ...grpc.CallOption) (*DiscountInfoResponse, error) {
-	out := new(DiscountInfoResponse)
+func (c *promotionServiceClient) CheckDiscountCode(ctx context.Context, in *CheckDiscountCodeRequest, opts ...grpc.CallOption) (*CheckDiscountCodeResponse, error) {
+	out := new(CheckDiscountCodeResponse)
 	err := c.cc.Invoke(ctx, PromotionService_CheckDiscountCode_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -150,16 +149,16 @@ func (c *promotionServiceClient) CheckDiscountCode(ctx context.Context, in *Chec
 // All implementations must embed UnimplementedPromotionServiceServer
 // for forward compatibility
 type PromotionServiceServer interface {
-	CreatePromotion(context.Context, *CreatePromotionRequest) (*PromotionResponse, error)
-	UpdatePromotion(context.Context, *UpdatePromotionRequest) (*PromotionResponse, error)
-	DisablePromotion(context.Context, *DisablePromotionRequest) (*PromotionResponse, error)
-	PublishPromotion(context.Context, *PublishPromotionRequest) (*emptypb.Empty, error)
-	ListPromotions(context.Context, *ListPromotionsRequest) (*PromotionsResponse, error)
-	GetPromotionStats(context.Context, *GetPromotionStatsRequest) (*PromotionStatsResponse, error)
+	CreatePromotion(context.Context, *CreatePromotionRequest) (*CreatePromotionResponse, error)
+	UpdatePromotion(context.Context, *UpdatePromotionRequest) (*UpdatePromotionResponse, error)
+	DisablePromotion(context.Context, *DisablePromotionRequest) (*DisablePromotionResponse, error)
+	PublishPromotion(context.Context, *PublishPromotionRequest) (*PublishPromotionResponse, error)
+	ListPromotions(context.Context, *ListPromotionsRequest) (*ListPromotionsResponse, error)
+	GetPromotionStats(context.Context, *GetPromotionStatsRequest) (*GetPromotionStatsResponse, error)
 	ValidateAndReserve(context.Context, *ValidateAndReserveRequest) (*ValidateAndReserveResponse, error)
-	ConfirmReservation(context.Context, *ConfirmReservationRequest) (*emptypb.Empty, error)
-	ReleaseReservation(context.Context, *ReleaseReservationRequest) (*emptypb.Empty, error)
-	CheckDiscountCode(context.Context, *CheckDiscountCodeRequest) (*DiscountInfoResponse, error)
+	ConfirmReservation(context.Context, *ConfirmReservationRequest) (*ConfirmReservationResponse, error)
+	ReleaseReservation(context.Context, *ReleaseReservationRequest) (*ReleaseReservationResponse, error)
+	CheckDiscountCode(context.Context, *CheckDiscountCodeRequest) (*CheckDiscountCodeResponse, error)
 	mustEmbedUnimplementedPromotionServiceServer()
 }
 
@@ -167,34 +166,34 @@ type PromotionServiceServer interface {
 type UnimplementedPromotionServiceServer struct {
 }
 
-func (UnimplementedPromotionServiceServer) CreatePromotion(context.Context, *CreatePromotionRequest) (*PromotionResponse, error) {
+func (UnimplementedPromotionServiceServer) CreatePromotion(context.Context, *CreatePromotionRequest) (*CreatePromotionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePromotion not implemented")
 }
-func (UnimplementedPromotionServiceServer) UpdatePromotion(context.Context, *UpdatePromotionRequest) (*PromotionResponse, error) {
+func (UnimplementedPromotionServiceServer) UpdatePromotion(context.Context, *UpdatePromotionRequest) (*UpdatePromotionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePromotion not implemented")
 }
-func (UnimplementedPromotionServiceServer) DisablePromotion(context.Context, *DisablePromotionRequest) (*PromotionResponse, error) {
+func (UnimplementedPromotionServiceServer) DisablePromotion(context.Context, *DisablePromotionRequest) (*DisablePromotionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DisablePromotion not implemented")
 }
-func (UnimplementedPromotionServiceServer) PublishPromotion(context.Context, *PublishPromotionRequest) (*emptypb.Empty, error) {
+func (UnimplementedPromotionServiceServer) PublishPromotion(context.Context, *PublishPromotionRequest) (*PublishPromotionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PublishPromotion not implemented")
 }
-func (UnimplementedPromotionServiceServer) ListPromotions(context.Context, *ListPromotionsRequest) (*PromotionsResponse, error) {
+func (UnimplementedPromotionServiceServer) ListPromotions(context.Context, *ListPromotionsRequest) (*ListPromotionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPromotions not implemented")
 }
-func (UnimplementedPromotionServiceServer) GetPromotionStats(context.Context, *GetPromotionStatsRequest) (*PromotionStatsResponse, error) {
+func (UnimplementedPromotionServiceServer) GetPromotionStats(context.Context, *GetPromotionStatsRequest) (*GetPromotionStatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPromotionStats not implemented")
 }
 func (UnimplementedPromotionServiceServer) ValidateAndReserve(context.Context, *ValidateAndReserveRequest) (*ValidateAndReserveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateAndReserve not implemented")
 }
-func (UnimplementedPromotionServiceServer) ConfirmReservation(context.Context, *ConfirmReservationRequest) (*emptypb.Empty, error) {
+func (UnimplementedPromotionServiceServer) ConfirmReservation(context.Context, *ConfirmReservationRequest) (*ConfirmReservationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmReservation not implemented")
 }
-func (UnimplementedPromotionServiceServer) ReleaseReservation(context.Context, *ReleaseReservationRequest) (*emptypb.Empty, error) {
+func (UnimplementedPromotionServiceServer) ReleaseReservation(context.Context, *ReleaseReservationRequest) (*ReleaseReservationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReleaseReservation not implemented")
 }
-func (UnimplementedPromotionServiceServer) CheckDiscountCode(context.Context, *CheckDiscountCodeRequest) (*DiscountInfoResponse, error) {
+func (UnimplementedPromotionServiceServer) CheckDiscountCode(context.Context, *CheckDiscountCodeRequest) (*CheckDiscountCodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckDiscountCode not implemented")
 }
 func (UnimplementedPromotionServiceServer) mustEmbedUnimplementedPromotionServiceServer() {}

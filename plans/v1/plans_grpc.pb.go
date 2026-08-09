@@ -35,20 +35,20 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PlansServiceClient interface {
-	CreateGymLocation(ctx context.Context, in *CreateGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error)
-	UpdateGymLocation(ctx context.Context, in *UpdateGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error)
-	GetGymLocation(ctx context.Context, in *GetGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error)
-	ListGymLocations(ctx context.Context, in *ListGymLocationsRequest, opts ...grpc.CallOption) (*GymLocationsResponse, error)
-	CreateMembershipPlan(ctx context.Context, in *CreateMembershipPlanRequest, opts ...grpc.CallOption) (*MembershipPlanResponse, error)
-	UpdateMembershipPlan(ctx context.Context, in *UpdateMembershipPlanRequest, opts ...grpc.CallOption) (*MembershipPlanResponse, error)
-	GetMembershipPlan(ctx context.Context, in *GetMembershipPlanRequest, opts ...grpc.CallOption) (*MembershipPlanResponse, error)
-	ListMembershipPlans(ctx context.Context, in *ListMembershipPlansRequest, opts ...grpc.CallOption) (*MembershipPlansResponse, error)
+	CreateGymLocation(ctx context.Context, in *CreateGymLocationRequest, opts ...grpc.CallOption) (*CreateGymLocationResponse, error)
+	UpdateGymLocation(ctx context.Context, in *UpdateGymLocationRequest, opts ...grpc.CallOption) (*UpdateGymLocationResponse, error)
+	GetGymLocation(ctx context.Context, in *GetGymLocationRequest, opts ...grpc.CallOption) (*GetGymLocationResponse, error)
+	ListGymLocations(ctx context.Context, in *ListGymLocationsRequest, opts ...grpc.CallOption) (*ListGymLocationsResponse, error)
+	CreateMembershipPlan(ctx context.Context, in *CreateMembershipPlanRequest, opts ...grpc.CallOption) (*CreateMembershipPlanResponse, error)
+	UpdateMembershipPlan(ctx context.Context, in *UpdateMembershipPlanRequest, opts ...grpc.CallOption) (*UpdateMembershipPlanResponse, error)
+	GetMembershipPlan(ctx context.Context, in *GetMembershipPlanRequest, opts ...grpc.CallOption) (*GetMembershipPlanResponse, error)
+	ListMembershipPlans(ctx context.Context, in *ListMembershipPlansRequest, opts ...grpc.CallOption) (*ListMembershipPlansResponse, error)
 	// Internal only. Requires the verified ms-gym-identifier workload identity.
 	// This RPC is intentionally absent from the external HTTP configuration.
-	GetActiveGym(ctx context.Context, in *GetActiveGymRequest, opts ...grpc.CallOption) (*GymLocationResponse, error)
+	GetActiveGym(ctx context.Context, in *GetActiveGymRequest, opts ...grpc.CallOption) (*GetActiveGymResponse, error)
 	// Internal only. Requires the verified ms-gym-member workload identity.
 	// This RPC is intentionally absent from the external HTTP configuration.
-	ResolvePurchasablePlan(ctx context.Context, in *ResolvePurchasablePlanRequest, opts ...grpc.CallOption) (*ResolvedPlanResponse, error)
+	ResolvePurchasablePlan(ctx context.Context, in *ResolvePurchasablePlanRequest, opts ...grpc.CallOption) (*ResolvePurchasablePlanResponse, error)
 }
 
 type plansServiceClient struct {
@@ -59,8 +59,8 @@ func NewPlansServiceClient(cc grpc.ClientConnInterface) PlansServiceClient {
 	return &plansServiceClient{cc}
 }
 
-func (c *plansServiceClient) CreateGymLocation(ctx context.Context, in *CreateGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error) {
-	out := new(GymLocationResponse)
+func (c *plansServiceClient) CreateGymLocation(ctx context.Context, in *CreateGymLocationRequest, opts ...grpc.CallOption) (*CreateGymLocationResponse, error) {
+	out := new(CreateGymLocationResponse)
 	err := c.cc.Invoke(ctx, PlansService_CreateGymLocation_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,8 +68,8 @@ func (c *plansServiceClient) CreateGymLocation(ctx context.Context, in *CreateGy
 	return out, nil
 }
 
-func (c *plansServiceClient) UpdateGymLocation(ctx context.Context, in *UpdateGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error) {
-	out := new(GymLocationResponse)
+func (c *plansServiceClient) UpdateGymLocation(ctx context.Context, in *UpdateGymLocationRequest, opts ...grpc.CallOption) (*UpdateGymLocationResponse, error) {
+	out := new(UpdateGymLocationResponse)
 	err := c.cc.Invoke(ctx, PlansService_UpdateGymLocation_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -77,8 +77,8 @@ func (c *plansServiceClient) UpdateGymLocation(ctx context.Context, in *UpdateGy
 	return out, nil
 }
 
-func (c *plansServiceClient) GetGymLocation(ctx context.Context, in *GetGymLocationRequest, opts ...grpc.CallOption) (*GymLocationResponse, error) {
-	out := new(GymLocationResponse)
+func (c *plansServiceClient) GetGymLocation(ctx context.Context, in *GetGymLocationRequest, opts ...grpc.CallOption) (*GetGymLocationResponse, error) {
+	out := new(GetGymLocationResponse)
 	err := c.cc.Invoke(ctx, PlansService_GetGymLocation_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -86,8 +86,8 @@ func (c *plansServiceClient) GetGymLocation(ctx context.Context, in *GetGymLocat
 	return out, nil
 }
 
-func (c *plansServiceClient) ListGymLocations(ctx context.Context, in *ListGymLocationsRequest, opts ...grpc.CallOption) (*GymLocationsResponse, error) {
-	out := new(GymLocationsResponse)
+func (c *plansServiceClient) ListGymLocations(ctx context.Context, in *ListGymLocationsRequest, opts ...grpc.CallOption) (*ListGymLocationsResponse, error) {
+	out := new(ListGymLocationsResponse)
 	err := c.cc.Invoke(ctx, PlansService_ListGymLocations_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (c *plansServiceClient) ListGymLocations(ctx context.Context, in *ListGymLo
 	return out, nil
 }
 
-func (c *plansServiceClient) CreateMembershipPlan(ctx context.Context, in *CreateMembershipPlanRequest, opts ...grpc.CallOption) (*MembershipPlanResponse, error) {
-	out := new(MembershipPlanResponse)
+func (c *plansServiceClient) CreateMembershipPlan(ctx context.Context, in *CreateMembershipPlanRequest, opts ...grpc.CallOption) (*CreateMembershipPlanResponse, error) {
+	out := new(CreateMembershipPlanResponse)
 	err := c.cc.Invoke(ctx, PlansService_CreateMembershipPlan_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -104,8 +104,8 @@ func (c *plansServiceClient) CreateMembershipPlan(ctx context.Context, in *Creat
 	return out, nil
 }
 
-func (c *plansServiceClient) UpdateMembershipPlan(ctx context.Context, in *UpdateMembershipPlanRequest, opts ...grpc.CallOption) (*MembershipPlanResponse, error) {
-	out := new(MembershipPlanResponse)
+func (c *plansServiceClient) UpdateMembershipPlan(ctx context.Context, in *UpdateMembershipPlanRequest, opts ...grpc.CallOption) (*UpdateMembershipPlanResponse, error) {
+	out := new(UpdateMembershipPlanResponse)
 	err := c.cc.Invoke(ctx, PlansService_UpdateMembershipPlan_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -113,8 +113,8 @@ func (c *plansServiceClient) UpdateMembershipPlan(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *plansServiceClient) GetMembershipPlan(ctx context.Context, in *GetMembershipPlanRequest, opts ...grpc.CallOption) (*MembershipPlanResponse, error) {
-	out := new(MembershipPlanResponse)
+func (c *plansServiceClient) GetMembershipPlan(ctx context.Context, in *GetMembershipPlanRequest, opts ...grpc.CallOption) (*GetMembershipPlanResponse, error) {
+	out := new(GetMembershipPlanResponse)
 	err := c.cc.Invoke(ctx, PlansService_GetMembershipPlan_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -122,8 +122,8 @@ func (c *plansServiceClient) GetMembershipPlan(ctx context.Context, in *GetMembe
 	return out, nil
 }
 
-func (c *plansServiceClient) ListMembershipPlans(ctx context.Context, in *ListMembershipPlansRequest, opts ...grpc.CallOption) (*MembershipPlansResponse, error) {
-	out := new(MembershipPlansResponse)
+func (c *plansServiceClient) ListMembershipPlans(ctx context.Context, in *ListMembershipPlansRequest, opts ...grpc.CallOption) (*ListMembershipPlansResponse, error) {
+	out := new(ListMembershipPlansResponse)
 	err := c.cc.Invoke(ctx, PlansService_ListMembershipPlans_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -131,8 +131,8 @@ func (c *plansServiceClient) ListMembershipPlans(ctx context.Context, in *ListMe
 	return out, nil
 }
 
-func (c *plansServiceClient) GetActiveGym(ctx context.Context, in *GetActiveGymRequest, opts ...grpc.CallOption) (*GymLocationResponse, error) {
-	out := new(GymLocationResponse)
+func (c *plansServiceClient) GetActiveGym(ctx context.Context, in *GetActiveGymRequest, opts ...grpc.CallOption) (*GetActiveGymResponse, error) {
+	out := new(GetActiveGymResponse)
 	err := c.cc.Invoke(ctx, PlansService_GetActiveGym_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -140,8 +140,8 @@ func (c *plansServiceClient) GetActiveGym(ctx context.Context, in *GetActiveGymR
 	return out, nil
 }
 
-func (c *plansServiceClient) ResolvePurchasablePlan(ctx context.Context, in *ResolvePurchasablePlanRequest, opts ...grpc.CallOption) (*ResolvedPlanResponse, error) {
-	out := new(ResolvedPlanResponse)
+func (c *plansServiceClient) ResolvePurchasablePlan(ctx context.Context, in *ResolvePurchasablePlanRequest, opts ...grpc.CallOption) (*ResolvePurchasablePlanResponse, error) {
+	out := new(ResolvePurchasablePlanResponse)
 	err := c.cc.Invoke(ctx, PlansService_ResolvePurchasablePlan_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -153,20 +153,20 @@ func (c *plansServiceClient) ResolvePurchasablePlan(ctx context.Context, in *Res
 // All implementations must embed UnimplementedPlansServiceServer
 // for forward compatibility
 type PlansServiceServer interface {
-	CreateGymLocation(context.Context, *CreateGymLocationRequest) (*GymLocationResponse, error)
-	UpdateGymLocation(context.Context, *UpdateGymLocationRequest) (*GymLocationResponse, error)
-	GetGymLocation(context.Context, *GetGymLocationRequest) (*GymLocationResponse, error)
-	ListGymLocations(context.Context, *ListGymLocationsRequest) (*GymLocationsResponse, error)
-	CreateMembershipPlan(context.Context, *CreateMembershipPlanRequest) (*MembershipPlanResponse, error)
-	UpdateMembershipPlan(context.Context, *UpdateMembershipPlanRequest) (*MembershipPlanResponse, error)
-	GetMembershipPlan(context.Context, *GetMembershipPlanRequest) (*MembershipPlanResponse, error)
-	ListMembershipPlans(context.Context, *ListMembershipPlansRequest) (*MembershipPlansResponse, error)
+	CreateGymLocation(context.Context, *CreateGymLocationRequest) (*CreateGymLocationResponse, error)
+	UpdateGymLocation(context.Context, *UpdateGymLocationRequest) (*UpdateGymLocationResponse, error)
+	GetGymLocation(context.Context, *GetGymLocationRequest) (*GetGymLocationResponse, error)
+	ListGymLocations(context.Context, *ListGymLocationsRequest) (*ListGymLocationsResponse, error)
+	CreateMembershipPlan(context.Context, *CreateMembershipPlanRequest) (*CreateMembershipPlanResponse, error)
+	UpdateMembershipPlan(context.Context, *UpdateMembershipPlanRequest) (*UpdateMembershipPlanResponse, error)
+	GetMembershipPlan(context.Context, *GetMembershipPlanRequest) (*GetMembershipPlanResponse, error)
+	ListMembershipPlans(context.Context, *ListMembershipPlansRequest) (*ListMembershipPlansResponse, error)
 	// Internal only. Requires the verified ms-gym-identifier workload identity.
 	// This RPC is intentionally absent from the external HTTP configuration.
-	GetActiveGym(context.Context, *GetActiveGymRequest) (*GymLocationResponse, error)
+	GetActiveGym(context.Context, *GetActiveGymRequest) (*GetActiveGymResponse, error)
 	// Internal only. Requires the verified ms-gym-member workload identity.
 	// This RPC is intentionally absent from the external HTTP configuration.
-	ResolvePurchasablePlan(context.Context, *ResolvePurchasablePlanRequest) (*ResolvedPlanResponse, error)
+	ResolvePurchasablePlan(context.Context, *ResolvePurchasablePlanRequest) (*ResolvePurchasablePlanResponse, error)
 	mustEmbedUnimplementedPlansServiceServer()
 }
 
@@ -174,34 +174,34 @@ type PlansServiceServer interface {
 type UnimplementedPlansServiceServer struct {
 }
 
-func (UnimplementedPlansServiceServer) CreateGymLocation(context.Context, *CreateGymLocationRequest) (*GymLocationResponse, error) {
+func (UnimplementedPlansServiceServer) CreateGymLocation(context.Context, *CreateGymLocationRequest) (*CreateGymLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGymLocation not implemented")
 }
-func (UnimplementedPlansServiceServer) UpdateGymLocation(context.Context, *UpdateGymLocationRequest) (*GymLocationResponse, error) {
+func (UnimplementedPlansServiceServer) UpdateGymLocation(context.Context, *UpdateGymLocationRequest) (*UpdateGymLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGymLocation not implemented")
 }
-func (UnimplementedPlansServiceServer) GetGymLocation(context.Context, *GetGymLocationRequest) (*GymLocationResponse, error) {
+func (UnimplementedPlansServiceServer) GetGymLocation(context.Context, *GetGymLocationRequest) (*GetGymLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGymLocation not implemented")
 }
-func (UnimplementedPlansServiceServer) ListGymLocations(context.Context, *ListGymLocationsRequest) (*GymLocationsResponse, error) {
+func (UnimplementedPlansServiceServer) ListGymLocations(context.Context, *ListGymLocationsRequest) (*ListGymLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListGymLocations not implemented")
 }
-func (UnimplementedPlansServiceServer) CreateMembershipPlan(context.Context, *CreateMembershipPlanRequest) (*MembershipPlanResponse, error) {
+func (UnimplementedPlansServiceServer) CreateMembershipPlan(context.Context, *CreateMembershipPlanRequest) (*CreateMembershipPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMembershipPlan not implemented")
 }
-func (UnimplementedPlansServiceServer) UpdateMembershipPlan(context.Context, *UpdateMembershipPlanRequest) (*MembershipPlanResponse, error) {
+func (UnimplementedPlansServiceServer) UpdateMembershipPlan(context.Context, *UpdateMembershipPlanRequest) (*UpdateMembershipPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMembershipPlan not implemented")
 }
-func (UnimplementedPlansServiceServer) GetMembershipPlan(context.Context, *GetMembershipPlanRequest) (*MembershipPlanResponse, error) {
+func (UnimplementedPlansServiceServer) GetMembershipPlan(context.Context, *GetMembershipPlanRequest) (*GetMembershipPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMembershipPlan not implemented")
 }
-func (UnimplementedPlansServiceServer) ListMembershipPlans(context.Context, *ListMembershipPlansRequest) (*MembershipPlansResponse, error) {
+func (UnimplementedPlansServiceServer) ListMembershipPlans(context.Context, *ListMembershipPlansRequest) (*ListMembershipPlansResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMembershipPlans not implemented")
 }
-func (UnimplementedPlansServiceServer) GetActiveGym(context.Context, *GetActiveGymRequest) (*GymLocationResponse, error) {
+func (UnimplementedPlansServiceServer) GetActiveGym(context.Context, *GetActiveGymRequest) (*GetActiveGymResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetActiveGym not implemented")
 }
-func (UnimplementedPlansServiceServer) ResolvePurchasablePlan(context.Context, *ResolvePurchasablePlanRequest) (*ResolvedPlanResponse, error) {
+func (UnimplementedPlansServiceServer) ResolvePurchasablePlan(context.Context, *ResolvePurchasablePlanRequest) (*ResolvePurchasablePlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResolvePurchasablePlan not implemented")
 }
 func (UnimplementedPlansServiceServer) mustEmbedUnimplementedPlansServiceServer() {}

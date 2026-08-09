@@ -124,7 +124,7 @@ var (
 )
 
 func request_TrainerService_GetAvailableSlots_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSlotsRequest
+	var protoReq GetAvailableSlotsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -140,7 +140,7 @@ func request_TrainerService_GetAvailableSlots_0(ctx context.Context, marshaler r
 }
 
 func local_request_TrainerService_GetAvailableSlots_0(ctx context.Context, marshaler runtime.Marshaler, server TrainerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSlotsRequest
+	var protoReq GetAvailableSlotsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -260,7 +260,7 @@ func local_request_TrainerService_GetMyBookings_0(ctx context.Context, marshaler
 }
 
 func request_TrainerService_UpdateMyProfile_0(ctx context.Context, marshaler runtime.Marshaler, client TrainerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateTrainerProfileRequest
+	var protoReq UpdateMyProfileRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -277,7 +277,7 @@ func request_TrainerService_UpdateMyProfile_0(ctx context.Context, marshaler run
 }
 
 func local_request_TrainerService_UpdateMyProfile_0(ctx context.Context, marshaler runtime.Marshaler, server TrainerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateTrainerProfileRequest
+	var protoReq UpdateMyProfileRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

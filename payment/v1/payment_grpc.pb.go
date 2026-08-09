@@ -32,11 +32,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PaymentServiceClient interface {
 	InitiatePayment(ctx context.Context, in *InitiatePaymentRequest, opts ...grpc.CallOption) (*InitiatePaymentResponse, error)
-	GetPaymentStatus(ctx context.Context, in *GetPaymentStatusRequest, opts ...grpc.CallOption) (*PaymentStatusResponse, error)
-	GetSpendingHistory(ctx context.Context, in *GetSpendingHistoryRequest, opts ...grpc.CallOption) (*SpendingHistoryResponse, error)
-	RefundPayment(ctx context.Context, in *RefundPaymentRequest, opts ...grpc.CallOption) (*RefundResponse, error)
-	GetRevenueReport(ctx context.Context, in *RevenueReportRequest, opts ...grpc.CallOption) (*RevenueReportResponse, error)
-	GetPaymentsByUser(ctx context.Context, in *GetPaymentsByUserRequest, opts ...grpc.CallOption) (*PaymentsResponse, error)
+	GetPaymentStatus(ctx context.Context, in *GetPaymentStatusRequest, opts ...grpc.CallOption) (*GetPaymentStatusResponse, error)
+	GetSpendingHistory(ctx context.Context, in *GetSpendingHistoryRequest, opts ...grpc.CallOption) (*GetSpendingHistoryResponse, error)
+	RefundPayment(ctx context.Context, in *RefundPaymentRequest, opts ...grpc.CallOption) (*RefundPaymentResponse, error)
+	GetRevenueReport(ctx context.Context, in *GetRevenueReportRequest, opts ...grpc.CallOption) (*GetRevenueReportResponse, error)
+	GetPaymentsByUser(ctx context.Context, in *GetPaymentsByUserRequest, opts ...grpc.CallOption) (*GetPaymentsByUserResponse, error)
 }
 
 type paymentServiceClient struct {
@@ -56,8 +56,8 @@ func (c *paymentServiceClient) InitiatePayment(ctx context.Context, in *Initiate
 	return out, nil
 }
 
-func (c *paymentServiceClient) GetPaymentStatus(ctx context.Context, in *GetPaymentStatusRequest, opts ...grpc.CallOption) (*PaymentStatusResponse, error) {
-	out := new(PaymentStatusResponse)
+func (c *paymentServiceClient) GetPaymentStatus(ctx context.Context, in *GetPaymentStatusRequest, opts ...grpc.CallOption) (*GetPaymentStatusResponse, error) {
+	out := new(GetPaymentStatusResponse)
 	err := c.cc.Invoke(ctx, PaymentService_GetPaymentStatus_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -65,8 +65,8 @@ func (c *paymentServiceClient) GetPaymentStatus(ctx context.Context, in *GetPaym
 	return out, nil
 }
 
-func (c *paymentServiceClient) GetSpendingHistory(ctx context.Context, in *GetSpendingHistoryRequest, opts ...grpc.CallOption) (*SpendingHistoryResponse, error) {
-	out := new(SpendingHistoryResponse)
+func (c *paymentServiceClient) GetSpendingHistory(ctx context.Context, in *GetSpendingHistoryRequest, opts ...grpc.CallOption) (*GetSpendingHistoryResponse, error) {
+	out := new(GetSpendingHistoryResponse)
 	err := c.cc.Invoke(ctx, PaymentService_GetSpendingHistory_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,8 +74,8 @@ func (c *paymentServiceClient) GetSpendingHistory(ctx context.Context, in *GetSp
 	return out, nil
 }
 
-func (c *paymentServiceClient) RefundPayment(ctx context.Context, in *RefundPaymentRequest, opts ...grpc.CallOption) (*RefundResponse, error) {
-	out := new(RefundResponse)
+func (c *paymentServiceClient) RefundPayment(ctx context.Context, in *RefundPaymentRequest, opts ...grpc.CallOption) (*RefundPaymentResponse, error) {
+	out := new(RefundPaymentResponse)
 	err := c.cc.Invoke(ctx, PaymentService_RefundPayment_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -83,8 +83,8 @@ func (c *paymentServiceClient) RefundPayment(ctx context.Context, in *RefundPaym
 	return out, nil
 }
 
-func (c *paymentServiceClient) GetRevenueReport(ctx context.Context, in *RevenueReportRequest, opts ...grpc.CallOption) (*RevenueReportResponse, error) {
-	out := new(RevenueReportResponse)
+func (c *paymentServiceClient) GetRevenueReport(ctx context.Context, in *GetRevenueReportRequest, opts ...grpc.CallOption) (*GetRevenueReportResponse, error) {
+	out := new(GetRevenueReportResponse)
 	err := c.cc.Invoke(ctx, PaymentService_GetRevenueReport_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,8 +92,8 @@ func (c *paymentServiceClient) GetRevenueReport(ctx context.Context, in *Revenue
 	return out, nil
 }
 
-func (c *paymentServiceClient) GetPaymentsByUser(ctx context.Context, in *GetPaymentsByUserRequest, opts ...grpc.CallOption) (*PaymentsResponse, error) {
-	out := new(PaymentsResponse)
+func (c *paymentServiceClient) GetPaymentsByUser(ctx context.Context, in *GetPaymentsByUserRequest, opts ...grpc.CallOption) (*GetPaymentsByUserResponse, error) {
+	out := new(GetPaymentsByUserResponse)
 	err := c.cc.Invoke(ctx, PaymentService_GetPaymentsByUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -106,11 +106,11 @@ func (c *paymentServiceClient) GetPaymentsByUser(ctx context.Context, in *GetPay
 // for forward compatibility
 type PaymentServiceServer interface {
 	InitiatePayment(context.Context, *InitiatePaymentRequest) (*InitiatePaymentResponse, error)
-	GetPaymentStatus(context.Context, *GetPaymentStatusRequest) (*PaymentStatusResponse, error)
-	GetSpendingHistory(context.Context, *GetSpendingHistoryRequest) (*SpendingHistoryResponse, error)
-	RefundPayment(context.Context, *RefundPaymentRequest) (*RefundResponse, error)
-	GetRevenueReport(context.Context, *RevenueReportRequest) (*RevenueReportResponse, error)
-	GetPaymentsByUser(context.Context, *GetPaymentsByUserRequest) (*PaymentsResponse, error)
+	GetPaymentStatus(context.Context, *GetPaymentStatusRequest) (*GetPaymentStatusResponse, error)
+	GetSpendingHistory(context.Context, *GetSpendingHistoryRequest) (*GetSpendingHistoryResponse, error)
+	RefundPayment(context.Context, *RefundPaymentRequest) (*RefundPaymentResponse, error)
+	GetRevenueReport(context.Context, *GetRevenueReportRequest) (*GetRevenueReportResponse, error)
+	GetPaymentsByUser(context.Context, *GetPaymentsByUserRequest) (*GetPaymentsByUserResponse, error)
 	mustEmbedUnimplementedPaymentServiceServer()
 }
 
@@ -121,19 +121,19 @@ type UnimplementedPaymentServiceServer struct {
 func (UnimplementedPaymentServiceServer) InitiatePayment(context.Context, *InitiatePaymentRequest) (*InitiatePaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitiatePayment not implemented")
 }
-func (UnimplementedPaymentServiceServer) GetPaymentStatus(context.Context, *GetPaymentStatusRequest) (*PaymentStatusResponse, error) {
+func (UnimplementedPaymentServiceServer) GetPaymentStatus(context.Context, *GetPaymentStatusRequest) (*GetPaymentStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentStatus not implemented")
 }
-func (UnimplementedPaymentServiceServer) GetSpendingHistory(context.Context, *GetSpendingHistoryRequest) (*SpendingHistoryResponse, error) {
+func (UnimplementedPaymentServiceServer) GetSpendingHistory(context.Context, *GetSpendingHistoryRequest) (*GetSpendingHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSpendingHistory not implemented")
 }
-func (UnimplementedPaymentServiceServer) RefundPayment(context.Context, *RefundPaymentRequest) (*RefundResponse, error) {
+func (UnimplementedPaymentServiceServer) RefundPayment(context.Context, *RefundPaymentRequest) (*RefundPaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefundPayment not implemented")
 }
-func (UnimplementedPaymentServiceServer) GetRevenueReport(context.Context, *RevenueReportRequest) (*RevenueReportResponse, error) {
+func (UnimplementedPaymentServiceServer) GetRevenueReport(context.Context, *GetRevenueReportRequest) (*GetRevenueReportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRevenueReport not implemented")
 }
-func (UnimplementedPaymentServiceServer) GetPaymentsByUser(context.Context, *GetPaymentsByUserRequest) (*PaymentsResponse, error) {
+func (UnimplementedPaymentServiceServer) GetPaymentsByUser(context.Context, *GetPaymentsByUserRequest) (*GetPaymentsByUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentsByUser not implemented")
 }
 func (UnimplementedPaymentServiceServer) mustEmbedUnimplementedPaymentServiceServer() {}
@@ -222,7 +222,7 @@ func _PaymentService_RefundPayment_Handler(srv interface{}, ctx context.Context,
 }
 
 func _PaymentService_GetRevenueReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevenueReportRequest)
+	in := new(GetRevenueReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -234,7 +234,7 @@ func _PaymentService_GetRevenueReport_Handler(srv interface{}, ctx context.Conte
 		FullMethod: PaymentService_GetRevenueReport_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).GetRevenueReport(ctx, req.(*RevenueReportRequest))
+		return srv.(PaymentServiceServer).GetRevenueReport(ctx, req.(*GetRevenueReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

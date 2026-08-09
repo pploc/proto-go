@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -33,13 +32,13 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NotificationServiceClient interface {
-	GetMyNotifications(ctx context.Context, in *GetNotificationsRequest, opts ...grpc.CallOption) (*NotificationsResponse, error)
-	MarkAsRead(ctx context.Context, in *MarkAsReadRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetPreferences(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PreferencesResponse, error)
-	UpdatePreferences(ctx context.Context, in *UpdatePreferencesRequest, opts ...grpc.CallOption) (*PreferencesResponse, error)
-	RegisterDevice(ctx context.Context, in *RegisterDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	UnregisterDevice(ctx context.Context, in *UnregisterDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	SendBulkNotification(ctx context.Context, in *BulkNotificationRequest, opts ...grpc.CallOption) (*BulkNotificationResponse, error)
+	GetMyNotifications(ctx context.Context, in *GetMyNotificationsRequest, opts ...grpc.CallOption) (*GetMyNotificationsResponse, error)
+	MarkAsRead(ctx context.Context, in *MarkAsReadRequest, opts ...grpc.CallOption) (*MarkAsReadResponse, error)
+	GetPreferences(ctx context.Context, in *GetPreferencesRequest, opts ...grpc.CallOption) (*GetPreferencesResponse, error)
+	UpdatePreferences(ctx context.Context, in *UpdatePreferencesRequest, opts ...grpc.CallOption) (*UpdatePreferencesResponse, error)
+	RegisterDevice(ctx context.Context, in *RegisterDeviceRequest, opts ...grpc.CallOption) (*RegisterDeviceResponse, error)
+	UnregisterDevice(ctx context.Context, in *UnregisterDeviceRequest, opts ...grpc.CallOption) (*UnregisterDeviceResponse, error)
+	SendBulkNotification(ctx context.Context, in *SendBulkNotificationRequest, opts ...grpc.CallOption) (*SendBulkNotificationResponse, error)
 }
 
 type notificationServiceClient struct {
@@ -50,8 +49,8 @@ func NewNotificationServiceClient(cc grpc.ClientConnInterface) NotificationServi
 	return &notificationServiceClient{cc}
 }
 
-func (c *notificationServiceClient) GetMyNotifications(ctx context.Context, in *GetNotificationsRequest, opts ...grpc.CallOption) (*NotificationsResponse, error) {
-	out := new(NotificationsResponse)
+func (c *notificationServiceClient) GetMyNotifications(ctx context.Context, in *GetMyNotificationsRequest, opts ...grpc.CallOption) (*GetMyNotificationsResponse, error) {
+	out := new(GetMyNotificationsResponse)
 	err := c.cc.Invoke(ctx, NotificationService_GetMyNotifications_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -59,8 +58,8 @@ func (c *notificationServiceClient) GetMyNotifications(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *notificationServiceClient) MarkAsRead(ctx context.Context, in *MarkAsReadRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *notificationServiceClient) MarkAsRead(ctx context.Context, in *MarkAsReadRequest, opts ...grpc.CallOption) (*MarkAsReadResponse, error) {
+	out := new(MarkAsReadResponse)
 	err := c.cc.Invoke(ctx, NotificationService_MarkAsRead_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,8 +67,8 @@ func (c *notificationServiceClient) MarkAsRead(ctx context.Context, in *MarkAsRe
 	return out, nil
 }
 
-func (c *notificationServiceClient) GetPreferences(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PreferencesResponse, error) {
-	out := new(PreferencesResponse)
+func (c *notificationServiceClient) GetPreferences(ctx context.Context, in *GetPreferencesRequest, opts ...grpc.CallOption) (*GetPreferencesResponse, error) {
+	out := new(GetPreferencesResponse)
 	err := c.cc.Invoke(ctx, NotificationService_GetPreferences_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -77,8 +76,8 @@ func (c *notificationServiceClient) GetPreferences(ctx context.Context, in *empt
 	return out, nil
 }
 
-func (c *notificationServiceClient) UpdatePreferences(ctx context.Context, in *UpdatePreferencesRequest, opts ...grpc.CallOption) (*PreferencesResponse, error) {
-	out := new(PreferencesResponse)
+func (c *notificationServiceClient) UpdatePreferences(ctx context.Context, in *UpdatePreferencesRequest, opts ...grpc.CallOption) (*UpdatePreferencesResponse, error) {
+	out := new(UpdatePreferencesResponse)
 	err := c.cc.Invoke(ctx, NotificationService_UpdatePreferences_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -86,8 +85,8 @@ func (c *notificationServiceClient) UpdatePreferences(ctx context.Context, in *U
 	return out, nil
 }
 
-func (c *notificationServiceClient) RegisterDevice(ctx context.Context, in *RegisterDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *notificationServiceClient) RegisterDevice(ctx context.Context, in *RegisterDeviceRequest, opts ...grpc.CallOption) (*RegisterDeviceResponse, error) {
+	out := new(RegisterDeviceResponse)
 	err := c.cc.Invoke(ctx, NotificationService_RegisterDevice_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -95,8 +94,8 @@ func (c *notificationServiceClient) RegisterDevice(ctx context.Context, in *Regi
 	return out, nil
 }
 
-func (c *notificationServiceClient) UnregisterDevice(ctx context.Context, in *UnregisterDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *notificationServiceClient) UnregisterDevice(ctx context.Context, in *UnregisterDeviceRequest, opts ...grpc.CallOption) (*UnregisterDeviceResponse, error) {
+	out := new(UnregisterDeviceResponse)
 	err := c.cc.Invoke(ctx, NotificationService_UnregisterDevice_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -104,8 +103,8 @@ func (c *notificationServiceClient) UnregisterDevice(ctx context.Context, in *Un
 	return out, nil
 }
 
-func (c *notificationServiceClient) SendBulkNotification(ctx context.Context, in *BulkNotificationRequest, opts ...grpc.CallOption) (*BulkNotificationResponse, error) {
-	out := new(BulkNotificationResponse)
+func (c *notificationServiceClient) SendBulkNotification(ctx context.Context, in *SendBulkNotificationRequest, opts ...grpc.CallOption) (*SendBulkNotificationResponse, error) {
+	out := new(SendBulkNotificationResponse)
 	err := c.cc.Invoke(ctx, NotificationService_SendBulkNotification_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -117,13 +116,13 @@ func (c *notificationServiceClient) SendBulkNotification(ctx context.Context, in
 // All implementations must embed UnimplementedNotificationServiceServer
 // for forward compatibility
 type NotificationServiceServer interface {
-	GetMyNotifications(context.Context, *GetNotificationsRequest) (*NotificationsResponse, error)
-	MarkAsRead(context.Context, *MarkAsReadRequest) (*emptypb.Empty, error)
-	GetPreferences(context.Context, *emptypb.Empty) (*PreferencesResponse, error)
-	UpdatePreferences(context.Context, *UpdatePreferencesRequest) (*PreferencesResponse, error)
-	RegisterDevice(context.Context, *RegisterDeviceRequest) (*emptypb.Empty, error)
-	UnregisterDevice(context.Context, *UnregisterDeviceRequest) (*emptypb.Empty, error)
-	SendBulkNotification(context.Context, *BulkNotificationRequest) (*BulkNotificationResponse, error)
+	GetMyNotifications(context.Context, *GetMyNotificationsRequest) (*GetMyNotificationsResponse, error)
+	MarkAsRead(context.Context, *MarkAsReadRequest) (*MarkAsReadResponse, error)
+	GetPreferences(context.Context, *GetPreferencesRequest) (*GetPreferencesResponse, error)
+	UpdatePreferences(context.Context, *UpdatePreferencesRequest) (*UpdatePreferencesResponse, error)
+	RegisterDevice(context.Context, *RegisterDeviceRequest) (*RegisterDeviceResponse, error)
+	UnregisterDevice(context.Context, *UnregisterDeviceRequest) (*UnregisterDeviceResponse, error)
+	SendBulkNotification(context.Context, *SendBulkNotificationRequest) (*SendBulkNotificationResponse, error)
 	mustEmbedUnimplementedNotificationServiceServer()
 }
 
@@ -131,25 +130,25 @@ type NotificationServiceServer interface {
 type UnimplementedNotificationServiceServer struct {
 }
 
-func (UnimplementedNotificationServiceServer) GetMyNotifications(context.Context, *GetNotificationsRequest) (*NotificationsResponse, error) {
+func (UnimplementedNotificationServiceServer) GetMyNotifications(context.Context, *GetMyNotificationsRequest) (*GetMyNotificationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMyNotifications not implemented")
 }
-func (UnimplementedNotificationServiceServer) MarkAsRead(context.Context, *MarkAsReadRequest) (*emptypb.Empty, error) {
+func (UnimplementedNotificationServiceServer) MarkAsRead(context.Context, *MarkAsReadRequest) (*MarkAsReadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkAsRead not implemented")
 }
-func (UnimplementedNotificationServiceServer) GetPreferences(context.Context, *emptypb.Empty) (*PreferencesResponse, error) {
+func (UnimplementedNotificationServiceServer) GetPreferences(context.Context, *GetPreferencesRequest) (*GetPreferencesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPreferences not implemented")
 }
-func (UnimplementedNotificationServiceServer) UpdatePreferences(context.Context, *UpdatePreferencesRequest) (*PreferencesResponse, error) {
+func (UnimplementedNotificationServiceServer) UpdatePreferences(context.Context, *UpdatePreferencesRequest) (*UpdatePreferencesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePreferences not implemented")
 }
-func (UnimplementedNotificationServiceServer) RegisterDevice(context.Context, *RegisterDeviceRequest) (*emptypb.Empty, error) {
+func (UnimplementedNotificationServiceServer) RegisterDevice(context.Context, *RegisterDeviceRequest) (*RegisterDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterDevice not implemented")
 }
-func (UnimplementedNotificationServiceServer) UnregisterDevice(context.Context, *UnregisterDeviceRequest) (*emptypb.Empty, error) {
+func (UnimplementedNotificationServiceServer) UnregisterDevice(context.Context, *UnregisterDeviceRequest) (*UnregisterDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnregisterDevice not implemented")
 }
-func (UnimplementedNotificationServiceServer) SendBulkNotification(context.Context, *BulkNotificationRequest) (*BulkNotificationResponse, error) {
+func (UnimplementedNotificationServiceServer) SendBulkNotification(context.Context, *SendBulkNotificationRequest) (*SendBulkNotificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendBulkNotification not implemented")
 }
 func (UnimplementedNotificationServiceServer) mustEmbedUnimplementedNotificationServiceServer() {}
@@ -166,7 +165,7 @@ func RegisterNotificationServiceServer(s grpc.ServiceRegistrar, srv Notification
 }
 
 func _NotificationService_GetMyNotifications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNotificationsRequest)
+	in := new(GetMyNotificationsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -178,7 +177,7 @@ func _NotificationService_GetMyNotifications_Handler(srv interface{}, ctx contex
 		FullMethod: NotificationService_GetMyNotifications_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotificationServiceServer).GetMyNotifications(ctx, req.(*GetNotificationsRequest))
+		return srv.(NotificationServiceServer).GetMyNotifications(ctx, req.(*GetMyNotificationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -202,7 +201,7 @@ func _NotificationService_MarkAsRead_Handler(srv interface{}, ctx context.Contex
 }
 
 func _NotificationService_GetPreferences_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetPreferencesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -214,7 +213,7 @@ func _NotificationService_GetPreferences_Handler(srv interface{}, ctx context.Co
 		FullMethod: NotificationService_GetPreferences_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotificationServiceServer).GetPreferences(ctx, req.(*emptypb.Empty))
+		return srv.(NotificationServiceServer).GetPreferences(ctx, req.(*GetPreferencesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -274,7 +273,7 @@ func _NotificationService_UnregisterDevice_Handler(srv interface{}, ctx context.
 }
 
 func _NotificationService_SendBulkNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BulkNotificationRequest)
+	in := new(SendBulkNotificationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -286,7 +285,7 @@ func _NotificationService_SendBulkNotification_Handler(srv interface{}, ctx cont
 		FullMethod: NotificationService_SendBulkNotification_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotificationServiceServer).SendBulkNotification(ctx, req.(*BulkNotificationRequest))
+		return srv.(NotificationServiceServer).SendBulkNotification(ctx, req.(*SendBulkNotificationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

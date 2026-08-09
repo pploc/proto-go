@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -37,15 +36,15 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WorkoutServiceClient interface {
 	LogWorkout(ctx context.Context, in *LogWorkoutRequest, opts ...grpc.CallOption) (*LogWorkoutResponse, error)
-	GetWorkout(ctx context.Context, in *GetWorkoutRequest, opts ...grpc.CallOption) (*WorkoutResponse, error)
-	GetWorkoutHistory(ctx context.Context, in *GetWorkoutHistoryRequest, opts ...grpc.CallOption) (*WorkoutHistoryResponse, error)
-	DeleteWorkout(ctx context.Context, in *DeleteWorkoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	CreateTemplate(ctx context.Context, in *CreateTemplateRequest, opts ...grpc.CallOption) (*TemplateResponse, error)
-	UpdateTemplate(ctx context.Context, in *UpdateTemplateRequest, opts ...grpc.CallOption) (*TemplateResponse, error)
-	DeleteTemplate(ctx context.Context, in *DeleteTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ListTemplates(ctx context.Context, in *ListTemplatesRequest, opts ...grpc.CallOption) (*TemplatesResponse, error)
-	GetTemplate(ctx context.Context, in *GetTemplateRequest, opts ...grpc.CallOption) (*TemplateResponse, error)
-	GetPersonalRecords(ctx context.Context, in *GetPRRequest, opts ...grpc.CallOption) (*PRListResponse, error)
+	GetWorkout(ctx context.Context, in *GetWorkoutRequest, opts ...grpc.CallOption) (*GetWorkoutResponse, error)
+	GetWorkoutHistory(ctx context.Context, in *GetWorkoutHistoryRequest, opts ...grpc.CallOption) (*GetWorkoutHistoryResponse, error)
+	DeleteWorkout(ctx context.Context, in *DeleteWorkoutRequest, opts ...grpc.CallOption) (*DeleteWorkoutResponse, error)
+	CreateTemplate(ctx context.Context, in *CreateTemplateRequest, opts ...grpc.CallOption) (*CreateTemplateResponse, error)
+	UpdateTemplate(ctx context.Context, in *UpdateTemplateRequest, opts ...grpc.CallOption) (*UpdateTemplateResponse, error)
+	DeleteTemplate(ctx context.Context, in *DeleteTemplateRequest, opts ...grpc.CallOption) (*DeleteTemplateResponse, error)
+	ListTemplates(ctx context.Context, in *ListTemplatesRequest, opts ...grpc.CallOption) (*ListTemplatesResponse, error)
+	GetTemplate(ctx context.Context, in *GetTemplateRequest, opts ...grpc.CallOption) (*GetTemplateResponse, error)
+	GetPersonalRecords(ctx context.Context, in *GetPersonalRecordsRequest, opts ...grpc.CallOption) (*GetPersonalRecordsResponse, error)
 }
 
 type workoutServiceClient struct {
@@ -65,8 +64,8 @@ func (c *workoutServiceClient) LogWorkout(ctx context.Context, in *LogWorkoutReq
 	return out, nil
 }
 
-func (c *workoutServiceClient) GetWorkout(ctx context.Context, in *GetWorkoutRequest, opts ...grpc.CallOption) (*WorkoutResponse, error) {
-	out := new(WorkoutResponse)
+func (c *workoutServiceClient) GetWorkout(ctx context.Context, in *GetWorkoutRequest, opts ...grpc.CallOption) (*GetWorkoutResponse, error) {
+	out := new(GetWorkoutResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_GetWorkout_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,8 +73,8 @@ func (c *workoutServiceClient) GetWorkout(ctx context.Context, in *GetWorkoutReq
 	return out, nil
 }
 
-func (c *workoutServiceClient) GetWorkoutHistory(ctx context.Context, in *GetWorkoutHistoryRequest, opts ...grpc.CallOption) (*WorkoutHistoryResponse, error) {
-	out := new(WorkoutHistoryResponse)
+func (c *workoutServiceClient) GetWorkoutHistory(ctx context.Context, in *GetWorkoutHistoryRequest, opts ...grpc.CallOption) (*GetWorkoutHistoryResponse, error) {
+	out := new(GetWorkoutHistoryResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_GetWorkoutHistory_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -83,8 +82,8 @@ func (c *workoutServiceClient) GetWorkoutHistory(ctx context.Context, in *GetWor
 	return out, nil
 }
 
-func (c *workoutServiceClient) DeleteWorkout(ctx context.Context, in *DeleteWorkoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *workoutServiceClient) DeleteWorkout(ctx context.Context, in *DeleteWorkoutRequest, opts ...grpc.CallOption) (*DeleteWorkoutResponse, error) {
+	out := new(DeleteWorkoutResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_DeleteWorkout_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,8 +91,8 @@ func (c *workoutServiceClient) DeleteWorkout(ctx context.Context, in *DeleteWork
 	return out, nil
 }
 
-func (c *workoutServiceClient) CreateTemplate(ctx context.Context, in *CreateTemplateRequest, opts ...grpc.CallOption) (*TemplateResponse, error) {
-	out := new(TemplateResponse)
+func (c *workoutServiceClient) CreateTemplate(ctx context.Context, in *CreateTemplateRequest, opts ...grpc.CallOption) (*CreateTemplateResponse, error) {
+	out := new(CreateTemplateResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_CreateTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,8 +100,8 @@ func (c *workoutServiceClient) CreateTemplate(ctx context.Context, in *CreateTem
 	return out, nil
 }
 
-func (c *workoutServiceClient) UpdateTemplate(ctx context.Context, in *UpdateTemplateRequest, opts ...grpc.CallOption) (*TemplateResponse, error) {
-	out := new(TemplateResponse)
+func (c *workoutServiceClient) UpdateTemplate(ctx context.Context, in *UpdateTemplateRequest, opts ...grpc.CallOption) (*UpdateTemplateResponse, error) {
+	out := new(UpdateTemplateResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_UpdateTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -110,8 +109,8 @@ func (c *workoutServiceClient) UpdateTemplate(ctx context.Context, in *UpdateTem
 	return out, nil
 }
 
-func (c *workoutServiceClient) DeleteTemplate(ctx context.Context, in *DeleteTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *workoutServiceClient) DeleteTemplate(ctx context.Context, in *DeleteTemplateRequest, opts ...grpc.CallOption) (*DeleteTemplateResponse, error) {
+	out := new(DeleteTemplateResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_DeleteTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -119,8 +118,8 @@ func (c *workoutServiceClient) DeleteTemplate(ctx context.Context, in *DeleteTem
 	return out, nil
 }
 
-func (c *workoutServiceClient) ListTemplates(ctx context.Context, in *ListTemplatesRequest, opts ...grpc.CallOption) (*TemplatesResponse, error) {
-	out := new(TemplatesResponse)
+func (c *workoutServiceClient) ListTemplates(ctx context.Context, in *ListTemplatesRequest, opts ...grpc.CallOption) (*ListTemplatesResponse, error) {
+	out := new(ListTemplatesResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_ListTemplates_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -128,8 +127,8 @@ func (c *workoutServiceClient) ListTemplates(ctx context.Context, in *ListTempla
 	return out, nil
 }
 
-func (c *workoutServiceClient) GetTemplate(ctx context.Context, in *GetTemplateRequest, opts ...grpc.CallOption) (*TemplateResponse, error) {
-	out := new(TemplateResponse)
+func (c *workoutServiceClient) GetTemplate(ctx context.Context, in *GetTemplateRequest, opts ...grpc.CallOption) (*GetTemplateResponse, error) {
+	out := new(GetTemplateResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_GetTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -137,8 +136,8 @@ func (c *workoutServiceClient) GetTemplate(ctx context.Context, in *GetTemplateR
 	return out, nil
 }
 
-func (c *workoutServiceClient) GetPersonalRecords(ctx context.Context, in *GetPRRequest, opts ...grpc.CallOption) (*PRListResponse, error) {
-	out := new(PRListResponse)
+func (c *workoutServiceClient) GetPersonalRecords(ctx context.Context, in *GetPersonalRecordsRequest, opts ...grpc.CallOption) (*GetPersonalRecordsResponse, error) {
+	out := new(GetPersonalRecordsResponse)
 	err := c.cc.Invoke(ctx, WorkoutService_GetPersonalRecords_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -151,15 +150,15 @@ func (c *workoutServiceClient) GetPersonalRecords(ctx context.Context, in *GetPR
 // for forward compatibility
 type WorkoutServiceServer interface {
 	LogWorkout(context.Context, *LogWorkoutRequest) (*LogWorkoutResponse, error)
-	GetWorkout(context.Context, *GetWorkoutRequest) (*WorkoutResponse, error)
-	GetWorkoutHistory(context.Context, *GetWorkoutHistoryRequest) (*WorkoutHistoryResponse, error)
-	DeleteWorkout(context.Context, *DeleteWorkoutRequest) (*emptypb.Empty, error)
-	CreateTemplate(context.Context, *CreateTemplateRequest) (*TemplateResponse, error)
-	UpdateTemplate(context.Context, *UpdateTemplateRequest) (*TemplateResponse, error)
-	DeleteTemplate(context.Context, *DeleteTemplateRequest) (*emptypb.Empty, error)
-	ListTemplates(context.Context, *ListTemplatesRequest) (*TemplatesResponse, error)
-	GetTemplate(context.Context, *GetTemplateRequest) (*TemplateResponse, error)
-	GetPersonalRecords(context.Context, *GetPRRequest) (*PRListResponse, error)
+	GetWorkout(context.Context, *GetWorkoutRequest) (*GetWorkoutResponse, error)
+	GetWorkoutHistory(context.Context, *GetWorkoutHistoryRequest) (*GetWorkoutHistoryResponse, error)
+	DeleteWorkout(context.Context, *DeleteWorkoutRequest) (*DeleteWorkoutResponse, error)
+	CreateTemplate(context.Context, *CreateTemplateRequest) (*CreateTemplateResponse, error)
+	UpdateTemplate(context.Context, *UpdateTemplateRequest) (*UpdateTemplateResponse, error)
+	DeleteTemplate(context.Context, *DeleteTemplateRequest) (*DeleteTemplateResponse, error)
+	ListTemplates(context.Context, *ListTemplatesRequest) (*ListTemplatesResponse, error)
+	GetTemplate(context.Context, *GetTemplateRequest) (*GetTemplateResponse, error)
+	GetPersonalRecords(context.Context, *GetPersonalRecordsRequest) (*GetPersonalRecordsResponse, error)
 	mustEmbedUnimplementedWorkoutServiceServer()
 }
 
@@ -170,31 +169,31 @@ type UnimplementedWorkoutServiceServer struct {
 func (UnimplementedWorkoutServiceServer) LogWorkout(context.Context, *LogWorkoutRequest) (*LogWorkoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogWorkout not implemented")
 }
-func (UnimplementedWorkoutServiceServer) GetWorkout(context.Context, *GetWorkoutRequest) (*WorkoutResponse, error) {
+func (UnimplementedWorkoutServiceServer) GetWorkout(context.Context, *GetWorkoutRequest) (*GetWorkoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorkout not implemented")
 }
-func (UnimplementedWorkoutServiceServer) GetWorkoutHistory(context.Context, *GetWorkoutHistoryRequest) (*WorkoutHistoryResponse, error) {
+func (UnimplementedWorkoutServiceServer) GetWorkoutHistory(context.Context, *GetWorkoutHistoryRequest) (*GetWorkoutHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorkoutHistory not implemented")
 }
-func (UnimplementedWorkoutServiceServer) DeleteWorkout(context.Context, *DeleteWorkoutRequest) (*emptypb.Empty, error) {
+func (UnimplementedWorkoutServiceServer) DeleteWorkout(context.Context, *DeleteWorkoutRequest) (*DeleteWorkoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteWorkout not implemented")
 }
-func (UnimplementedWorkoutServiceServer) CreateTemplate(context.Context, *CreateTemplateRequest) (*TemplateResponse, error) {
+func (UnimplementedWorkoutServiceServer) CreateTemplate(context.Context, *CreateTemplateRequest) (*CreateTemplateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTemplate not implemented")
 }
-func (UnimplementedWorkoutServiceServer) UpdateTemplate(context.Context, *UpdateTemplateRequest) (*TemplateResponse, error) {
+func (UnimplementedWorkoutServiceServer) UpdateTemplate(context.Context, *UpdateTemplateRequest) (*UpdateTemplateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTemplate not implemented")
 }
-func (UnimplementedWorkoutServiceServer) DeleteTemplate(context.Context, *DeleteTemplateRequest) (*emptypb.Empty, error) {
+func (UnimplementedWorkoutServiceServer) DeleteTemplate(context.Context, *DeleteTemplateRequest) (*DeleteTemplateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTemplate not implemented")
 }
-func (UnimplementedWorkoutServiceServer) ListTemplates(context.Context, *ListTemplatesRequest) (*TemplatesResponse, error) {
+func (UnimplementedWorkoutServiceServer) ListTemplates(context.Context, *ListTemplatesRequest) (*ListTemplatesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTemplates not implemented")
 }
-func (UnimplementedWorkoutServiceServer) GetTemplate(context.Context, *GetTemplateRequest) (*TemplateResponse, error) {
+func (UnimplementedWorkoutServiceServer) GetTemplate(context.Context, *GetTemplateRequest) (*GetTemplateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTemplate not implemented")
 }
-func (UnimplementedWorkoutServiceServer) GetPersonalRecords(context.Context, *GetPRRequest) (*PRListResponse, error) {
+func (UnimplementedWorkoutServiceServer) GetPersonalRecords(context.Context, *GetPersonalRecordsRequest) (*GetPersonalRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPersonalRecords not implemented")
 }
 func (UnimplementedWorkoutServiceServer) mustEmbedUnimplementedWorkoutServiceServer() {}
@@ -373,7 +372,7 @@ func _WorkoutService_GetTemplate_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _WorkoutService_GetPersonalRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPRRequest)
+	in := new(GetPersonalRecordsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -385,7 +384,7 @@ func _WorkoutService_GetPersonalRecords_Handler(srv interface{}, ctx context.Con
 		FullMethod: WorkoutService_GetPersonalRecords_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkoutServiceServer).GetPersonalRecords(ctx, req.(*GetPRRequest))
+		return srv.(WorkoutServiceServer).GetPersonalRecords(ctx, req.(*GetPersonalRecordsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

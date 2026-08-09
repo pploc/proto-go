@@ -33,8 +33,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CheckInServiceClient interface {
 	ProcessScan(ctx context.Context, in *ProcessScanRequest, opts ...grpc.CallOption) (*ProcessScanResponse, error)
-	GetCheckInHistory(ctx context.Context, in *GetCheckInHistoryRequest, opts ...grpc.CallOption) (*CheckInHistoryResponse, error)
-	GetDailyCount(ctx context.Context, in *GetDailyCountRequest, opts ...grpc.CallOption) (*DailyCountResponse, error)
+	GetCheckInHistory(ctx context.Context, in *GetCheckInHistoryRequest, opts ...grpc.CallOption) (*GetCheckInHistoryResponse, error)
+	GetDailyCount(ctx context.Context, in *GetDailyCountRequest, opts ...grpc.CallOption) (*GetDailyCountResponse, error)
 	RegisterDevice(ctx context.Context, in *RegisterDeviceRequest, opts ...grpc.CallOption) (*RegisterDeviceResponse, error)
 	GetDisplayQrPayload(ctx context.Context, in *GetDisplayQrPayloadRequest, opts ...grpc.CallOption) (*GetDisplayQrPayloadResponse, error)
 	RevokeDevice(ctx context.Context, in *RevokeDeviceRequest, opts ...grpc.CallOption) (*RevokeDeviceResponse, error)
@@ -58,8 +58,8 @@ func (c *checkInServiceClient) ProcessScan(ctx context.Context, in *ProcessScanR
 	return out, nil
 }
 
-func (c *checkInServiceClient) GetCheckInHistory(ctx context.Context, in *GetCheckInHistoryRequest, opts ...grpc.CallOption) (*CheckInHistoryResponse, error) {
-	out := new(CheckInHistoryResponse)
+func (c *checkInServiceClient) GetCheckInHistory(ctx context.Context, in *GetCheckInHistoryRequest, opts ...grpc.CallOption) (*GetCheckInHistoryResponse, error) {
+	out := new(GetCheckInHistoryResponse)
 	err := c.cc.Invoke(ctx, CheckInService_GetCheckInHistory_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -67,8 +67,8 @@ func (c *checkInServiceClient) GetCheckInHistory(ctx context.Context, in *GetChe
 	return out, nil
 }
 
-func (c *checkInServiceClient) GetDailyCount(ctx context.Context, in *GetDailyCountRequest, opts ...grpc.CallOption) (*DailyCountResponse, error) {
-	out := new(DailyCountResponse)
+func (c *checkInServiceClient) GetDailyCount(ctx context.Context, in *GetDailyCountRequest, opts ...grpc.CallOption) (*GetDailyCountResponse, error) {
+	out := new(GetDailyCountResponse)
 	err := c.cc.Invoke(ctx, CheckInService_GetDailyCount_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -117,8 +117,8 @@ func (c *checkInServiceClient) RotateGymQrRootKey(ctx context.Context, in *Rotat
 // for forward compatibility
 type CheckInServiceServer interface {
 	ProcessScan(context.Context, *ProcessScanRequest) (*ProcessScanResponse, error)
-	GetCheckInHistory(context.Context, *GetCheckInHistoryRequest) (*CheckInHistoryResponse, error)
-	GetDailyCount(context.Context, *GetDailyCountRequest) (*DailyCountResponse, error)
+	GetCheckInHistory(context.Context, *GetCheckInHistoryRequest) (*GetCheckInHistoryResponse, error)
+	GetDailyCount(context.Context, *GetDailyCountRequest) (*GetDailyCountResponse, error)
 	RegisterDevice(context.Context, *RegisterDeviceRequest) (*RegisterDeviceResponse, error)
 	GetDisplayQrPayload(context.Context, *GetDisplayQrPayloadRequest) (*GetDisplayQrPayloadResponse, error)
 	RevokeDevice(context.Context, *RevokeDeviceRequest) (*RevokeDeviceResponse, error)
@@ -133,10 +133,10 @@ type UnimplementedCheckInServiceServer struct {
 func (UnimplementedCheckInServiceServer) ProcessScan(context.Context, *ProcessScanRequest) (*ProcessScanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessScan not implemented")
 }
-func (UnimplementedCheckInServiceServer) GetCheckInHistory(context.Context, *GetCheckInHistoryRequest) (*CheckInHistoryResponse, error) {
+func (UnimplementedCheckInServiceServer) GetCheckInHistory(context.Context, *GetCheckInHistoryRequest) (*GetCheckInHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCheckInHistory not implemented")
 }
-func (UnimplementedCheckInServiceServer) GetDailyCount(context.Context, *GetDailyCountRequest) (*DailyCountResponse, error) {
+func (UnimplementedCheckInServiceServer) GetDailyCount(context.Context, *GetDailyCountRequest) (*GetDailyCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDailyCount not implemented")
 }
 func (UnimplementedCheckInServiceServer) RegisterDevice(context.Context, *RegisterDeviceRequest) (*RegisterDeviceResponse, error) {

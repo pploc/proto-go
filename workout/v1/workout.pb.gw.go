@@ -482,7 +482,7 @@ func local_request_WorkoutService_GetTemplate_0(ctx context.Context, marshaler r
 }
 
 func request_WorkoutService_GetPersonalRecords_0(ctx context.Context, marshaler runtime.Marshaler, client WorkoutServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPRRequest
+	var protoReq GetPersonalRecordsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -508,7 +508,7 @@ func request_WorkoutService_GetPersonalRecords_0(ctx context.Context, marshaler 
 }
 
 func local_request_WorkoutService_GetPersonalRecords_0(ctx context.Context, marshaler runtime.Marshaler, server WorkoutServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPRRequest
+	var protoReq GetPersonalRecordsRequest
 	var metadata runtime.ServerMetadata
 
 	var (

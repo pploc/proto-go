@@ -33,14 +33,14 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AnalyticsServiceClient interface {
-	GetDailyAttendance(ctx context.Context, in *AttendanceRequest, opts ...grpc.CallOption) (*AttendanceResponse, error)
-	GetAttendanceTrend(ctx context.Context, in *TrendRequest, opts ...grpc.CallOption) (*TrendResponse, error)
-	GetMembershipStats(ctx context.Context, in *MembershipStatsRequest, opts ...grpc.CallOption) (*MembershipStatsResponse, error)
-	GetInactiveMembers(ctx context.Context, in *InactiveMembersRequest, opts ...grpc.CallOption) (*InactiveMembersResponse, error)
-	GetRevenueReport(ctx context.Context, in *RevenueRequest, opts ...grpc.CallOption) (*RevenueResponse, error)
-	GetRevenueComparison(ctx context.Context, in *RevenueComparisonRequest, opts ...grpc.CallOption) (*RevenueComparisonResponse, error)
-	GetTrainerUtilization(ctx context.Context, in *TrainerUtilizationRequest, opts ...grpc.CallOption) (*TrainerUtilizationResponse, error)
-	GetDashboardSummary(ctx context.Context, in *DashboardRequest, opts ...grpc.CallOption) (*DashboardSummaryResponse, error)
+	GetDailyAttendance(ctx context.Context, in *GetDailyAttendanceRequest, opts ...grpc.CallOption) (*GetDailyAttendanceResponse, error)
+	GetAttendanceTrend(ctx context.Context, in *GetAttendanceTrendRequest, opts ...grpc.CallOption) (*GetAttendanceTrendResponse, error)
+	GetMembershipStats(ctx context.Context, in *GetMembershipStatsRequest, opts ...grpc.CallOption) (*GetMembershipStatsResponse, error)
+	GetInactiveMembers(ctx context.Context, in *GetInactiveMembersRequest, opts ...grpc.CallOption) (*GetInactiveMembersResponse, error)
+	GetRevenueReport(ctx context.Context, in *GetRevenueReportRequest, opts ...grpc.CallOption) (*GetRevenueReportResponse, error)
+	GetRevenueComparison(ctx context.Context, in *GetRevenueComparisonRequest, opts ...grpc.CallOption) (*GetRevenueComparisonResponse, error)
+	GetTrainerUtilization(ctx context.Context, in *GetTrainerUtilizationRequest, opts ...grpc.CallOption) (*GetTrainerUtilizationResponse, error)
+	GetDashboardSummary(ctx context.Context, in *GetDashboardSummaryRequest, opts ...grpc.CallOption) (*GetDashboardSummaryResponse, error)
 }
 
 type analyticsServiceClient struct {
@@ -51,8 +51,8 @@ func NewAnalyticsServiceClient(cc grpc.ClientConnInterface) AnalyticsServiceClie
 	return &analyticsServiceClient{cc}
 }
 
-func (c *analyticsServiceClient) GetDailyAttendance(ctx context.Context, in *AttendanceRequest, opts ...grpc.CallOption) (*AttendanceResponse, error) {
-	out := new(AttendanceResponse)
+func (c *analyticsServiceClient) GetDailyAttendance(ctx context.Context, in *GetDailyAttendanceRequest, opts ...grpc.CallOption) (*GetDailyAttendanceResponse, error) {
+	out := new(GetDailyAttendanceResponse)
 	err := c.cc.Invoke(ctx, AnalyticsService_GetDailyAttendance_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (c *analyticsServiceClient) GetDailyAttendance(ctx context.Context, in *Att
 	return out, nil
 }
 
-func (c *analyticsServiceClient) GetAttendanceTrend(ctx context.Context, in *TrendRequest, opts ...grpc.CallOption) (*TrendResponse, error) {
-	out := new(TrendResponse)
+func (c *analyticsServiceClient) GetAttendanceTrend(ctx context.Context, in *GetAttendanceTrendRequest, opts ...grpc.CallOption) (*GetAttendanceTrendResponse, error) {
+	out := new(GetAttendanceTrendResponse)
 	err := c.cc.Invoke(ctx, AnalyticsService_GetAttendanceTrend_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -69,8 +69,8 @@ func (c *analyticsServiceClient) GetAttendanceTrend(ctx context.Context, in *Tre
 	return out, nil
 }
 
-func (c *analyticsServiceClient) GetMembershipStats(ctx context.Context, in *MembershipStatsRequest, opts ...grpc.CallOption) (*MembershipStatsResponse, error) {
-	out := new(MembershipStatsResponse)
+func (c *analyticsServiceClient) GetMembershipStats(ctx context.Context, in *GetMembershipStatsRequest, opts ...grpc.CallOption) (*GetMembershipStatsResponse, error) {
+	out := new(GetMembershipStatsResponse)
 	err := c.cc.Invoke(ctx, AnalyticsService_GetMembershipStats_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,8 +78,8 @@ func (c *analyticsServiceClient) GetMembershipStats(ctx context.Context, in *Mem
 	return out, nil
 }
 
-func (c *analyticsServiceClient) GetInactiveMembers(ctx context.Context, in *InactiveMembersRequest, opts ...grpc.CallOption) (*InactiveMembersResponse, error) {
-	out := new(InactiveMembersResponse)
+func (c *analyticsServiceClient) GetInactiveMembers(ctx context.Context, in *GetInactiveMembersRequest, opts ...grpc.CallOption) (*GetInactiveMembersResponse, error) {
+	out := new(GetInactiveMembersResponse)
 	err := c.cc.Invoke(ctx, AnalyticsService_GetInactiveMembers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -87,8 +87,8 @@ func (c *analyticsServiceClient) GetInactiveMembers(ctx context.Context, in *Ina
 	return out, nil
 }
 
-func (c *analyticsServiceClient) GetRevenueReport(ctx context.Context, in *RevenueRequest, opts ...grpc.CallOption) (*RevenueResponse, error) {
-	out := new(RevenueResponse)
+func (c *analyticsServiceClient) GetRevenueReport(ctx context.Context, in *GetRevenueReportRequest, opts ...grpc.CallOption) (*GetRevenueReportResponse, error) {
+	out := new(GetRevenueReportResponse)
 	err := c.cc.Invoke(ctx, AnalyticsService_GetRevenueReport_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -96,8 +96,8 @@ func (c *analyticsServiceClient) GetRevenueReport(ctx context.Context, in *Reven
 	return out, nil
 }
 
-func (c *analyticsServiceClient) GetRevenueComparison(ctx context.Context, in *RevenueComparisonRequest, opts ...grpc.CallOption) (*RevenueComparisonResponse, error) {
-	out := new(RevenueComparisonResponse)
+func (c *analyticsServiceClient) GetRevenueComparison(ctx context.Context, in *GetRevenueComparisonRequest, opts ...grpc.CallOption) (*GetRevenueComparisonResponse, error) {
+	out := new(GetRevenueComparisonResponse)
 	err := c.cc.Invoke(ctx, AnalyticsService_GetRevenueComparison_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -105,8 +105,8 @@ func (c *analyticsServiceClient) GetRevenueComparison(ctx context.Context, in *R
 	return out, nil
 }
 
-func (c *analyticsServiceClient) GetTrainerUtilization(ctx context.Context, in *TrainerUtilizationRequest, opts ...grpc.CallOption) (*TrainerUtilizationResponse, error) {
-	out := new(TrainerUtilizationResponse)
+func (c *analyticsServiceClient) GetTrainerUtilization(ctx context.Context, in *GetTrainerUtilizationRequest, opts ...grpc.CallOption) (*GetTrainerUtilizationResponse, error) {
+	out := new(GetTrainerUtilizationResponse)
 	err := c.cc.Invoke(ctx, AnalyticsService_GetTrainerUtilization_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -114,8 +114,8 @@ func (c *analyticsServiceClient) GetTrainerUtilization(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *analyticsServiceClient) GetDashboardSummary(ctx context.Context, in *DashboardRequest, opts ...grpc.CallOption) (*DashboardSummaryResponse, error) {
-	out := new(DashboardSummaryResponse)
+func (c *analyticsServiceClient) GetDashboardSummary(ctx context.Context, in *GetDashboardSummaryRequest, opts ...grpc.CallOption) (*GetDashboardSummaryResponse, error) {
+	out := new(GetDashboardSummaryResponse)
 	err := c.cc.Invoke(ctx, AnalyticsService_GetDashboardSummary_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -127,14 +127,14 @@ func (c *analyticsServiceClient) GetDashboardSummary(ctx context.Context, in *Da
 // All implementations must embed UnimplementedAnalyticsServiceServer
 // for forward compatibility
 type AnalyticsServiceServer interface {
-	GetDailyAttendance(context.Context, *AttendanceRequest) (*AttendanceResponse, error)
-	GetAttendanceTrend(context.Context, *TrendRequest) (*TrendResponse, error)
-	GetMembershipStats(context.Context, *MembershipStatsRequest) (*MembershipStatsResponse, error)
-	GetInactiveMembers(context.Context, *InactiveMembersRequest) (*InactiveMembersResponse, error)
-	GetRevenueReport(context.Context, *RevenueRequest) (*RevenueResponse, error)
-	GetRevenueComparison(context.Context, *RevenueComparisonRequest) (*RevenueComparisonResponse, error)
-	GetTrainerUtilization(context.Context, *TrainerUtilizationRequest) (*TrainerUtilizationResponse, error)
-	GetDashboardSummary(context.Context, *DashboardRequest) (*DashboardSummaryResponse, error)
+	GetDailyAttendance(context.Context, *GetDailyAttendanceRequest) (*GetDailyAttendanceResponse, error)
+	GetAttendanceTrend(context.Context, *GetAttendanceTrendRequest) (*GetAttendanceTrendResponse, error)
+	GetMembershipStats(context.Context, *GetMembershipStatsRequest) (*GetMembershipStatsResponse, error)
+	GetInactiveMembers(context.Context, *GetInactiveMembersRequest) (*GetInactiveMembersResponse, error)
+	GetRevenueReport(context.Context, *GetRevenueReportRequest) (*GetRevenueReportResponse, error)
+	GetRevenueComparison(context.Context, *GetRevenueComparisonRequest) (*GetRevenueComparisonResponse, error)
+	GetTrainerUtilization(context.Context, *GetTrainerUtilizationRequest) (*GetTrainerUtilizationResponse, error)
+	GetDashboardSummary(context.Context, *GetDashboardSummaryRequest) (*GetDashboardSummaryResponse, error)
 	mustEmbedUnimplementedAnalyticsServiceServer()
 }
 
@@ -142,28 +142,28 @@ type AnalyticsServiceServer interface {
 type UnimplementedAnalyticsServiceServer struct {
 }
 
-func (UnimplementedAnalyticsServiceServer) GetDailyAttendance(context.Context, *AttendanceRequest) (*AttendanceResponse, error) {
+func (UnimplementedAnalyticsServiceServer) GetDailyAttendance(context.Context, *GetDailyAttendanceRequest) (*GetDailyAttendanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDailyAttendance not implemented")
 }
-func (UnimplementedAnalyticsServiceServer) GetAttendanceTrend(context.Context, *TrendRequest) (*TrendResponse, error) {
+func (UnimplementedAnalyticsServiceServer) GetAttendanceTrend(context.Context, *GetAttendanceTrendRequest) (*GetAttendanceTrendResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAttendanceTrend not implemented")
 }
-func (UnimplementedAnalyticsServiceServer) GetMembershipStats(context.Context, *MembershipStatsRequest) (*MembershipStatsResponse, error) {
+func (UnimplementedAnalyticsServiceServer) GetMembershipStats(context.Context, *GetMembershipStatsRequest) (*GetMembershipStatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMembershipStats not implemented")
 }
-func (UnimplementedAnalyticsServiceServer) GetInactiveMembers(context.Context, *InactiveMembersRequest) (*InactiveMembersResponse, error) {
+func (UnimplementedAnalyticsServiceServer) GetInactiveMembers(context.Context, *GetInactiveMembersRequest) (*GetInactiveMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetInactiveMembers not implemented")
 }
-func (UnimplementedAnalyticsServiceServer) GetRevenueReport(context.Context, *RevenueRequest) (*RevenueResponse, error) {
+func (UnimplementedAnalyticsServiceServer) GetRevenueReport(context.Context, *GetRevenueReportRequest) (*GetRevenueReportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRevenueReport not implemented")
 }
-func (UnimplementedAnalyticsServiceServer) GetRevenueComparison(context.Context, *RevenueComparisonRequest) (*RevenueComparisonResponse, error) {
+func (UnimplementedAnalyticsServiceServer) GetRevenueComparison(context.Context, *GetRevenueComparisonRequest) (*GetRevenueComparisonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRevenueComparison not implemented")
 }
-func (UnimplementedAnalyticsServiceServer) GetTrainerUtilization(context.Context, *TrainerUtilizationRequest) (*TrainerUtilizationResponse, error) {
+func (UnimplementedAnalyticsServiceServer) GetTrainerUtilization(context.Context, *GetTrainerUtilizationRequest) (*GetTrainerUtilizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrainerUtilization not implemented")
 }
-func (UnimplementedAnalyticsServiceServer) GetDashboardSummary(context.Context, *DashboardRequest) (*DashboardSummaryResponse, error) {
+func (UnimplementedAnalyticsServiceServer) GetDashboardSummary(context.Context, *GetDashboardSummaryRequest) (*GetDashboardSummaryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDashboardSummary not implemented")
 }
 func (UnimplementedAnalyticsServiceServer) mustEmbedUnimplementedAnalyticsServiceServer() {}
@@ -180,7 +180,7 @@ func RegisterAnalyticsServiceServer(s grpc.ServiceRegistrar, srv AnalyticsServic
 }
 
 func _AnalyticsService_GetDailyAttendance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AttendanceRequest)
+	in := new(GetDailyAttendanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -192,13 +192,13 @@ func _AnalyticsService_GetDailyAttendance_Handler(srv interface{}, ctx context.C
 		FullMethod: AnalyticsService_GetDailyAttendance_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AnalyticsServiceServer).GetDailyAttendance(ctx, req.(*AttendanceRequest))
+		return srv.(AnalyticsServiceServer).GetDailyAttendance(ctx, req.(*GetDailyAttendanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AnalyticsService_GetAttendanceTrend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TrendRequest)
+	in := new(GetAttendanceTrendRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -210,13 +210,13 @@ func _AnalyticsService_GetAttendanceTrend_Handler(srv interface{}, ctx context.C
 		FullMethod: AnalyticsService_GetAttendanceTrend_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AnalyticsServiceServer).GetAttendanceTrend(ctx, req.(*TrendRequest))
+		return srv.(AnalyticsServiceServer).GetAttendanceTrend(ctx, req.(*GetAttendanceTrendRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AnalyticsService_GetMembershipStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MembershipStatsRequest)
+	in := new(GetMembershipStatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -228,13 +228,13 @@ func _AnalyticsService_GetMembershipStats_Handler(srv interface{}, ctx context.C
 		FullMethod: AnalyticsService_GetMembershipStats_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AnalyticsServiceServer).GetMembershipStats(ctx, req.(*MembershipStatsRequest))
+		return srv.(AnalyticsServiceServer).GetMembershipStats(ctx, req.(*GetMembershipStatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AnalyticsService_GetInactiveMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InactiveMembersRequest)
+	in := new(GetInactiveMembersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -246,13 +246,13 @@ func _AnalyticsService_GetInactiveMembers_Handler(srv interface{}, ctx context.C
 		FullMethod: AnalyticsService_GetInactiveMembers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AnalyticsServiceServer).GetInactiveMembers(ctx, req.(*InactiveMembersRequest))
+		return srv.(AnalyticsServiceServer).GetInactiveMembers(ctx, req.(*GetInactiveMembersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AnalyticsService_GetRevenueReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevenueRequest)
+	in := new(GetRevenueReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -264,13 +264,13 @@ func _AnalyticsService_GetRevenueReport_Handler(srv interface{}, ctx context.Con
 		FullMethod: AnalyticsService_GetRevenueReport_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AnalyticsServiceServer).GetRevenueReport(ctx, req.(*RevenueRequest))
+		return srv.(AnalyticsServiceServer).GetRevenueReport(ctx, req.(*GetRevenueReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AnalyticsService_GetRevenueComparison_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevenueComparisonRequest)
+	in := new(GetRevenueComparisonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -282,13 +282,13 @@ func _AnalyticsService_GetRevenueComparison_Handler(srv interface{}, ctx context
 		FullMethod: AnalyticsService_GetRevenueComparison_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AnalyticsServiceServer).GetRevenueComparison(ctx, req.(*RevenueComparisonRequest))
+		return srv.(AnalyticsServiceServer).GetRevenueComparison(ctx, req.(*GetRevenueComparisonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AnalyticsService_GetTrainerUtilization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TrainerUtilizationRequest)
+	in := new(GetTrainerUtilizationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -300,13 +300,13 @@ func _AnalyticsService_GetTrainerUtilization_Handler(srv interface{}, ctx contex
 		FullMethod: AnalyticsService_GetTrainerUtilization_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AnalyticsServiceServer).GetTrainerUtilization(ctx, req.(*TrainerUtilizationRequest))
+		return srv.(AnalyticsServiceServer).GetTrainerUtilization(ctx, req.(*GetTrainerUtilizationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AnalyticsService_GetDashboardSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DashboardRequest)
+	in := new(GetDashboardSummaryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -318,7 +318,7 @@ func _AnalyticsService_GetDashboardSummary_Handler(srv interface{}, ctx context.
 		FullMethod: AnalyticsService_GetDashboardSummary_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AnalyticsServiceServer).GetDashboardSummary(ctx, req.(*DashboardRequest))
+		return srv.(AnalyticsServiceServer).GetDashboardSummary(ctx, req.(*GetDashboardSummaryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

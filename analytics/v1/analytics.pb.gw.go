@@ -36,7 +36,7 @@ var (
 )
 
 func request_AnalyticsService_GetDailyAttendance_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AttendanceRequest
+	var protoReq GetDailyAttendanceRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -52,7 +52,7 @@ func request_AnalyticsService_GetDailyAttendance_0(ctx context.Context, marshale
 }
 
 func local_request_AnalyticsService_GetDailyAttendance_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AttendanceRequest
+	var protoReq GetDailyAttendanceRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -72,7 +72,7 @@ var (
 )
 
 func request_AnalyticsService_GetAttendanceTrend_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TrendRequest
+	var protoReq GetAttendanceTrendRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -88,7 +88,7 @@ func request_AnalyticsService_GetAttendanceTrend_0(ctx context.Context, marshale
 }
 
 func local_request_AnalyticsService_GetAttendanceTrend_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TrendRequest
+	var protoReq GetAttendanceTrendRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -108,7 +108,7 @@ var (
 )
 
 func request_AnalyticsService_GetMembershipStats_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq MembershipStatsRequest
+	var protoReq GetMembershipStatsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -124,7 +124,7 @@ func request_AnalyticsService_GetMembershipStats_0(ctx context.Context, marshale
 }
 
 func local_request_AnalyticsService_GetMembershipStats_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq MembershipStatsRequest
+	var protoReq GetMembershipStatsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -144,7 +144,7 @@ var (
 )
 
 func request_AnalyticsService_GetInactiveMembers_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq InactiveMembersRequest
+	var protoReq GetInactiveMembersRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -160,7 +160,7 @@ func request_AnalyticsService_GetInactiveMembers_0(ctx context.Context, marshale
 }
 
 func local_request_AnalyticsService_GetInactiveMembers_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq InactiveMembersRequest
+	var protoReq GetInactiveMembersRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -180,7 +180,7 @@ var (
 )
 
 func request_AnalyticsService_GetRevenueReport_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RevenueRequest
+	var protoReq GetRevenueReportRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -196,7 +196,7 @@ func request_AnalyticsService_GetRevenueReport_0(ctx context.Context, marshaler 
 }
 
 func local_request_AnalyticsService_GetRevenueReport_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RevenueRequest
+	var protoReq GetRevenueReportRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -216,7 +216,7 @@ var (
 )
 
 func request_AnalyticsService_GetRevenueComparison_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RevenueComparisonRequest
+	var protoReq GetRevenueComparisonRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -232,7 +232,7 @@ func request_AnalyticsService_GetRevenueComparison_0(ctx context.Context, marsha
 }
 
 func local_request_AnalyticsService_GetRevenueComparison_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RevenueComparisonRequest
+	var protoReq GetRevenueComparisonRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -252,7 +252,7 @@ var (
 )
 
 func request_AnalyticsService_GetTrainerUtilization_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TrainerUtilizationRequest
+	var protoReq GetTrainerUtilizationRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -285,7 +285,7 @@ func request_AnalyticsService_GetTrainerUtilization_0(ctx context.Context, marsh
 }
 
 func local_request_AnalyticsService_GetTrainerUtilization_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TrainerUtilizationRequest
+	var protoReq GetTrainerUtilizationRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -322,7 +322,7 @@ var (
 )
 
 func request_AnalyticsService_GetDashboardSummary_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DashboardRequest
+	var protoReq GetDashboardSummaryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -338,7 +338,7 @@ func request_AnalyticsService_GetDashboardSummary_0(ctx context.Context, marshal
 }
 
 func local_request_AnalyticsService_GetDashboardSummary_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DashboardRequest
+	var protoReq GetDashboardSummaryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {

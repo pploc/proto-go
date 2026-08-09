@@ -21,7 +21,6 @@ import (
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 // Suppress "imported and not used" errors
@@ -101,7 +100,7 @@ func local_request_IdentityService_Login_0(ctx context.Context, marshaler runtim
 }
 
 func request_IdentityService_LoginWithGoogle_0(ctx context.Context, marshaler runtime.Marshaler, client IdentityServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GoogleLoginRequest
+	var protoReq LoginWithGoogleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +117,7 @@ func request_IdentityService_LoginWithGoogle_0(ctx context.Context, marshaler ru
 }
 
 func local_request_IdentityService_LoginWithGoogle_0(ctx context.Context, marshaler runtime.Marshaler, server IdentityServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GoogleLoginRequest
+	var protoReq LoginWithGoogleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -271,7 +270,7 @@ func local_request_IdentityService_Logout_0(ctx context.Context, marshaler runti
 }
 
 func request_IdentityService_GetCurrentUser_0(ctx context.Context, marshaler runtime.Marshaler, client IdentityServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq GetCurrentUserRequest
 	var metadata runtime.ServerMetadata
 
 	msg, err := client.GetCurrentUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -280,7 +279,7 @@ func request_IdentityService_GetCurrentUser_0(ctx context.Context, marshaler run
 }
 
 func local_request_IdentityService_GetCurrentUser_0(ctx context.Context, marshaler runtime.Marshaler, server IdentityServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq GetCurrentUserRequest
 	var metadata runtime.ServerMetadata
 
 	msg, err := server.GetCurrentUser(ctx, &protoReq)
@@ -357,7 +356,7 @@ func local_request_IdentityService_SelectGym_0(ctx context.Context, marshaler ru
 }
 
 func request_IdentityService_CreateTrainerAccount_0(ctx context.Context, marshaler runtime.Marshaler, client IdentityServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateTrainerRequest
+	var protoReq CreateTrainerAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -374,7 +373,7 @@ func request_IdentityService_CreateTrainerAccount_0(ctx context.Context, marshal
 }
 
 func local_request_IdentityService_CreateTrainerAccount_0(ctx context.Context, marshaler runtime.Marshaler, server IdentityServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateTrainerRequest
+	var protoReq CreateTrainerAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
