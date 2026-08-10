@@ -28,7 +28,6 @@ const (
 	IdentityService_Logout_FullMethodName                  = "/identity.v1.IdentityService/Logout"
 	IdentityService_GetCurrentUser_FullMethodName          = "/identity.v1.IdentityService/GetCurrentUser"
 	IdentityService_ChangePassword_FullMethodName          = "/identity.v1.IdentityService/ChangePassword"
-	IdentityService_SelectGym_FullMethodName               = "/identity.v1.IdentityService/SelectGym"
 	IdentityService_CreateTrainerAccount_FullMethodName    = "/identity.v1.IdentityService/CreateTrainerAccount"
 	IdentityService_SuspendUser_FullMethodName             = "/identity.v1.IdentityService/SuspendUser"
 	IdentityService_ListUsers_FullMethodName               = "/identity.v1.IdentityService/ListUsers"
@@ -47,7 +46,6 @@ type IdentityServiceClient interface {
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	GetCurrentUser(ctx context.Context, in *GetCurrentUserRequest, opts ...grpc.CallOption) (*GetCurrentUserResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
-	SelectGym(ctx context.Context, in *SelectGymRequest, opts ...grpc.CallOption) (*SelectGymResponse, error)
 	CreateTrainerAccount(ctx context.Context, in *CreateTrainerAccountRequest, opts ...grpc.CallOption) (*CreateTrainerAccountResponse, error)
 	SuspendUser(ctx context.Context, in *SuspendUserRequest, opts ...grpc.CallOption) (*SuspendUserResponse, error)
 	ListUsers(ctx context.Context, in *ListUsersRequest, opts ...grpc.CallOption) (*ListUsersResponse, error)
@@ -142,15 +140,6 @@ func (c *identityServiceClient) ChangePassword(ctx context.Context, in *ChangePa
 	return out, nil
 }
 
-func (c *identityServiceClient) SelectGym(ctx context.Context, in *SelectGymRequest, opts ...grpc.CallOption) (*SelectGymResponse, error) {
-	out := new(SelectGymResponse)
-	err := c.cc.Invoke(ctx, IdentityService_SelectGym_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *identityServiceClient) CreateTrainerAccount(ctx context.Context, in *CreateTrainerAccountRequest, opts ...grpc.CallOption) (*CreateTrainerAccountResponse, error) {
 	out := new(CreateTrainerAccountResponse)
 	err := c.cc.Invoke(ctx, IdentityService_CreateTrainerAccount_FullMethodName, in, out, opts...)
@@ -191,7 +180,6 @@ type IdentityServiceServer interface {
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	GetCurrentUser(context.Context, *GetCurrentUserRequest) (*GetCurrentUserResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
-	SelectGym(context.Context, *SelectGymRequest) (*SelectGymResponse, error)
 	CreateTrainerAccount(context.Context, *CreateTrainerAccountRequest) (*CreateTrainerAccountResponse, error)
 	SuspendUser(context.Context, *SuspendUserRequest) (*SuspendUserResponse, error)
 	ListUsers(context.Context, *ListUsersRequest) (*ListUsersResponse, error)
@@ -228,9 +216,6 @@ func (UnimplementedIdentityServiceServer) GetCurrentUser(context.Context, *GetCu
 }
 func (UnimplementedIdentityServiceServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
-}
-func (UnimplementedIdentityServiceServer) SelectGym(context.Context, *SelectGymRequest) (*SelectGymResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SelectGym not implemented")
 }
 func (UnimplementedIdentityServiceServer) CreateTrainerAccount(context.Context, *CreateTrainerAccountRequest) (*CreateTrainerAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTrainerAccount not implemented")
@@ -416,24 +401,6 @@ func _IdentityService_ChangePassword_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _IdentityService_SelectGym_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SelectGymRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(IdentityServiceServer).SelectGym(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: IdentityService_SelectGym_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IdentityServiceServer).SelectGym(ctx, req.(*SelectGymRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _IdentityService_CreateTrainerAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTrainerAccountRequest)
 	if err := dec(in); err != nil {
@@ -530,10 +497,6 @@ var IdentityService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangePassword",
 			Handler:    _IdentityService_ChangePassword_Handler,
-		},
-		{
-			MethodName: "SelectGym",
-			Handler:    _IdentityService_SelectGym_Handler,
 		},
 		{
 			MethodName: "CreateTrainerAccount",

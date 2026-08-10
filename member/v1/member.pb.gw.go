@@ -152,12 +152,29 @@ func local_request_MemberService_UpdateProfile_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_MemberService_ListMembers_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MemberService_ListMembers_0 = &utilities.DoubleArray{Encoding: map[string]int{"gym_id": 0, "gymId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
 func request_MemberService_ListMembers_0(ctx context.Context, marshaler runtime.Marshaler, client MemberServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListMembersRequest
 	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
+	}
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -174,6 +191,23 @@ func request_MemberService_ListMembers_0(ctx context.Context, marshaler runtime.
 func local_request_MemberService_ListMembers_0(ctx context.Context, marshaler runtime.Marshaler, server MemberServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListMembersRequest
 	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
+	}
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -195,8 +229,25 @@ func request_MemberService_PurchaseMembership_0(ctx context.Context, marshaler r
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Purchase); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
 	}
 
 	msg, err := client.PurchaseMembership(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -212,8 +263,25 @@ func local_request_MemberService_PurchaseMembership_0(ctx context.Context, marsh
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Purchase); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
 	}
 
 	msg, err := server.PurchaseMembership(ctx, &protoReq)
@@ -233,6 +301,33 @@ func request_MemberService_PauseMembership_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
+	}
+
+	val, ok = pathParams["member_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "member_id")
+	}
+
+	protoReq.MemberId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "member_id", err)
+	}
+
 	msg, err := client.PauseMembership(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -248,6 +343,33 @@ func local_request_MemberService_PauseMembership_0(ctx context.Context, marshale
 	}
 	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
+	}
+
+	val, ok = pathParams["member_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "member_id")
+	}
+
+	protoReq.MemberId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "member_id", err)
 	}
 
 	msg, err := server.PauseMembership(ctx, &protoReq)
@@ -267,6 +389,33 @@ func request_MemberService_ResumeMembership_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
+	}
+
+	val, ok = pathParams["member_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "member_id")
+	}
+
+	protoReq.MemberId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "member_id", err)
+	}
+
 	msg, err := client.ResumeMembership(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -284,6 +433,33 @@ func local_request_MemberService_ResumeMembership_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
+	}
+
+	val, ok = pathParams["member_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "member_id")
+	}
+
+	protoReq.MemberId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "member_id", err)
+	}
+
 	msg, err := server.ResumeMembership(ctx, &protoReq)
 	return msg, metadata, err
 
@@ -299,6 +475,16 @@ func request_MemberService_GetMembershipStatus_0(ctx context.Context, marshaler 
 		err error
 		_   = err
 	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
+	}
 
 	val, ok = pathParams["member_id"]
 	if !ok {
@@ -325,6 +511,16 @@ func local_request_MemberService_GetMembershipStatus_0(ctx context.Context, mars
 		err error
 		_   = err
 	)
+
+	val, ok = pathParams["gym_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "gym_id")
+	}
+
+	protoReq.GymId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "gym_id", err)
+	}
 
 	val, ok = pathParams["member_id"]
 	if !ok {
@@ -405,7 +601,7 @@ func RegisterMemberServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/ListMembers", runtime.WithHTTPPathPattern("/api/v1/members"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/ListMembers", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/members"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -430,7 +626,7 @@ func RegisterMemberServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/PurchaseMembership", runtime.WithHTTPPathPattern("/api/v1/memberships/purchase"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/PurchaseMembership", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/memberships/purchase"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -455,7 +651,7 @@ func RegisterMemberServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/PauseMembership", runtime.WithHTTPPathPattern("/api/v1/memberships/pause"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/PauseMembership", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/members/{member_id}/membership:pause"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -480,7 +676,7 @@ func RegisterMemberServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/ResumeMembership", runtime.WithHTTPPathPattern("/api/v1/memberships/resume"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/ResumeMembership", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/members/{member_id}/membership:resume"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -505,7 +701,7 @@ func RegisterMemberServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/GetMembershipStatus", runtime.WithHTTPPathPattern("/api/v1/memberships/status/{member_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/member.v1.MemberService/GetMembershipStatus", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/members/{member_id}/membership"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -613,7 +809,7 @@ func RegisterMemberServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/ListMembers", runtime.WithHTTPPathPattern("/api/v1/members"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/ListMembers", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/members"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -635,7 +831,7 @@ func RegisterMemberServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/PurchaseMembership", runtime.WithHTTPPathPattern("/api/v1/memberships/purchase"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/PurchaseMembership", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/memberships/purchase"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -657,7 +853,7 @@ func RegisterMemberServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/PauseMembership", runtime.WithHTTPPathPattern("/api/v1/memberships/pause"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/PauseMembership", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/members/{member_id}/membership:pause"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -679,7 +875,7 @@ func RegisterMemberServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/ResumeMembership", runtime.WithHTTPPathPattern("/api/v1/memberships/resume"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/ResumeMembership", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/members/{member_id}/membership:resume"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -701,7 +897,7 @@ func RegisterMemberServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/GetMembershipStatus", runtime.WithHTTPPathPattern("/api/v1/memberships/status/{member_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/member.v1.MemberService/GetMembershipStatus", runtime.WithHTTPPathPattern("/api/v1/gyms/{gym_id}/members/{member_id}/membership"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -725,15 +921,15 @@ var (
 
 	pattern_MemberService_UpdateProfile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "members", "member_id"}, ""))
 
-	pattern_MemberService_ListMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "members"}, ""))
+	pattern_MemberService_ListMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "v1", "gyms", "gym_id", "members"}, ""))
 
-	pattern_MemberService_PurchaseMembership_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "memberships", "purchase"}, ""))
+	pattern_MemberService_PurchaseMembership_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 2, 5}, []string{"api", "v1", "gyms", "gym_id", "memberships", "purchase"}, ""))
 
-	pattern_MemberService_PauseMembership_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "memberships", "pause"}, ""))
+	pattern_MemberService_PauseMembership_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "gyms", "gym_id", "members", "member_id", "membership"}, "pause"))
 
-	pattern_MemberService_ResumeMembership_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "memberships", "resume"}, ""))
+	pattern_MemberService_ResumeMembership_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "gyms", "gym_id", "members", "member_id", "membership"}, "resume"))
 
-	pattern_MemberService_GetMembershipStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "memberships", "status", "member_id"}, ""))
+	pattern_MemberService_GetMembershipStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "gyms", "gym_id", "members", "member_id", "membership"}, ""))
 )
 
 var (
