@@ -1,7 +1,7 @@
 {
-  "sourceSha": "7f887b99503353b3c6a3066361ff5b36d44b6811",
-  "sourceRef": "refs/tags/v6.0.1",
-  "releaseVersion": "6.0.1",
+  "sourceSha": "2e1c6500d78602bc651d1942edf4573c05c87ac4",
+  "sourceRef": "refs/tags/v7.0.0",
+  "releaseVersion": "7.0.0",
   "generator": "github.com/google/gnostic/cmd/protoc-gen-openapi@v0.7.1",
   "generatorCommit": "39aedcfe9f00c4336420c8ed927fb0f803f921f2",
   "releaseReady": true

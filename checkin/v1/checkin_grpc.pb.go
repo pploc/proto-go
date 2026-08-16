@@ -19,13 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CheckInService_ProcessScan_FullMethodName         = "/checkin.v1.CheckInService/ProcessScan"
-	CheckInService_GetCheckInHistory_FullMethodName   = "/checkin.v1.CheckInService/GetCheckInHistory"
-	CheckInService_GetDailyCount_FullMethodName       = "/checkin.v1.CheckInService/GetDailyCount"
-	CheckInService_RegisterDevice_FullMethodName      = "/checkin.v1.CheckInService/RegisterDevice"
-	CheckInService_GetDisplayQrPayload_FullMethodName = "/checkin.v1.CheckInService/GetDisplayQrPayload"
-	CheckInService_RevokeDevice_FullMethodName        = "/checkin.v1.CheckInService/RevokeDevice"
-	CheckInService_RotateGymQrRootKey_FullMethodName  = "/checkin.v1.CheckInService/RotateGymQrRootKey"
+	CheckInService_ProcessScan_FullMethodName             = "/checkin.v1.CheckInService/ProcessScan"
+	CheckInService_GetMyCheckInHistory_FullMethodName     = "/checkin.v1.CheckInService/GetMyCheckInHistory"
+	CheckInService_GetMemberCheckInHistory_FullMethodName = "/checkin.v1.CheckInService/GetMemberCheckInHistory"
+	CheckInService_GetDailyCount_FullMethodName           = "/checkin.v1.CheckInService/GetDailyCount"
+	CheckInService_GetDisplayQrPayload_FullMethodName     = "/checkin.v1.CheckInService/GetDisplayQrPayload"
+	CheckInService_RotateGymQrRootKey_FullMethodName      = "/checkin.v1.CheckInService/RotateGymQrRootKey"
 )
 
 // CheckInServiceClient is the client API for CheckInService service.
@@ -33,11 +32,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CheckInServiceClient interface {
 	ProcessScan(ctx context.Context, in *ProcessScanRequest, opts ...grpc.CallOption) (*ProcessScanResponse, error)
-	GetCheckInHistory(ctx context.Context, in *GetCheckInHistoryRequest, opts ...grpc.CallOption) (*GetCheckInHistoryResponse, error)
+	GetMyCheckInHistory(ctx context.Context, in *GetMyCheckInHistoryRequest, opts ...grpc.CallOption) (*GetMyCheckInHistoryResponse, error)
+	GetMemberCheckInHistory(ctx context.Context, in *GetMemberCheckInHistoryRequest, opts ...grpc.CallOption) (*GetMemberCheckInHistoryResponse, error)
 	GetDailyCount(ctx context.Context, in *GetDailyCountRequest, opts ...grpc.CallOption) (*GetDailyCountResponse, error)
-	RegisterDevice(ctx context.Context, in *RegisterDeviceRequest, opts ...grpc.CallOption) (*RegisterDeviceResponse, error)
 	GetDisplayQrPayload(ctx context.Context, in *GetDisplayQrPayloadRequest, opts ...grpc.CallOption) (*GetDisplayQrPayloadResponse, error)
-	RevokeDevice(ctx context.Context, in *RevokeDeviceRequest, opts ...grpc.CallOption) (*RevokeDeviceResponse, error)
 	RotateGymQrRootKey(ctx context.Context, in *RotateGymQrRootKeyRequest, opts ...grpc.CallOption) (*RotateGymQrRootKeyResponse, error)
 }
 
@@ -58,9 +56,18 @@ func (c *checkInServiceClient) ProcessScan(ctx context.Context, in *ProcessScanR
 	return out, nil
 }
 
-func (c *checkInServiceClient) GetCheckInHistory(ctx context.Context, in *GetCheckInHistoryRequest, opts ...grpc.CallOption) (*GetCheckInHistoryResponse, error) {
-	out := new(GetCheckInHistoryResponse)
-	err := c.cc.Invoke(ctx, CheckInService_GetCheckInHistory_FullMethodName, in, out, opts...)
+func (c *checkInServiceClient) GetMyCheckInHistory(ctx context.Context, in *GetMyCheckInHistoryRequest, opts ...grpc.CallOption) (*GetMyCheckInHistoryResponse, error) {
+	out := new(GetMyCheckInHistoryResponse)
+	err := c.cc.Invoke(ctx, CheckInService_GetMyCheckInHistory_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *checkInServiceClient) GetMemberCheckInHistory(ctx context.Context, in *GetMemberCheckInHistoryRequest, opts ...grpc.CallOption) (*GetMemberCheckInHistoryResponse, error) {
+	out := new(GetMemberCheckInHistoryResponse)
+	err := c.cc.Invoke(ctx, CheckInService_GetMemberCheckInHistory_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,27 +83,9 @@ func (c *checkInServiceClient) GetDailyCount(ctx context.Context, in *GetDailyCo
 	return out, nil
 }
 
-func (c *checkInServiceClient) RegisterDevice(ctx context.Context, in *RegisterDeviceRequest, opts ...grpc.CallOption) (*RegisterDeviceResponse, error) {
-	out := new(RegisterDeviceResponse)
-	err := c.cc.Invoke(ctx, CheckInService_RegisterDevice_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *checkInServiceClient) GetDisplayQrPayload(ctx context.Context, in *GetDisplayQrPayloadRequest, opts ...grpc.CallOption) (*GetDisplayQrPayloadResponse, error) {
 	out := new(GetDisplayQrPayloadResponse)
 	err := c.cc.Invoke(ctx, CheckInService_GetDisplayQrPayload_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *checkInServiceClient) RevokeDevice(ctx context.Context, in *RevokeDeviceRequest, opts ...grpc.CallOption) (*RevokeDeviceResponse, error) {
-	out := new(RevokeDeviceResponse)
-	err := c.cc.Invoke(ctx, CheckInService_RevokeDevice_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -117,11 +106,10 @@ func (c *checkInServiceClient) RotateGymQrRootKey(ctx context.Context, in *Rotat
 // for forward compatibility
 type CheckInServiceServer interface {
 	ProcessScan(context.Context, *ProcessScanRequest) (*ProcessScanResponse, error)
-	GetCheckInHistory(context.Context, *GetCheckInHistoryRequest) (*GetCheckInHistoryResponse, error)
+	GetMyCheckInHistory(context.Context, *GetMyCheckInHistoryRequest) (*GetMyCheckInHistoryResponse, error)
+	GetMemberCheckInHistory(context.Context, *GetMemberCheckInHistoryRequest) (*GetMemberCheckInHistoryResponse, error)
 	GetDailyCount(context.Context, *GetDailyCountRequest) (*GetDailyCountResponse, error)
-	RegisterDevice(context.Context, *RegisterDeviceRequest) (*RegisterDeviceResponse, error)
 	GetDisplayQrPayload(context.Context, *GetDisplayQrPayloadRequest) (*GetDisplayQrPayloadResponse, error)
-	RevokeDevice(context.Context, *RevokeDeviceRequest) (*RevokeDeviceResponse, error)
 	RotateGymQrRootKey(context.Context, *RotateGymQrRootKeyRequest) (*RotateGymQrRootKeyResponse, error)
 	mustEmbedUnimplementedCheckInServiceServer()
 }
@@ -133,20 +121,17 @@ type UnimplementedCheckInServiceServer struct {
 func (UnimplementedCheckInServiceServer) ProcessScan(context.Context, *ProcessScanRequest) (*ProcessScanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessScan not implemented")
 }
-func (UnimplementedCheckInServiceServer) GetCheckInHistory(context.Context, *GetCheckInHistoryRequest) (*GetCheckInHistoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCheckInHistory not implemented")
+func (UnimplementedCheckInServiceServer) GetMyCheckInHistory(context.Context, *GetMyCheckInHistoryRequest) (*GetMyCheckInHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMyCheckInHistory not implemented")
+}
+func (UnimplementedCheckInServiceServer) GetMemberCheckInHistory(context.Context, *GetMemberCheckInHistoryRequest) (*GetMemberCheckInHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMemberCheckInHistory not implemented")
 }
 func (UnimplementedCheckInServiceServer) GetDailyCount(context.Context, *GetDailyCountRequest) (*GetDailyCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDailyCount not implemented")
 }
-func (UnimplementedCheckInServiceServer) RegisterDevice(context.Context, *RegisterDeviceRequest) (*RegisterDeviceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterDevice not implemented")
-}
 func (UnimplementedCheckInServiceServer) GetDisplayQrPayload(context.Context, *GetDisplayQrPayloadRequest) (*GetDisplayQrPayloadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDisplayQrPayload not implemented")
-}
-func (UnimplementedCheckInServiceServer) RevokeDevice(context.Context, *RevokeDeviceRequest) (*RevokeDeviceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RevokeDevice not implemented")
 }
 func (UnimplementedCheckInServiceServer) RotateGymQrRootKey(context.Context, *RotateGymQrRootKeyRequest) (*RotateGymQrRootKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RotateGymQrRootKey not implemented")
@@ -182,20 +167,38 @@ func _CheckInService_ProcessScan_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CheckInService_GetCheckInHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCheckInHistoryRequest)
+func _CheckInService_GetMyCheckInHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMyCheckInHistoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CheckInServiceServer).GetCheckInHistory(ctx, in)
+		return srv.(CheckInServiceServer).GetMyCheckInHistory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CheckInService_GetCheckInHistory_FullMethodName,
+		FullMethod: CheckInService_GetMyCheckInHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CheckInServiceServer).GetCheckInHistory(ctx, req.(*GetCheckInHistoryRequest))
+		return srv.(CheckInServiceServer).GetMyCheckInHistory(ctx, req.(*GetMyCheckInHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CheckInService_GetMemberCheckInHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMemberCheckInHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CheckInServiceServer).GetMemberCheckInHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CheckInService_GetMemberCheckInHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CheckInServiceServer).GetMemberCheckInHistory(ctx, req.(*GetMemberCheckInHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -218,24 +221,6 @@ func _CheckInService_GetDailyCount_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CheckInService_RegisterDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterDeviceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CheckInServiceServer).RegisterDevice(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CheckInService_RegisterDevice_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CheckInServiceServer).RegisterDevice(ctx, req.(*RegisterDeviceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CheckInService_GetDisplayQrPayload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDisplayQrPayloadRequest)
 	if err := dec(in); err != nil {
@@ -250,24 +235,6 @@ func _CheckInService_GetDisplayQrPayload_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CheckInServiceServer).GetDisplayQrPayload(ctx, req.(*GetDisplayQrPayloadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CheckInService_RevokeDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevokeDeviceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CheckInServiceServer).RevokeDevice(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CheckInService_RevokeDevice_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CheckInServiceServer).RevokeDevice(ctx, req.(*RevokeDeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -302,24 +269,20 @@ var CheckInService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CheckInService_ProcessScan_Handler,
 		},
 		{
-			MethodName: "GetCheckInHistory",
-			Handler:    _CheckInService_GetCheckInHistory_Handler,
+			MethodName: "GetMyCheckInHistory",
+			Handler:    _CheckInService_GetMyCheckInHistory_Handler,
+		},
+		{
+			MethodName: "GetMemberCheckInHistory",
+			Handler:    _CheckInService_GetMemberCheckInHistory_Handler,
 		},
 		{
 			MethodName: "GetDailyCount",
 			Handler:    _CheckInService_GetDailyCount_Handler,
 		},
 		{
-			MethodName: "RegisterDevice",
-			Handler:    _CheckInService_RegisterDevice_Handler,
-		},
-		{
 			MethodName: "GetDisplayQrPayload",
 			Handler:    _CheckInService_GetDisplayQrPayload_Handler,
-		},
-		{
-			MethodName: "RevokeDevice",
-			Handler:    _CheckInService_RevokeDevice_Handler,
 		},
 		{
 			MethodName: "RotateGymQrRootKey",

@@ -29,6 +29,7 @@ const (
 	PlansService_ListMembershipPlans_FullMethodName    = "/plans.v1.PlansService/ListMembershipPlans"
 	PlansService_GetActiveGym_FullMethodName           = "/plans.v1.PlansService/GetActiveGym"
 	PlansService_ResolvePurchasablePlan_FullMethodName = "/plans.v1.PlansService/ResolvePurchasablePlan"
+	PlansService_ValidateCheckInGym_FullMethodName     = "/plans.v1.PlansService/ValidateCheckInGym"
 )
 
 // PlansServiceClient is the client API for PlansService service.
@@ -49,6 +50,9 @@ type PlansServiceClient interface {
 	// Internal only. Requires the verified ms-gym-member workload identity.
 	// This RPC is intentionally absent from the external HTTP configuration.
 	ResolvePurchasablePlan(ctx context.Context, in *ResolvePurchasablePlanRequest, opts ...grpc.CallOption) (*ResolvePurchasablePlanResponse, error)
+	// Internal only. Requires the verified ms-gym-checkin workload identity.
+	// This RPC is intentionally absent from the external HTTP configuration.
+	ValidateCheckInGym(ctx context.Context, in *ValidateCheckInGymRequest, opts ...grpc.CallOption) (*ValidateCheckInGymResponse, error)
 }
 
 type plansServiceClient struct {
@@ -149,6 +153,15 @@ func (c *plansServiceClient) ResolvePurchasablePlan(ctx context.Context, in *Res
 	return out, nil
 }
 
+func (c *plansServiceClient) ValidateCheckInGym(ctx context.Context, in *ValidateCheckInGymRequest, opts ...grpc.CallOption) (*ValidateCheckInGymResponse, error) {
+	out := new(ValidateCheckInGymResponse)
+	err := c.cc.Invoke(ctx, PlansService_ValidateCheckInGym_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PlansServiceServer is the server API for PlansService service.
 // All implementations must embed UnimplementedPlansServiceServer
 // for forward compatibility
@@ -167,6 +180,9 @@ type PlansServiceServer interface {
 	// Internal only. Requires the verified ms-gym-member workload identity.
 	// This RPC is intentionally absent from the external HTTP configuration.
 	ResolvePurchasablePlan(context.Context, *ResolvePurchasablePlanRequest) (*ResolvePurchasablePlanResponse, error)
+	// Internal only. Requires the verified ms-gym-checkin workload identity.
+	// This RPC is intentionally absent from the external HTTP configuration.
+	ValidateCheckInGym(context.Context, *ValidateCheckInGymRequest) (*ValidateCheckInGymResponse, error)
 	mustEmbedUnimplementedPlansServiceServer()
 }
 
@@ -203,6 +219,9 @@ func (UnimplementedPlansServiceServer) GetActiveGym(context.Context, *GetActiveG
 }
 func (UnimplementedPlansServiceServer) ResolvePurchasablePlan(context.Context, *ResolvePurchasablePlanRequest) (*ResolvePurchasablePlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResolvePurchasablePlan not implemented")
+}
+func (UnimplementedPlansServiceServer) ValidateCheckInGym(context.Context, *ValidateCheckInGymRequest) (*ValidateCheckInGymResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateCheckInGym not implemented")
 }
 func (UnimplementedPlansServiceServer) mustEmbedUnimplementedPlansServiceServer() {}
 
@@ -397,6 +416,24 @@ func _PlansService_ResolvePurchasablePlan_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PlansService_ValidateCheckInGym_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateCheckInGymRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlansServiceServer).ValidateCheckInGym(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlansService_ValidateCheckInGym_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlansServiceServer).ValidateCheckInGym(ctx, req.(*ValidateCheckInGymRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PlansService_ServiceDesc is the grpc.ServiceDesc for PlansService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -443,6 +480,10 @@ var PlansService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResolvePurchasablePlan",
 			Handler:    _PlansService_ResolvePurchasablePlan_Handler,
+		},
+		{
+			MethodName: "ValidateCheckInGym",
+			Handler:    _PlansService_ValidateCheckInGym_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
